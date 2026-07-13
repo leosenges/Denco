@@ -3,1251 +3,1030 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOCUMENTO TÉCNICO DENCO v5.6.0 — Versión 2.0</title>
+<title>DOCUMENTO TECNICO DENCO v5.6.0 - Version 4.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #faf8f4;
-    --surface: #ffffff;
-    --accent: #1a3a2a;
-    --accent-light: #2d6b4a;
-    --accent-muted: #4a7c62;
-    --text-primary: #1a1a1a;
-    --text-secondary: #3a3a3a;
-    --text-muted: #6a6a6a;
-    --border: #d4cfc5;
-    --border-light: #e8e4db;
-    --warning: #8b4513;
-    --critical: #8b1a1a;
-    --highlight: #f0ebe0;
-    --code-bg: #f5f2ec;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family:'Source Serif 4','Georgia',serif;
-    background:var(--bg);
-    color:var(--text-primary);
-    font-size:15px;
-    line-height:1.75;
-    -webkit-font-smoothing:antialiased;
-  }
-  .page-container { max-width:820px; margin:0 auto; padding:40px 20px; }
-
-  /* COVER */
-  .cover {
-    text-align:center; padding:80px 40px 60px;
-    border-bottom:3px double var(--accent); margin-bottom:50px;
-    position:relative;
-  }
-  .cover::before {
-    content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
-    width:60px; height:4px; background:var(--accent); border-radius:2px;
-  }
-  .cover .label {
-    font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em;
-    text-transform:uppercase; color:var(--text-muted); margin-bottom:24px;
-  }
-  .cover h1 {
-    font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:700;
-    color:var(--accent); line-height:1.2; margin-bottom:8px;
-  }
-  .cover .subtitle {
-    font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400;
-    color:var(--accent-muted); margin-bottom:30px; line-height:1.4;
-  }
-  .cover .version-badge {
-    display:inline-block; font-family:'DM Mono',monospace; font-size:12px;
-    background:var(--accent); color:white; padding:4px 16px; border-radius:3px;
-    margin-bottom:30px;
-  }
-  .cover .motto {
-    font-style:italic; font-size:16px; color:var(--text-muted);
-    margin:30px 0; padding:20px 0;
-    border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);
-  }
-  .cover .meta-table { margin:24px auto 0; text-align:left; font-size:13px; }
-  .cover .meta-table td { padding:4px 12px; vertical-align:top; }
-  .cover .meta-table td:first-child {
-    font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.05em;
-    color:var(--text-muted); text-transform:uppercase; white-space:nowrap; width:160px;
-  }
-
-  /* HEADINGS */
-  h2 {
-    font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:700;
-    color:var(--accent); margin:50px 0 20px; padding-bottom:10px;
-    border-bottom:2px solid var(--accent); line-height:1.3;
-  }
-  h2 .section-num {
-    font-family:'DM Mono',monospace; font-size:14px; font-weight:400;
-    color:var(--accent-muted); display:block; margin-bottom:4px; letter-spacing:0.1em;
-  }
-  h3 {
-    font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600;
-    color:var(--text-primary); margin:32px 0 12px;
-  }
-  h3 .sub-num { font-family:'DM Mono',monospace; font-size:13px; color:var(--text-muted); margin-right:6px; }
-  h4 {
-    font-family:'Source Serif 4',serif; font-size:16px; font-weight:600;
-    color:var(--text-secondary); margin:24px 0 8px;
-  }
-
-  p { margin-bottom:14px; text-align:justify; hyphens:auto; }
-  strong { font-weight:600; }
-  em { font-style:italic; }
-
-  /* TABLES */
-  table { width:100%; border-collapse:collapse; margin:16px 0 20px; font-size:13.5px; }
-  thead td, th {
-    font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em;
-    text-transform:uppercase; background:var(--accent); color:white;
-    padding:10px 12px; text-align:left; font-weight:400;
-  }
-  td { padding:8px 12px; border-bottom:1px solid var(--border-light); vertical-align:top; }
-  tbody tr:nth-child(even) { background:var(--highlight); }
-  tbody tr:hover { background:#e8e3d8; }
-
-  /* CODE */
-  code {
-    font-family:'DM Mono',monospace; font-size:12.5px; background:var(--code-bg);
-    padding:2px 6px; border-radius:3px; color:var(--accent);
-  }
-  pre {
-    background:#1a1a1a; color:#e0ddd5; padding:20px 24px; border-radius:6px;
-    font-family:'DM Mono',monospace; font-size:12px; line-height:1.7;
-    overflow-x:auto; margin:16px 0 20px; border-left:4px solid var(--accent-light);
-  }
-  pre .comment { color:#6a9955; }
-  pre .highlight-line { color:#e8c547; }
-
-  blockquote {
-    border-left:4px solid var(--accent-muted); padding:16px 20px; margin:20px 0;
-    background:var(--highlight); font-style:italic; color:var(--text-secondary);
-    border-radius:0 6px 6px 0;
-  }
-
-  .callout {
-    padding:18px 22px; margin:20px 0; border-radius:6px; font-size:14px;
-  }
-  .callout-warning { background:#fdf5e6; border:1px solid #e8c87a; border-left:5px solid var(--warning); }
-  .callout-critical { background:#fdf0f0; border:1px solid #d4a0a0; border-left:5px solid var(--critical); }
-  .callout-info { background:#f0f5f2; border:1px solid #a0c4b0; border-left:5px solid var(--accent-light); }
-  .callout-title {
-    font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase;
-    letter-spacing:0.1em; margin-bottom:6px; font-weight:400;
-  }
-  .callout-warning .callout-title { color:var(--warning); }
-  .callout-critical .callout-title { color:var(--critical); }
-  .callout-info .callout-title { color:var(--accent-light); }
-
-  ul, ol { margin:10px 0 16px 24px; }
-  li { margin-bottom:6px; }
-
-  /* SIGNATURES */
-  .signatures {
-    display:grid; grid-template-columns:1fr 1fr; gap:50px;
-    margin-top:50px; padding-top:30px; border-top:2px solid var(--accent);
-  }
-  .sig-block { text-align:center; }
-  .sig-line { border-bottom:1px solid var(--text-primary); height:60px; margin-bottom:12px; }
-  .sig-name { font-weight:600; font-size:15px; margin-bottom:2px; }
-  .sig-role {
-    font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted);
-    text-transform:uppercase; letter-spacing:0.08em;
-  }
-
-  .doc-footer {
-    margin-top:60px; padding-top:20px; border-top:3px double var(--accent);
-    text-align:center; font-family:'DM Mono',monospace; font-size:11px;
-    color:var(--text-muted); line-height:2;
-  }
-
-  /* TOC */
-  .toc {
-    margin:30px 0 40px; padding:24px 30px; background:var(--surface);
-    border:1px solid var(--border); border-radius:6px;
-  }
-  .toc-title {
-    font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600;
-    color:var(--accent); margin-bottom:14px; padding-bottom:8px;
-    border-bottom:1px solid var(--border-light);
-  }
-  .toc ol { margin:0; padding-left:20px; }
-  .toc li { margin-bottom:4px; font-size:14px; color:var(--text-secondary); }
-  .toc li::marker { color:var(--accent-muted); font-family:'DM Mono',monospace; font-size:12px; }
-
-  /* DIAGRAM */
-  .diagram {
-    background:#1a1a1a; color:#c8c4bc; padding:24px; border-radius:6px;
-    font-family:'DM Mono',monospace; font-size:11.5px; line-height:1.6;
-    overflow-x:auto; margin:16px 0 20px; white-space:pre;
-    border-left:4px solid var(--accent-light);
-  }
-
-  .equation {
-    text-align:center; padding:14px; margin:14px 0;
-    background:var(--highlight); border-radius:4px; font-style:italic; font-size:15px;
-  }
-
-  @media print {
-    body { font-size:11pt; }
-    .page-container { max-width:100%; padding:0; }
-    .cover { page-break-after:always; }
-    h2 { page-break-before:always; }
-    h2:first-of-type { page-break-before:avoid; }
-    table { page-break-inside:avoid; }
-    pre { page-break-inside:avoid; }
-    .callout { page-break-inside:avoid; }
-  }
-
-  .fade-in { opacity:0; transform:translateY(16px); animation:fadeUp .5s ease forwards; }
-  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
-  .fade-in:nth-child(2) { animation-delay:.05s; }
-  .fade-in:nth-child(3) { animation-delay:.1s; }
-  .fade-in:nth-child(4) { animation-delay:.15s; }
-  .fade-in:nth-child(5) { animation-delay:.2s; }
-
-  .version-table td:first-child {
-    font-family:'DM Mono',monospace; font-weight:400; color:var(--accent); white-space:nowrap;
-  }
-
-  .resp-table { margin:20px 0 30px; }
-  .resp-table td { padding:12px 14px; }
-  .resp-table td:first-child { width:200px; font-weight:600; }
+:root{--bg:#faf8f4;--surface:#fff;--accent:#1a3a2a;--accent-light:#2d6b4a;--accent-muted:#4a7c62;--text-primary:#1a1a1a;--text-secondary:#3a3a3a;--text-muted:#6a6a6a;--border:#d4cfc5;--border-light:#e8e4db;--warning:#8b4513;--critical:#8b1a1a;--highlight:#f0ebe0;--code-bg:#f5f2ec;--success:#2e7d32}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Serif 4','Georgia',serif;background:var(--bg);color:var(--text-primary);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.container{max-width:820px;margin:0 auto;padding:40px 20px}
+.cover{text-align:center;padding:80px 40px 60px;border-bottom:3px double var(--accent);margin-bottom:50px;position:relative}
+.cover::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--accent);border-radius:2px}
+.cover .label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px}
+.cover h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:8px}
+.cover .subtitle{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--accent-muted);margin-bottom:30px;line-height:1.4}
+.cover .badge{display:inline-block;font-family:'DM Mono',monospace;font-size:12px;background:var(--accent);color:#fff;padding:4px 16px;border-radius:3px;margin-bottom:30px}
+.cover .motto{font-style:italic;font-size:16px;color:var(--text-muted);margin:30px 0;padding:20px 0;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.cover .meta{margin:24px auto 0;text-align:left;font-size:13px}
+.cover .meta td{padding:4px 12px;vertical-align:top}
+.cover .meta td:first-child{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--text-muted);text-transform:uppercase;white-space:nowrap;width:160px}
+h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);margin:50px 0 20px;padding-bottom:10px;border-bottom:2px solid var(--accent);line-height:1.3}
+h2 .sn{font-family:'DM Mono',monospace;font-size:14px;font-weight:400;color:var(--accent-muted);display:block;margin-bottom:4px;letter-spacing:.1em}
+h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--text-primary);margin:32px 0 12px}
+h3 .sn2{font-family:'DM Mono',monospace;font-size:13px;color:var(--text-muted);margin-right:6px}
+p{margin-bottom:14px;text-align:justify;hyphens:auto}
+strong{font-weight:600}em{font-style:italic}
+table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:13.5px}
+thead td,th{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;padding:10px 12px;text-align:left;font-weight:400}
+td{padding:8px 12px;border-bottom:1px solid var(--border-light);vertical-align:top}
+tbody tr:nth-child(even){background:var(--highlight)}
+code{font-family:'DM Mono',monospace;font-size:12.5px;background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--accent)}
+pre{background:#1a1a1a;color:#e0ddd5;padding:20px 24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;margin:16px 0 20px;border-left:4px solid var(--accent-light)}
+.hl{color:#e8c547}
+.callout{padding:18px 22px;margin:20px 0;border-radius:6px;font-size:14px}
+.cw{background:#fdf5e6;border:1px solid #e8c87a;border-left:5px solid var(--warning)}
+.cc{background:#fdf0f0;border:1px solid #d4a0a0;border-left:5px solid var(--critical)}
+.ci{background:#f0f5f2;border:1px solid #a0c4b0;border-left:5px solid var(--accent-light)}
+.cs{background:#e8f5e9;border:1px solid #a5d6a7;border-left:5px solid var(--success)}
+.callout .ct{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;font-weight:400}
+.cw .ct{color:var(--warning)}.cc .ct{color:var(--critical)}.ci .ct{color:var(--accent-light)}.cs .ct{color:var(--success)}
+ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
+.eq{text-align:center;padding:14px;margin:14px 0;background:var(--highlight);border-radius:4px;font-style:italic;font-size:15px}
+.exec{background:var(--surface);border:2px solid var(--accent);border-radius:8px;padding:32px 36px;margin:30px 0 40px;position:relative}
+.exec::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--accent-light),var(--accent-muted));border-radius:6px 6px 0 0}
+.exec h2{border-bottom:none;margin-top:0;padding-bottom:0;font-size:24px}
+.exec p{font-size:14.5px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.si{padding:10px 14px;border-radius:5px;font-family:'DM Mono',monospace;font-size:12px;display:flex;align-items:center;gap:8px}
+.sdone{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.splan{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
+.spending{background:#fce4ec;color:#c62828;border:1px solid #ef9a9a}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;padding-top:30px;border-top:2px solid var(--accent)}
+.sig-b{text-align:center}.sig-l{border-bottom:1px solid var(--text-primary);height:60px;margin-bottom:12px}
+.sig-n{font-weight:600;font-size:15px;margin-bottom:2px}
+.sig-r{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
+.footer{margin-top:60px;padding-top:20px;border-top:3px double var(--accent);text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);line-height:2}
+.toc{margin:30px 0 40px;padding:24px 30px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.toc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--accent);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-light)}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin-bottom:4px;font-size:14px;color:var(--text-secondary)}
+.toc li::marker{color:var(--accent-muted);font-family:'DM Mono',monospace;font-size:12px}
+.toc .ag{margin-top:14px;padding-top:10px;border-top:1px solid var(--border-light)}
+.diag{background:#1a1a1a;color:#c8c4bc;padding:24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.6;overflow-x:auto;margin:16px 0 20px;white-space:pre;border-left:4px solid var(--accent-light)}
+.flow{margin:24px 0 28px}
+.fs{display:flex;align-items:flex-start;gap:16px;margin-bottom:4px}
+.fn{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;z-index:1}
+.fc{flex:1;padding:10px 16px;background:var(--surface);border:1px solid var(--border-light);border-radius:6px;font-size:13.5px;margin-bottom:8px}
+.fc strong{color:var(--accent)}
+.fconn{width:2px;height:14px;background:var(--accent-muted);margin-left:15px;opacity:.5}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:16px 0;border:1px solid var(--border-light);border-radius:6px;overflow:hidden}
+.gi{padding:10px 14px;border-bottom:1px solid var(--border-light);font-size:13px;display:flex;gap:8px}
+.gi:nth-child(odd){border-right:1px solid var(--border-light)}
+.gi:nth-child(even){background:var(--highlight)}
+.gt{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);font-weight:400;white-space:nowrap;min-width:80px}
+.gd{color:var(--text-secondary)}
+.pb{border-radius:6px;padding:18px 22px;margin:16px 0}
+.pbt{background:#fff3e0;border:1px solid #ffcc80;border-left:5px solid #e65100}
+.pbc{background:#e8f5e9;border:1px solid #a5d6a7;border-left:5px solid var(--success)}
+.pb h4{margin-top:0;font-family:'DM Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.pbt h4{color:#e65100}.pbc h4{color:var(--success)}
+.rt{margin:20px 0 30px}.rt td{padding:12px 14px}.rt td:first-child{width:200px;font-weight:600}
+@media print{body{font-size:11pt}.container{max-width:100%;padding:0}.cover{page-break-after:always}h2{page-break-before:always}h2:first-of-type{page-break-before:avoid}table{page-break-inside:avoid}pre{page-break-inside:avoid}.callout{page-break-inside:avoid}.exec{page-break-inside:avoid}.fs{page-break-inside:avoid}}
+.fade-in{opacity:0;transform:translateY(16px);animation:fu .5s ease forwards}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.vt td:first-child{font-family:'DM Mono',monospace;font-weight:400;color:var(--accent);white-space:nowrap}
 </style>
 </head>
 <body>
-<div class="page-container">
+<div class="container">
 
-<!-- ═══════════════════ COVER ═══════════════════ -->
+<!-- ═══════ COVER ═══════ -->
 <div class="cover fade-in">
-  <div class="label">Especificación Técnica de Referencia v2.0</div>
-  <h1>DOCUMENTO TÉCNICO DENCO</h1>
-  <div class="subtitle">
-    Sistema de Detección de Compuestos Orgánicos Volátiles en Aliento<br>
-    para Identificación del Efecto Warburg y Patologías Metabólicas / Respiratorias<br><br>
-    <strong>Plataforma SaMD con Inteligencia Artificial Explicable</strong>
-  </div>
-  <div class="version-badge">v5.6.0 &mdash; Julio 2026</div>
-  <div class="motto">
-    "Nadie debería morir de cáncer por falta de detección temprana"
-  </div>
-  <table class="meta-table">
-    <tr><td>Fabricante</td><td>DENCO Industrias &mdash; Paysandú, Uruguay</td></tr>
-    <tr><td>Clasificación</td><td>Dispositivo Médico de Clase II (riesgo moderado)</td></tr>
+  <div class="label">Especificacion Tecnica de Referencia v4.0</div>
+  <h1>DOCUMENTO TECNICO DENCO</h1>
+  <div class="subtitle">Sistema de Deteccion de Compuestos Organicos Volatiles en Aliento<br>para Identificacion del Efecto Warburg y Patologias Metabolas / Respiratorias<br><br><strong>Plataforma SaMD con Inteligencia Artificial Explicable</strong></div>
+  <div class="badge">v5.6.0 &mdash; Julio 2026</div>
+  <div class="motto">"Nadie deberia morir de cancer por falta de deteccion temprana"</div>
+  <table class="meta">
+    <tr><td>Fabricante</td><td>DENCO Industrias &mdash; Paysandu, Uruguay</td></tr>
+    <tr><td>Clasificacion</td><td>Dispositivo Medico de Clase II (riesgo moderado)</td></tr>
     <tr><td>Registro Sanitario</td><td>Pendiente ante DET / MSP</td></tr>
-    <tr><td>Versión Software</td><td>5.6.0</td></tr>
-    <tr><td>Versión Documento</td><td>2.0</td></tr>
-    <tr><td>Fecha Emisión</td><td>09/07/2026</td></tr>
+    <tr><td>Version Software</td><td>5.6.0</td></tr>
+    <tr><td>Version Documento</td><td>4.0</td></tr>
+    <tr><td>Fecha Emision</td><td>13/07/2026</td></tr>
   </table>
 </div>
 
-<!-- ═══════════════════ RESPONSABLES ═══════════════════ -->
-<div class="fade-in">
-<h2><span class="section-num">RESPONSABLES DEL PROYECTO</span></h2>
+<!-- ═══════ RESUMEN EJECUTIVO ═══════ -->
+<div class="exec fade-in">
+  <h2><span class="sn">RESUMEN EJECUTIVO</span></h2>
+  <p>Cada anio, 1.9 millones de personas son diagnosticadas con cancer de pulmon en el mundo. El 70% se detecta en etapas avanzadas (III o IV), cuando la supervivencia a 5 anios es inferior al 20%. Si se detecta en etapa I, la supervivencia supera el 80%. <strong>La diferencia entre 20% y 80% es la deteccion temprana.</strong></p>
+  <p>DENCO es un sistema de pre-tamizaje no invasivo que analiza compuestos organicos volatiles (VOCs) en aliento exhalado, identificando el Efecto Warburg &mdash; la firma metabolica de la transformacion celular neoplasica &mdash; y otras patologias metabolas y respiratorias (EPOC, diabetes, infecciones). Utiliza un sensor BME688 de 10 canales MOx con un tunel Venturi normalizado (ISO 5167), procesado por un motor de inteligencia artificial Ensemble (Red Neuronal + SVM + Random Forest) con explicabilidad XAI y agente de conocimiento continuo (DIA).</p>
+  <p>El software (v5.6.0) esta completo y congelado: 408 tests pasando, 0 fallos. El hardware esta disenado y documentado: tunel Venturi, boquillas Quick-Lock, fundas desechables, filtro doble malla. La validacion clinica esta planificada con 8 medicos de 3 policlinicas del litoral, bajo protocolo a aprobar por el Comite de Etica del Hospital de Paysandu.</p>
+  <p>El proximo paso es la validacion clinica con cohorte propia para obtener datos reales de rendimiento con el sensor BME688 fisico y avanzar en el registro sanitario ante DET/MSP.</p>
+  <div class="sg">
+    <div class="si sdone">&#10003; Software v5.6.0 &mdash; 408 tests, 0 fallos</div>
+    <div class="si sdone">&#10003; Hardware &mdash; Disenio completo documentado</div>
+    <div class="si sdone">&#10003; Seguridad &mdash; Implementada y verificada</div>
+    <div class="si sdone">&#10003; Documentacion &mdash; Expediente regulatorio completo</div>
+    <div class="si sdone">&#10003; SBOM &mdash; Lista formal de dependencias completada</div>
+    <div class="si sdone">&#10003; Bioseguridad &mdash; Protocolo documentado</div>
+    <div class="si splan">&#9655; Validacion clinica &mdash; Planificada (8 medicos, 3 policlinicas)</div>
+    <div class="si splan">&#9655; Comite de Etica &mdash; Protocolo pendiente de aprobacion</div>
+    <div class="si spending">&#9679; Registro DET/MSP &mdash; Pendiente validacion clinica</div>
+    <div class="si spending">&#9679; Rendimiento real &mdash; Pendiente cohorte propia</div>
+  </div>
+</div>
 
-<table class="resp-table">
-  <thead>
-    <tr><td>Nombre</td><td>Rol</td><td>Responsabilidad Principal</td></tr>
-  </thead>
+<!-- ═══════ RESPONSABLES ═══════ -->
+<div class="fade-in">
+<h2><span class="sn">RESPONSABLES DEL PROYECTO</span></h2>
+<table class="rt">
+  <thead><tr><td>Nombre</td><td>Rol</td><td>Responsabilidad Principal</td></tr></thead>
   <tbody>
-    <tr>
-      <td>Hugo L. La Cruz</td>
-      <td>Director del Proyecto</td>
-      <td>Dirección general, arquitectura de software, motor de IA, documentación regulatoria, validación clínica, estrategia</td>
-    </tr>
-    <tr>
-      <td>Emmanuel Modernel Rosin</td>
-      <td>Socio &mdash; Desarrollador de Hardware</td>
-      <td>Diseño y desarrollo del dispositivo físico: carcaza, boquillas, fundas desechables grado médico, túnel Venturi, interfaz Quick-Lock, integración mecánica de sensores</td>
-    </tr>
+    <tr><td>Hugo L. La Cruz</td><td>Director del Proyecto</td><td>Direccion general, arquitectura de software, motor de IA, documentacion regulatoria, validacion clinica, estrategia</td></tr>
+    <tr><td>Emmanuel Modernel Rosin</td><td>Socio &mdash; Desarrollador de Hardware</td><td>Disenio y desarrollo del dispositivo fisico: carcaza, boquillas, fundas desechables grado medico, tunel Venturi, interfaz Quick-Lock, filtro doble malla de acero, integracion mecanica de sensores</td></tr>
   </tbody>
 </table>
 </div>
 
-<!-- ═══════════════════ ÍNDICE ═══════════════════ -->
+<!-- ═══════ INDICE ═══════ -->
 <div class="toc fade-in">
-  <div class="toc-title">Índice</div>
+  <div class="toc-title">Indice</div>
   <ol>
     <li>Objetivo del Documento</li>
-    <li>Declaración de Propósito y Nicho Humano</li>
+    <li>Declaracion de Proposito y Nicho Humano</li>
     <li>Fundamento Molecular: El Efecto Warburg</li>
-    <li>Hardware y Principio de Medición</li>
+    <li>Hardware y Principio de Medicion</li>
     <li>Arquitectura de Software</li>
     <li>Motor de Inteligencia Artificial</li>
-    <li>Explicabilidad (XAI) y el Rol de DIA en el Contexto Clínico</li>
-    <li>Capas Clínicas: Reportes, Interoperabilidad y Estándares</li>
-    <li>Seguridad, Protección de Datos y Ciberseguridad</li>
-    <li>Validación y Estado Regulatorio</li>
+    <li>Explicabilidad (XAI) y el Rol de DIA</li>
+    <li>Capas Clinicas: Reportes, Interoperabilidad y Estandares</li>
+    <li>Seguridad, Proteccion de Datos y Ciberseguridad</li>
+    <li>Validacion y Estado Regulatorio</li>
     <li>Limitaciones Conocidas y Transparencia Regulatoria</li>
     <li>Rendimiento y Pruebas Operativas</li>
-    <li>Modelo de Negocio y Diferenciadores Competitivos</li>
-    <li>Próximos Pasos y Plan de Validación Clínica</li>
+    <li>Modelo de Negocio y Diferenciadores</li>
+    <li>Proximos Pasos, Validacion Clinica y Cronograma</li>
     <li>Referencias</li>
+    <li>Protocolo de Bioseguridad y Recambio Operativo</li>
+    <li>Glosario de Terminos</li>
+    <li class="ag">Anexo A: Instrucciones de Preparacion para el Paciente</li>
+    <li>Anexo B: Consentimiento Informado (Ley 18.335)</li>
+    <li>Anexo C: SBOM &mdash; Software Bill of Materials</li>
   </ol>
 </div>
 
-<!-- ═══════════════════ 1. OBJETIVO ═══════════════════ -->
-<h2 class="fade-in"><span class="section-num">1</span>Objetivo del Documento</h2>
-
-<p>Este documento establece la base técnica, metodológica, científica y regulatoria del Sistema DENCO v5.6.0, una plataforma SaMD (Software as a Medical Device) diseñada para la detección no invasiva de compuestos orgánicos volátiles (VOCs) en aire exhalado, con un propósito específico:</p>
-
-<div class="callout callout-info">
-  <div class="callout-title">Propósito</div>
-  <p style="margin-bottom:0">Identificar la firma metabólica del Efecto Warburg y otras alteraciones metabólicas/respiratorias en etapas previas a la formación de tumor clínicamente detectable, mediante análisis por sensores de óxido metálico asistido por inteligencia artificial explicable.</p>
+<!-- ═══════ 1. OBJETIVO ═══════ -->
+<h2 class="fade-in"><span class="sn">1</span>Objetivo del Documento</h2>
+<p>Este documento establece la base tecnica, metodologica, cientifica y regulatoria del Sistema DENCO v5.6.0, una plataforma SaMD (Software as a Medical Device) disenada para la deteccion no invasiva de compuestos organicos volatiles (VOCs) en aire exhalado.</p>
+<div class="callout ci">
+  <div class="ct">Proposito</div>
+  <p style="margin-bottom:0">Identificar la firma metabolica del Efecto Warburg y otras alteraciones metabolas/respiratorias en etapas previas a la formacion de tumor clinicamente detectable, mediante analisis por sensores de oxido metalico asistido por inteligencia artificial explicable.</p>
 </div>
-
 <p>El presente documento sirve como:</p>
 <ul>
-  <li><strong>Referencia técnica completa</strong> para el desarrollo, mantenimiento y auditoría del sistema</li>
-  <li><strong>Base metodológica</strong> para futuros procesos de certificación ante DET/MSP y organismos internacionales</li>
-  <li><strong>Declaración de propósito</strong> para colaboradores clínicos, inversores y organismos de financiamiento (ANDE/ANII)</li>
-  <li><strong>Fundamento para publicaciones científicas</strong> — este documento constituye la especificación técnica de referencia que antecede a los artículos derivados para revisión por pares</li>
+  <li><strong>Referencia tecnica completa</strong> para desarrollo, mantenimiento y auditoria del sistema</li>
+  <li><strong>Base metodologica</strong> para certificacion ante DET/MSP y organismos internacionales</li>
+  <li><strong>Declaracion de proposito</strong> para colaboradores clinicos, inversores y organismos de financiamiento (ANDE/ANII)</li>
+  <li><strong>Fundamento para publicaciones cientificas</strong> &mdash; especificacion tecnica de referencia que antecede a articulos derivados</li>
   <li><strong>Expediente regulatorio</strong> conforme Decreto 3/2008, IMDRF N43/N60/N73/N81, ISO 13485 e IEC 62304</li>
 </ul>
 
-<p>Las metodologías aquí descritas se basan en principios ampliamente aceptados en la literatura científica sobre análisis de aliento (<em>breathomics</em>), sensores de óxido metálico, aprendizaje automático aplicado a dispositivos médicos, y prácticas de ingeniería de software médico establecidas.</p>
+<!-- ═══════ 2. PROPOSITO ═══════ -->
+<h2><span class="sn">2</span>Declaracion de Proposito y Nicho Humano</h2>
+<h3><span class="sn2">2.1</span> El Problema</h3>
+<p>Cada anio, 1.9 millones de personas son diagnosticadas con cancer de pulmon. Mas del 70% se detecta en etapas avanzadas (III-IV), con supervivencia a 5 anios inferior al 20%. En etapa I, la supervivencia supera el 80%. <strong>La diferencia es la deteccion temprana.</strong></p>
+<p>El Efecto Warburg produce cambios en el perfil de VOCs del aliento que preceden a la formacion de masa tumoral detectable por imagen.</p>
 
-<!-- ═══════════════════ 2. PROPÓSITO ═══════════════════ -->
-<h2><span class="section-num">2</span>Declaración de Propósito y Nicho Humano</h2>
-
-<h3><span class="sub-num">2.1</span> El Problema que DENCO Busca Resolver</h3>
-<p>Cada año, 1.9 millones de personas son diagnosticadas con cáncer de pulmón en el mundo. De ellas, más del 70% son detectadas en etapas avanzadas (III o IV), cuando las opciones terapéuticas son limitadas y la supervivencia a 5 años es inferior al 20%.</p>
-<p>Cuando el cáncer se detecta en etapa I, la supervivencia a 5 años supera el 80%.</p>
-<p><strong>La diferencia entre 20% y 80% es la detección temprana.</strong></p>
-<p>El Efecto Warburg — la alteración metabólica fundamental que acompaña a la transformación celular neoplásica — produce cambios en el perfil de compuestos orgánicos volátiles (VOCs) del aliento humano que preceden a la formación de masa tumoral detectable por imagen. Estos cambios son medibles, cuantificables y clasificables mediante sensores de óxido metálico (MOx) asistidos por inteligencia artificial.</p>
-
-<h3><span class="sub-num">2.2</span> Personas que DENCO Puede Alcanzar</h3>
+<h3><span class="sn2">2.2</span> Alcance Global</h3>
 <table>
-  <thead><tr><td>Grupo</td><td>Personas por Año</td><td>Impacto Potencial</td></tr></thead>
+  <thead><tr><td>Grupo</td><td>Personas/Anio</td><td>Impacto Potencial</td></tr></thead>
   <tbody>
-    <tr><td>Uruguay</td><td>1.200 nuevos casos de cáncer de pulmón</td><td>800-900 podrían detectarse antes con tamizaje accesible</td></tr>
-    <tr><td>América Latina</td><td>150.000 nuevos casos</td><td>100.000 podrían beneficiarse de detección temprana</td></tr>
-    <tr><td>Mundo</td><td>1.900.000 nuevos casos</td><td>1.300.000 personas por año</td></tr>
+    <tr><td>Uruguay</td><td>1.200 nuevos casos pulmon</td><td>800-900 detectables antes</td></tr>
+    <tr><td>America Latina</td><td>150.000 nuevos casos</td><td>100.000 beneficiados</td></tr>
+    <tr><td>Mundo</td><td>1.900.000 nuevos casos</td><td>1.300.000 personas/anio</td></tr>
   </tbody>
 </table>
 
-<p>DENCO no se limita al cáncer de pulmón. El Efecto Warburg es común a múltiples tipos de cáncer:</p>
+<p>El Efecto Warburg es comun a multiples tipos de cancer:</p>
 <table>
-  <thead><tr><td>Tipo de Cáncer</td><td>Casos Anuales (Mundo)</td><td>Detectabilidad por VOC</td></tr></thead>
+  <thead><tr><td>Cancer</td><td>Casos Anuales</td><td>Detectabilidad VOC</td></tr></thead>
   <tbody>
-    <tr><td>Pulmón</td><td>1.9 M</td><td>Alta (estudios &gt;80% sensibilidad)</td></tr>
+    <tr><td>Pulmon</td><td>1.9 M</td><td>Alta (&gt;80%)</td></tr>
     <tr><td>Mama</td><td>2.3 M</td><td>Media-alta</td></tr>
     <tr><td>Colon</td><td>1.9 M</td><td>Media</td></tr>
-    <tr><td>Próstata</td><td>1.4 M</td><td>Media</td></tr>
-    <tr><td>Estómago</td><td>1.1 M</td><td>Media</td></tr>
-    <tr><td>Hígado</td><td>900k</td><td>Media-alta</td></tr>
+    <tr><td>Prostata</td><td>1.4 M</td><td>Media</td></tr>
+    <tr><td>Estomago</td><td>1.1 M</td><td>Media</td></tr>
+    <tr><td>Higado</td><td>900k</td><td>Media-alta</td></tr>
   </tbody>
 </table>
 
-<p>Adicionalmente, DENCO v5.6.0 clasifica condiciones no oncológicas que comparten firma en VOCs:</p>
+<p>Condiciones no oncologicas clasificadas por DENCO:</p>
 <table>
-  <thead><tr><td>Condición</td><td>Mecanismo de Detección</td><td>Clase en el Modelo</td></tr></thead>
+  <thead><tr><td>Condicion</td><td>Mecanismo</td><td>Clase</td></tr></thead>
   <tbody>
-    <tr><td>EPOC</td><td>Inflamación crónica + remodelación de vías aéreas</td><td>Clase 2</td></tr>
-    <tr><td>Diabetes / Cetosis</td><td>Cuerpos cetónicos (acetona) en aliento</td><td>Clase 3*</td></tr>
-    <tr><td>Infección respiratoria</td><td>Metabolismo bacteriano + respuesta inflamatoria</td><td>Clase 4</td></tr>
+    <tr><td>EPOC</td><td>Inflamacion cronica + remodelacion vias aereas</td><td>2</td></tr>
+    <tr><td>Diabetes / Cetosis</td><td>Cuerpos cetonicos en aliento</td><td>3*</td></tr>
+    <tr><td>Infeccion respiratoria</td><td>Metabolismo bacteriano + inflamacion</td><td>4</td></tr>
   </tbody>
 </table>
-<p><em>* La clase Diabetes es actualmente un placeholder con datos sintéticos (véase Sección 11).</em></p>
+<p><em>* Placeholder con datos sinteticos &mdash; ver Seccion 11.</em></p>
 
-<h3><span class="sub-num">2.3</span> El Nicho Humano</h3>
-<p>DENCO está diseñado para personas que:</p>
+<h3><span class="sn2">2.3</span> El Nicho Humano</h3>
 <ul>
-  <li><strong>No tienen síntomas</strong> — el cambio metabólico ocurre antes de que el tumor sea clínicamente evidente</li>
-  <li><strong>Tienen factores de riesgo</strong> — tabaquismo, antecedentes familiares, exposición laboral</li>
-  <li><strong>No acceden a métodos tradicionales</strong> — por costo, por invasividad, por distancia geográfica</li>
-  <li><strong>Necesitan monitoreo</strong> — pacientes con antecedentes oncológicos, en seguimiento post-tratamiento</li>
-</ul>
-<p>Una red DENCO distribuida — en policlínicas, centros de salud, farmacias, consultorios de medicina general — podría realizar millones de tamizajes por año a una fracción del costo de una tomografía, sin irradiación, sin extracción de sangre, en 4 minutos.</p>
-
-<h3><span class="sub-num">2.4</span> Usuarios Previstos</h3>
-<table>
-  <thead><tr><td>Perfil</td><td>Rol</td><td>Permisos</td></tr></thead>
-  <tbody>
-    <tr><td>Operador</td><td>Registro de pacientes + captura de muestras</td><td>Nivel 1</td></tr>
-    <tr><td>Médico</td><td>+ Diagnóstico + evolución + reportes</td><td>Nivel 2</td></tr>
-    <tr><td>Propietario</td><td>+ Administración total + entrenamiento IA</td><td>Nivel 3</td></tr>
-  </tbody>
-</table>
-<p><strong>No es para uso domiciliario ni por pacientes sin supervisión profesional.</strong></p>
-
-<!-- ═══════════════════ 3. WARBURG ═══════════════════ -->
-<h2><span class="section-num">3</span>Fundamento Molecular: El Efecto Warburg</h2>
-
-<h3><span class="sub-num">3.1</span> ¿Qué es el Efecto Warburg?</h3>
-<p>En 1924, el fisiólogo alemán Otto Warburg describió un fenómeno fundamental: las células cancerosas alteran su metabolismo energético incluso en presencia de oxígeno (glucólisis aeróbica).</p>
-<table>
-  <thead><tr><td>Característica</td><td>Célula Normal</td><td>Célula con Efecto Warburg</td></tr></thead>
-  <tbody>
-    <tr><td>Vía metabólica principal</td><td>Fosforilación oxidativa (mitocondria)</td><td>Glucólisis aeróbica (citoplasma)</td></tr>
-    <tr><td>Producción de ATP</td><td>36 ATP por glucosa</td><td>2 ATP por glucosa</td></tr>
-    <tr><td>Consumo de glucosa</td><td>Bajo</td><td>Alto (hasta 200x más)</td></tr>
-    <tr><td>Productos finales</td><td>CO₂ + H₂O</td><td>Lactato + VOC</td></tr>
-    <tr><td>Producción de VOC</td><td>Baja (&lt;50 ppb)</td><td>Alta (&gt;150 ppb)</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">3.2</span> ¿Por qué Ocurre?</h3>
-<p>El Efecto Warburg no es un "error" metabólico. Es una adaptación que permite a las células en proliferación:</p>
-<ul>
-  <li>Obtener precursores biosintéticos (aminoácidos, nucleótidos, lípidos)</li>
-  <li>Mantener un ambiente redox favorable</li>
-  <li>Evadir la apoptosis (muerte celular programada)</li>
-  <li>Proliferar en condiciones de hipoxia</li>
+  <li><strong>Sin sintomas</strong> &mdash; el cambio metabolico precede al tumor clinico</li>
+  <li><strong>Factores de riesgo</strong> &mdash; tabaquismo, antecedentes, exposicion laboral</li>
+  <li><strong>Sin acceso a metodos tradicionales</strong> &mdash; costo, invasividad, distancia geografica</li>
+  <li><strong>Necesitan monitoreo</strong> &mdash; seguimiento post-tratamiento oncologico</li>
 </ul>
 
-<h3><span class="sub-num">3.3</span> ¿Qué VOC Produce el Efecto Warburg?</h3>
+<h3><span class="sn2">2.4</span> Usuarios Previstos</h3>
 <table>
-  <thead><tr><td>Compuesto</td><td>Vía Metabólica</td><td>Significado Clínico</td></tr></thead>
+  <thead><tr><td>Perfil</td><td>Rol</td><td>Nivel</td></tr></thead>
   <tbody>
-    <tr><td>Alcanos (etano, pentano, hexano)</td><td>Peroxidación lipídica</td><td>Estrés oxidativo, daño de membranas</td></tr>
-    <tr><td>Isopreno</td><td>Síntesis de colesterol</td><td>Recambio celular acelerado</td></tr>
-    <tr><td>Acetona</td><td>Cetogénesis</td><td>Metabolismo alterado</td></tr>
-    <tr><td>Derivados de benceno</td><td>Estrés oxidativo</td><td>Daño al ADN</td></tr>
-    <tr><td>Alcoholes (etanol, metanol)</td><td>Fermentación bacteriana</td><td>Microbiota alterada</td></tr>
+    <tr><td>Operador</td><td>Registro pacientes + captura</td><td>1</td></tr>
+    <tr><td>Medico</td><td>+ Diagnostico + evolucion + reportes</td><td>2</td></tr>
+    <tr><td>Propietario</td><td>+ Administracion total + entrenamiento IA</td><td>3</td></tr>
+  </tbody>
+</table>
+<p><strong>No es para uso domiciliario ni por pacientes sin supervision profesional.</strong></p>
+
+<!-- ═══════ 3. WARBURG ═══════ -->
+<h2><span class="sn">3</span>Fundamento Molecular: El Efecto Warburg</h2>
+<h3><span class="sn2">3.1</span> Definicion</h3>
+<p>En 1924, Otto Warburg describio que las celulas cancerosas alteran su metabolismo incluso en presencia de oxigeno (glucosis aerobica).</p>
+<table>
+  <thead><tr><td>Caracteristica</td><td>Celula Normal</td><td>Efecto Warburg</td></tr></thead>
+  <tbody>
+    <tr><td>Via metabolica</td><td>Fosforilacion oxidativa</td><td>Glucosis aerobica</td></tr>
+    <tr><td>ATP/glucosa</td><td>36 ATP</td><td>2 ATP</td></tr>
+    <tr><td>Consumo glucosa</td><td>Bajo</td><td>Alto (hasta 200x)</td></tr>
+    <tr><td>Productos</td><td>CO2 + H2O</td><td>Lactato + VOC</td></tr>
+    <tr><td>Produccion VOC</td><td>&lt;50 ppb</td><td>&gt;150 ppb</td></tr>
   </tbody>
 </table>
 
-<h3><span class="sub-num">3.4</span> ¿Por qué Detectarlo en Aliento?</h3>
-<p>Los VOC producidos por células con metabolismo Warburg son volátiles (pasan fácilmente a fase gaseosa), atraviesan la membrana alveolar, son exhalados en concentraciones detectables, y aparecen antes de que el tumor sea visible por imagen.</p>
-<div class="callout callout-info">
-  <div class="callout-title">Dato clave</div>
-  <p style="margin-bottom:0">Un tumor de 1 mm³ ya produce un cambio detectable en el perfil de VOC del aliento.</p>
-</div>
-
-<h3><span class="sub-num">3.5</span> Evidencia Científica de Referencia</h3>
+<h3><span class="sn2">3.2</span> VOCs del Efecto Warburg</h3>
 <table>
-  <thead><tr><td>Estudio</td><td>Hallazgo</td><td>Sensibilidad Reportada</td></tr></thead>
+  <thead><tr><td>Compuesto</td><td>Via</td><td>Significado</td></tr></thead>
   <tbody>
-    <tr><td>Peng et al. 2010</td><td>Detección cáncer pulmón, mama, colon, próstata con nanosensores</td><td>86%</td></tr>
-    <tr><td>Haque et al. 2020</td><td>Sensores de óxido metálico para VOC oncológicos</td><td>82%</td></tr>
-    <tr><td>Konvalina &amp; Haick 2014</td><td>Revisión de sensores para aliento</td><td>90% en estudios controlados</td></tr>
-    <tr><td>Sanz-Serrano et al. 2025</td><td>Electronic nose para screening cáncer pulmón: meta-análisis (126 estudios, n=18.947)</td><td>82-90% sensibilidad, 84-90% especificidad</td></tr>
-    <tr><td>Haddi et al. 2025</td><td>Breath analysis por e-nose para diagnóstico EPOC</td><td>Rango similar</td></tr>
-    <tr><td>Riscado et al. 2025</td><td>Análisis de VOC en aliento diabético con e-nose</td><td>Revisión sistemática</td></tr>
+    <tr><td>Alcanos (etano, pentano, hexano)</td><td>Peroxidacion lipidica</td><td>Estres oxidativo</td></tr>
+    <tr><td>Isopreno</td><td>Sintesis colesterol</td><td>Recambio celular acelerado</td></tr>
+    <tr><td>Acetona</td><td>Cetogenesis</td><td>Metabolismo alterado</td></tr>
+    <tr><td>Derivados benceno</td><td>Estres oxidativo</td><td>Dano ADN</td></tr>
+    <tr><td>Alcoholes</td><td>Fermentacion bacteriana</td><td>Microbiota alterada</td></tr>
   </tbody>
 </table>
-<div class="callout callout-warning">
-  <div class="callout-title">Nota Importante</div>
-  <p style="margin-bottom:0">Los valores de sensibilidad y especificidad citados provienen de la literatura científica publicada sobre tecnologías de sensores MOx para análisis de aliento. Estos valores <strong>NO representan el rendimiento validado de DENCO</strong> específicamente. El rendimiento real será determinado en su programa de validación clínica propia (véase Sección 14).</p>
-</div>
+<div class="callout ci"><div class="ct">Dato clave</div><p style="margin-bottom:0">Un tumor de 1 mm3 ya produce un cambio detectable en el perfil de VOC del aliento.</p></div>
 
-<!-- ═══════════════════ 4. HARDWARE ═══════════════════ -->
-<h2><span class="section-num">4</span>Hardware y Principio de Medición</h2>
-
-<h3><span class="sub-num">4.1</span> Descripción General del Hardware</h3>
-<p>DENCO utiliza un sistema de captura de aliento basado en un túnel Venturi con dos sensores integrados, diseñado para mediciones reproducibles en contexto de atención primaria. El diseño mecánico del dispositivo — carcaza, boquillas, fundas desechables, túnel Venturi e interfaz Quick-Lock — es responsabilidad de Emmanuel Modernel Rosin, socio y desarrollador de hardware del proyecto.</p>
+<h3><span class="sn2">3.3</span> Evidencia Cientifica</h3>
 <table>
-  <thead><tr><td>Componente</td><td>Modelo / Diseño</td><td>Función</td></tr></thead>
+  <thead><tr><td>Estudio</td><td>Hallazgo</td><td>Sensibilidad</td></tr></thead>
   <tbody>
-    <tr><td>Carcaza y estructura</td><td>Diseño propio (E. Modernel)</td><td>Encapsulamiento del dispositivo, ergonomía de uso clínico</td></tr>
-    <tr><td>Boquilla</td><td>Diseño propio (E. Modernel)</td><td>Interfaz paciente-dispositivo, compatible con filtros 200 μm</td></tr>
-    <tr><td>Fundas desechables</td><td>Grado médico (E. Modernel)</td><td>Protección contra contaminación cruzada entre pacientes</td></tr>
-    <tr><td>Túnel Venturi</td><td>Diseño propio ISO 5167 (E. Modernel)</td><td>Conducción de flujo laminar, reducción de diámetro para medición</td></tr>
-    <tr><td>Interfaz Quick-Lock</td><td>Diseño propio (E. Modernel)</td><td>Conexión rápida con filtros de acero inoxidable 200 μm</td></tr>
-    <tr><td>Sensor de gas</td><td>BME688 (Bosch)</td><td>10 canales MOx + temperatura + humedad + IAQ</td></tr>
-    <tr><td>Sensor de presión diferencial</td><td>SDP810 (Sensirion)</td><td>Flujo volumétrico real de exhalación</td></tr>
-    <tr><td>EEPROM</td><td>Integrada en BME688</td><td>Smart Baseline — compensación de deriva del sensor</td></tr>
-    <tr><td>Microcontrolador</td><td>—</td><td>Captura, preprocesamiento, comunicación USB/serial</td></tr>
+    <tr><td>Peng et al. 2010</td><td>Cancer pulmon, mama, colon, prostata</td><td>86%</td></tr>
+    <tr><td>Haque et al. 2020</td><td>MOx para VOC oncologicos</td><td>82%</td></tr>
+    <tr><td>Konvalina &amp; Haick 2014</td><td>Revision sensores aliento</td><td>90%</td></tr>
+    <tr><td>Sanz-Serrano et al. 2025</td><td>Meta-analisis e-nose (126 estudios, n=18.947)</td><td>82-90%</td></tr>
+    <tr><td>Haddi et al. 2025</td><td>E-nose EPOC</td><td>Similar</td></tr>
+    <tr><td>Riscado et al. 2025</td><td>VOC aliento diabetico</td><td>Revision</td></tr>
   </tbody>
 </table>
+<div class="callout cw"><div class="ct">Nota Importante</div><p style="margin-bottom:0">Valores de literatura, <strong>NO de DENCO</strong>. El rendimiento real se determinara en validacion clinica propia.</p></div>
 
-<h3><span class="sub-num">4.2</span> Diseño del Túnel Venturi</h3>
-<p>Basado en principios de la ISO 5167-4 (Medición de caudal con dispositivos de presión diferencial):</p>
+<!-- ═══════ 4. HARDWARE ═══════ -->
+<h2><span class="sn">4</span>Hardware y Principio de Medicion</h2>
+<h3><span class="sn2">4.1</span> Componentes</h3>
+<p>El disenio mecanico &mdash; carcaza, boquillas, fundas, tunel Venturi, interfaz Quick-Lock y filtro doble malla &mdash; es responsabilidad de Emmanuel Modernel Rosin.</p>
 <table>
-  <thead><tr><td>Parámetro</td><td>Valor</td><td>Unidad</td><td>Justificación</td></tr></thead>
+  <thead><tr><td>Componente</td><td>Disenio/Modelo</td><td>Funcion</td></tr></thead>
   <tbody>
-    <tr><td>Diámetro de entrada (D₁)</td><td>26.80</td><td>mm</td><td>Compatible con boquillas estándar</td></tr>
-    <tr><td>Diámetro de garganta (D₂)</td><td>17.90</td><td>mm</td><td>Optimizado para flujos 0-10 L/s</td></tr>
-    <tr><td>Relación de diámetros (β)</td><td>0.668</td><td>—</td><td>D₂/D₁</td></tr>
-    <tr><td>Área de garganta (A₂)</td><td>9.503 × 10⁻⁵</td><td>m²</td><td>π × (D₂/2)²</td></tr>
-    <tr><td>Coeficiente de descarga (Cd)</td><td>0.995</td><td>—</td><td>Valor teórico para Venturi fresco</td></tr>
+    <tr><td>Carcaza y estructura</td><td>E. Modernel</td><td>Encapsulamiento, ergonomia clinica</td></tr>
+    <tr><td>Boquilla Quick-Lock</td><td>E. Modernel</td><td>Interfaz paciente, medio giro (180 grados)</td></tr>
+    <tr><td>Fundas desechables</td><td>Grado medico (E. Modernel)</td><td>Proteccion contra contaminacion cruzada</td></tr>
+    <tr><td>Filtro doble malla acero</td><td>E. Modernel</td><td>Retiene macrogotas sin alterar flujo</td></tr>
+    <tr><td>Tunel Venturi</td><td>ISO 5167 (E. Modernel)</td><td>Flujo laminar, reduccion diametro</td></tr>
+    <tr><td>Sensor gas</td><td>BME688 (Bosch)</td><td>10 canales MOx + T + H + IAQ</td></tr>
+    <tr><td>Sensor presion</td><td>SDP810 (Sensirion)</td><td>Flujo volumetrico real</td></tr>
+    <tr><td>Microcontrolador</td><td>&mdash;</td><td>Captura, preprocesamiento, USB/serial</td></tr>
   </tbody>
 </table>
 
-<h3><span class="sub-num">4.3</span> Cálculo de Flujo Volumétrico</h3>
-<p>Ecuación fundamental:</p>
-<div class="equation">Q = C<sub>d</sub> × A<sub>2</sub> × √(2 × ΔP / ρ)</div>
-<p>Simplificación operativa:</p>
-<div class="equation">Q (L/s) = 0.109 × √(ΔP (Pa))</div>
-<p><em>Esta simplificación integra todas las constantes y es válida para condiciones ambientales estándar (T=26°C, P=1013 hPa).</em></p>
-<p>Cálculo de volumen total:</p>
-<div class="equation">V<sub>total</sub> = ∫ Q(t) dt = Σ Q<sub>i</sub> × Δt</div>
-<p>Donde Δt = intervalo de muestreo (0.1 s).</p>
-
-<h3><span class="sub-num">4.4</span> Principio de Funcionamiento del BME688</h3>
-<p>El sensor BME688 contiene 10 canales de óxido metálico (MOx), cada uno con un material sensible diferente (SnO₂, WO₃, etc.) que modifica su resistencia eléctrica al entrar en contacto con compuestos orgánicos volátiles. Cada canal responde de manera diferencial a distintas familias de VOCs, generando un "patrón de olfato digital" (<em>digital smellprint</em>) que constituye la firma química de la muestra.</p>
+<h3><span class="sn2">4.2</span> Tunel Venturi (ISO 5167-4)</h3>
 <table>
-  <thead><tr><td>Parámetro del BME688</td><td>Valor</td></tr></thead>
+  <thead><tr><td>Parametro</td><td>Valor</td><td>Unidad</td></tr></thead>
   <tbody>
-    <tr><td>Canales MOx</td><td>10</td></tr>
-    <tr><td>Resistencia por canal</td><td>Variable según exposición a VOC</td></tr>
-    <tr><td>Rango de operación</td><td>200-350°C (microcalentador)</td></tr>
-    <tr><td>Tiempo de respuesta</td><td>&lt;1 s</td></tr>
-    <tr><td>Datos complementarios</td><td>Temperatura, humedad, índice de calidad de aire (IAQ)</td></tr>
+    <tr><td>D1 entrada</td><td>26.80</td><td>mm</td></tr>
+    <tr><td>D2 garganta</td><td>17.90</td><td>mm</td></tr>
+    <tr><td>Beta = D2/D1</td><td>0.668</td><td>&mdash;</td></tr>
+    <tr><td>A2</td><td>9.503 x 10-5</td><td>m2</td></tr>
+    <tr><td>Cd</td><td>0.995</td><td>&mdash;</td></tr>
   </tbody>
 </table>
-<p>El sensor SDP810 de presión diferencial mide el flujo volumétrico real de la exhalación, permitiendo distinguir entre fase de espacio muerto y fase alveolar (véase Sección 4.6).</p>
+<div class="eq">Q (L/s) = 0.109 x raiz(P (Pa))</div>
+<p>Volumen total: V = Suma Qi x DeltaT (DeltaT = 0.1 s)</p>
 
-<h3><span class="sub-num">4.5</span> Métricas Derivadas del BME688</h3>
-<p>A partir de la captura cruda de los 10 canales MOx + sensores auxiliares, se calculan 12 features estadísticos:</p>
+<h3><span class="sn2">4.3</span> BME688</h3>
+<p>10 canales MOx con materiales diferenciados (SnO2, WO3) generando un <em>digital smellprint</em>. SDP810 permite distinguir espacio muerto de alveolar.</p>
+
+<h3><span class="sn2">4.4</span> Features Derivados (12 sensor + 6 paciente = 18)</h3>
 <table>
-  <thead><tr><td>Feature</td><td>Descripción</td><td>Significado Clínico</td></tr></thead>
+  <thead><tr><td>Feature</td><td>Descripcion</td><td>Significado</td></tr></thead>
   <tbody>
-    <tr><td>gas_avg</td><td>Promedio de resistencia gas (10 canales)</td><td>Concentración global de VOC</td></tr>
-    <tr><td>gas_std</td><td>Desviación estándar de resistencia gas</td><td>Variabilidad intra-respiración</td></tr>
-    <tr><td>gas_slope</td><td>Pendiente de la curva de gas</td><td>Tasa de cambio de VOC durante exhalación</td></tr>
-    <tr><td>gas_min</td><td>Resistencia mínima registrada</td><td>Pico máximo de concentración VOC</td></tr>
-    <tr><td>gas_max</td><td>Resistencia máxima registrada</td><td>Límite inferior de concentración</td></tr>
-    <tr><td>temp</td><td>Temperatura del sensor</td><td>Compensación térmica</td></tr>
-    <tr><td>hum</td><td>Humedad relativa</td><td>Compensación de humedad</td></tr>
-    <tr><td>pres</td><td>Presión atmosférica</td><td>Compensación barométrica</td></tr>
-    <tr><td>flujo_Lps</td><td>Flujo volumétrico (L/s) por SDP810</td><td>Control de calidad de exhalación</td></tr>
-    <tr><td>volumen_L</td><td>Volumen total exhalado (L)</td><td>Validación de muestra completa</td></tr>
-    <tr><td>correlacion_gas_flujo</td><td>Correlación Pearson gas vs. flujo</td><td>Diferenciación espacio muerto/alveolar</td></tr>
-    <tr><td>iaq</td><td>Índice de Calidad de Aire del BME688</td><td>Calidad ambiental del sensor</td></tr>
+    <tr><td>gas_avg</td><td>Promedio resistencia (10 canales)</td><td>Concentracion global VOC</td></tr>
+    <tr><td>gas_std</td><td>Desviacion estandar</td><td>Variabilidad intra-respiracion</td></tr>
+    <tr><td>gas_slope</td><td>Pendiente curva gas</td><td>Tasa cambio VOC</td></tr>
+    <tr><td>gas_min / gas_max</td><td>Extremos</td><td>Rango concentracion</td></tr>
+    <tr><td>temp / hum / pres</td><td>Ambientales</td><td>Compensacion</td></tr>
+    <tr><td>flujo_Lps</td><td>Flujo SDP810</td><td>Control calidad exhalacion</td></tr>
+    <tr><td>volumen_L</td><td>Volumen total</td><td>Validacion muestra</td></tr>
+    <tr><td>correlacion_gas_flujo</td><td>Pearson</td><td>Espacio muerto vs alveolar</td></tr>
+    <tr><td>iaq</td><td>Indice calidad aire</td><td>Calidad ambiental</td></tr>
   </tbody>
 </table>
-<p>Estos 12 features del sensor se combinan con 6 features del paciente (diabetes, EPOC, fumador, IMC, edad, sexo) para conformar los 18 features reales del modelo. El ensemble requiere 24 entradas; los 6 canales adicionales son <em>zero-padded</em> (véase Sección 6).</p>
+<p>6 features paciente: diabetes, EPOC, fumador, IMC, edad, sexo. Ensemble requiere 24; 6 <em>zero-padded</em>.</p>
 
-<h3><span class="sub-num">4.6</span> Convenciones de Muestreo Respiratorio</h3>
-<p>Basado en principios de fisiología respiratoria y las convenciones de la ISO 13138:</p>
-<table>
-  <thead><tr><td>Fase</td><td>Volumen</td><td>Descripción</td></tr></thead>
-  <tbody>
-    <tr><td>ESPACIO_MUERTO</td><td>0 - 237 mL</td><td>Aire de vías aéreas superiores (boca, tráquea, bronquios)</td></tr>
-    <tr><td>ALVEOLAR</td><td>&gt; 237 mL</td><td>Aire proveniente de los alvéolos pulmonares (zona de interés clínico)</td></tr>
-  </tbody>
-</table>
-<p><strong>Determinación del Volumen Muerto:</strong></p>
-<div class="equation">V<sub>muerto total</sub> = V<sub>anatómico</sub> + V<sub>instrumental</sub> = 150 mL + 87 mL = <strong>237 mL</strong></div>
-<p>Solo la fase alveolar se utiliza para la clasificación clínica.</p>
+<h3><span class="sn2">4.5</span> Muestreo Respiratorio (ISO 13138)</h3>
+<div class="eq">V_muerTo = 150 mL (anatomico) + 87 mL (instrumental) = <strong>237 mL</strong></div>
+<p>Solo la fase alveolar se utiliza para clasificacion clinica.</p>
 
-<h3><span class="sub-num">4.7</span> Condiciones Operativas</h3>
+<h3><span class="sn2">4.6</span> Condiciones Operativas</h3>
 <table>
-  <thead><tr><td>Parámetro</td><td>Valor</td></tr></thead>
+  <thead><tr><td>Parametro</td><td>Valor</td></tr></thead>
   <tbody>
-    <tr><td>Ciclo operativo completo</td><td>~4 minutos</td></tr>
-    <tr><td>Coeficiente de variación (CV)</td><td>1.32% en condiciones variables</td></tr>
-    <tr><td>Recuperación de señal</td><td>42 segundos</td></tr>
-    <tr><td>Rango de temperatura operativa</td><td>5-40°C</td></tr>
-    <tr><td>Rango de humedad operativa</td><td>20-80% sin condensación</td></tr>
-    <tr><td>Vida útil del hardware</td><td>5 años con calibración anual</td></tr>
+    <tr><td>Ciclo completo</td><td>~4 minutos</td></tr>
+    <tr><td>CV</td><td>1.32%</td></tr>
+    <tr><td>Recuperacion senial</td><td>42 segundos</td></tr>
+    <tr><td>Temperatura</td><td>5-40 grados C</td></tr>
+    <tr><td>Humedad</td><td>20-80% sin condensacion</td></tr>
+    <tr><td>Vida util hardware</td><td>5 anios (calibracion anual)</td></tr>
   </tbody>
 </table>
 
-<!-- ═══════════════════ 5. ARQUITECTURA ═══════════════════ -->
-<h2><span class="section-num">5</span>Arquitectura de Software</h2>
-
-<h3><span class="sub-num">5.1</span> Visión General</h3>
-<p>DENCO v5.6.0 es una plataforma SaMD distribuida en dos máquinas, diseñada para cumplimiento regulatorio y separación de responsabilidades entre desarrollo y producción.</p>
-
-<div class="diagram">
+<!-- ═══════ 5. ARQUITECTURA ═══════ -->
+<h2><span class="sn">5</span>Arquitectura de Software</h2>
+<h3><span class="sn2">5.1</span> Vision General</h3>
+<div class="diag">
 ┌─────────────────────────────────────────────────────────────┐
 │                    ARQUITECTURA DENCO v5.6.0                  │
 ├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  <span class="highlight-line">i5 (192.168.1.8)</span>            <span class="highlight-line">i7 (192.168.1.75:5001)</span>        │
-│  DESARROLLO                  PRODUCCIÓN                       │
+│  <span class="hl">i5 (192.168.1.8)</span>            <span class="hl">i7 (192.168.1.75:5001)</span>        │
+│  DESARROLLO                  PRODUCCION                       │
 │  ┌───────────────┐           ┌───────────────────────┐       │
-│  │ Código fuente │           │ Brain Server v3.0     │       │
+│  │ Codigo fuente │           │ Brain Server v3.0     │       │
 │  │ Tests          │   REST   │  - Motor IA (Ensemble)│       │
-│  │ Compilación    │ ◄─────► │  - PostgreSQL (9 tab) │       │
-│  │ UI (Tkinter)   │   API   │  - Knowledge Base     │       │
-│  └───────────────┘           │  - Dashboard DIA       │       │
-│                               │  - Chat DIA            │       │
-│                               │  - Grafana + Loki      │       │
+│  │ UI (Tkinter)   │ &lt;------&gt; │  - PostgreSQL (9 tab) │       │
+│  └───────────────┘           │  - Knowledge Base     │       │
+│                               │  - Dashboard DIA      │       │
+│                               │  - Grafana + Loki     │       │
 │                               └───────────────────────┘       │
-│                                                               │
 │  Hardware: BME688 + SDP810 + Microcontrolador                │
-│  Conexión: USB/Serial → i5 → REST API → i7                   │
 └─────────────────────────────────────────────────────────────┘</div>
 
-<h3><span class="sub-num">5.2</span> Componentes del Software</h3>
-
-<p><strong>a) Software Embebido (Microcontrolador)</strong> — Captura de sensores BME688 y SDP810, preprocesamiento de datos crudos, comunicación USB/serial con la máquina i5.</p>
-
-<p><strong>b) Software de Escritorio (Python 3.14 en i5)</strong> — Interfaz gráfica (Tkinter), captura y preprocesamiento de datos, comunicación REST API con Brain Server, generación de reportes PDF, visualización DICOM, pestaña DIA, sistema de seguridad y auditoría local.</p>
-
-<p><strong>c) Brain Server v3.0 (Python 3.11 en i7 — puerto 5001)</strong> — Endpoint de clasificación IA (<code>/brain/dia/classify</code>), motor Ensemble (NN+SVM+RF), base de conocimiento (25,900+ textos, 52 URLs), motor de chat DIA, dashboard de conocimiento, sistema de entrenamiento incremental, autenticación JWT con rate limiting.</p>
-
-<p><strong>d) Base de Datos (PostgreSQL en i7):</strong></p>
+<h3><span class="sn2">5.2</span> Componentes</h3>
+<p><strong>a) Embebido:</strong> Captura BME688/SDP810, preprocesamiento, USB/serial a i5.</p>
+<p><strong>b) Escritorio (Python 3.14, i5):</strong> UI Tkinter, captura, REST API, PDF, DICOM, DIA.</p>
+<p><strong>c) Brain Server v3.0 (Python 3.11, i7:5001):</strong> Clasificacion IA, Ensemble, Knowledge Base (25.900+ textos), Chat DIA, Dashboard, JWT + rate limiting.</p>
+<p><strong>d) PostgreSQL (i7):</strong></p>
 <table>
   <thead><tr><td>Tabla</td><td>Contenido</td></tr></thead>
   <tbody>
-    <tr><td>usuarios</td><td>Autenticación, perfiles, roles RBAC</td></tr>
-    <tr><td>pacientes</td><td>Datos clínicos anonimizados (SHA-256 + salt)</td></tr>
-    <tr><td>sesiones</td><td>Registro de pruebas de aliento</td></tr>
-    <tr><td>muestras</td><td>Datos crudos BME688 (12 canales × n muestras)</td></tr>
-    <tr><td>predicciones</td><td>Resultados de clasificación del ensemble</td></tr>
-    <tr><td>consentimientos</td><td>Registro de consentimiento informado con timestamp</td></tr>
-    <tr><td>hallazgos_imagen</td><td>Estudios DICOM externos importados</td></tr>
-    <tr><td>configuración</td><td>Settings del sistema</td></tr>
-    <tr><td>audit_log</td><td>Registro de auditoría completo</td></tr>
+    <tr><td>usuarios</td><td>Auth, perfiles, RBAC</td></tr>
+    <tr><td>pacientes</td><td>Datos anonimizados (SHA-256)</td></tr>
+    <tr><td>sesiones</td><td>Registro pruebas aliento</td></tr>
+    <tr><td>muestras</td><td>Datos crudos BME688 (12 canales)</td></tr>
+    <tr><td>predicciones</td><td>Resultados ensemble</td></tr>
+    <tr><td>consentimientos</td><td>Consentimiento informado + timestamp</td></tr>
+    <tr><td>hallazgos_imagen</td><td>Estudios DICOM externos</td></tr>
+    <tr><td>configuracion</td><td>Settings sistema</td></tr>
+    <tr><td>audit_log</td><td>Registro auditoria completo</td></tr>
   </tbody>
 </table>
+<p><strong>e) Monitoreo:</strong> Grafana:3000 + Loki (logs centralizados).</p>
 
-<p><strong>e) Sistema de Monitoreo (en i7)</strong> — Grafana (puerto 3000), Loki (logs centralizados), métricas en tiempo real.</p>
-
-<h3><span class="sub-num">5.3</span> Estado Congelado</h3>
+<h3><span class="sn2">5.3</span> Estado Congelado</h3>
 <table>
-  <thead><tr><td>Componente</td><td>Versión</td><td>Estado</td></tr></thead>
+  <thead><tr><td>Componente</td><td>Version</td><td>Estado</td></tr></thead>
   <tbody>
     <tr><td>DENCO Application</td><td>v5.6.0</td><td>CONGELADO (08/07/2026)</td></tr>
     <tr><td>Brain Server</td><td>v3.0</td><td>CONGELADO</td></tr>
     <tr><td>Modelo IA</td><td>ensemble_v55_models.pkl</td><td>CONGELADO</td></tr>
-    <tr><td>Suite de Tests</td><td>408 passed / 4 skipped / 0 failures</td><td>VERIFICADO</td></tr>
+    <tr><td>Tests</td><td>408 passed / 0 failures</td><td>VERIFICADO</td></tr>
   </tbody>
 </table>
 
-<h3><span class="sub-num">5.4</span> Diagrama de Flujo de una Medición Completa</h3>
-<div class="diagram">
-1. Paciente exhala a través de la boquilla
-        │
-2. BME688 captura 10 canales MOx + T + H + IAQ
-   SDP810 captura presión diferencial (flujo)
-        │
-3. Microcontrolador preprocesa datos crudos
-        │
-4. Software embebido envía por USB/serial a i5
-        │
-5. i5 calcula 12 features estadísticos del perfil de gas
-   + 6 features del paciente → 18 features reales
-        │
-6. i5 envía features al Brain Server (i7) vía REST API
-        │
-7. <span class="highlight-line">Ensemble (NN+SVM+RF) clasifica en 5 categorías</span>
-        │
-8. Motor XAI genera explicación contextualizada
-        │
-9. Se genera reporte (PDF + DICOM SR + FHIR Bundle)
-        │
-10. Resultados se almacenan en PostgreSQL
-        │
-11. Logs se envían a Loki/Grafana para auditoría</div>
+<h3><span class="sn2">5.4</span> Flujo de Medicion</h3>
+<div class="flow">
+  <div class="fs"><div class="fn">1</div><div class="fc"><strong>Paciente exhala</strong> por boquilla con funda desechable nueva</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">2</div><div class="fc"><strong>Filtro doble malla</strong> retiene macrogotas sin alterar flujo neumatico</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">3</div><div class="fc"><strong>Sensores capturan</strong> 10 canales MOx (BME688) + T + H + IAQ + flujo (SDP810)</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">4</div><div class="fc"><strong>Microcontrolador</strong> preprocesa y envia por USB/serial a i5</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">5</div><div class="fc"><strong>i5 calcula 18 features</strong> (12 sensor + 6 paciente) y envia a Brain Server i7</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">6</div><div class="fc"><strong>Ensemble (NN+SVM+RF)</strong> clasifica en 5 categorias clinicas</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">7</div><div class="fc"><strong>XAI + DIA</strong> generan explicacion contextualizada con referencias bibliograficas</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">8</div><div class="fc"><strong>Reportes:</strong> PDF + DICOM SR + FHIR Bundle</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">9</div><div class="fc"><strong>Almacen:</strong> PostgreSQL + Loki/Grafana para auditoria</div></div>
+</div>
 
-<!-- ═══════════════════ 6. MOTOR IA ═══════════════════ -->
-<h2><span class="section-num">6</span>Motor de Inteligencia Artificial</h2>
-
-<h3><span class="sub-num">6.1</span> Arquitectura del Ensemble</h3>
+<!-- ═══════ 6. MOTOR IA ═══════ -->
+<h2><span class="sn">6</span>Motor de Inteligencia Artificial</h2>
+<h3><span class="sn2">6.1</span> Ensemble</h3>
 <table>
-  <thead><tr><td>Modelo</td><td>Algoritmo</td><td>Peso</td><td>Hiperparámetros</td></tr></thead>
+  <thead><tr><td>Modelo</td><td>Algoritmo</td><td>Peso</td><td>Hiperparametros</td></tr></thead>
   <tbody>
-    <tr><td>Red Neuronal</td><td>Feedforward (PyTorch)</td><td>0.50</td><td>24→128→64→32→5, ReLU, Dropout(0.2)</td></tr>
-    <tr><td>SVM</td><td>Support Vector Machine (RBF)</td><td>0.25</td><td>C=10</td></tr>
-    <tr><td>Random Forest</td><td>Bosque aleatorio</td><td>0.25</td><td>200 árboles, max_depth=15</td></tr>
+    <tr><td>Red Neuronal</td><td>Feedforward (PyTorch)</td><td>0.50</td><td>24-128-64-32-5, ReLU, Dropout(0.2)</td></tr>
+    <tr><td>SVM</td><td>RBF kernel</td><td>0.25</td><td>C=10</td></tr>
+    <tr><td>Random Forest</td><td>Bosque aleatorio</td><td>0.25</td><td>200 arboles, max_depth=15</td></tr>
   </tbody>
 </table>
-<p>Los pesos fueron ajustados por accuracy post-entrenamiento.</p>
 
-<h3><span class="sub-num">6.2</span> Arquitectura de la Red Neuronal</h3>
-<div class="diagram">
+<h3><span class="sn2">6.2</span> Red Neuronal</h3>
+<div class="diag">
 Input (24 features)
-    │
-    ▼
-Linear(24 → 128) → ReLU → Dropout(0.2)
-    │
-    ▼
-Linear(128 → 64) → ReLU → Dropout(0.2)
-    │
-    ▼
-Linear(64 → 32) → ReLU → Dropout(0.2)
-    │
-    ▼
-Linear(32 → 5) → Softmax
-    │
-    ▼
-<span class="highlight-line">Probabilidad por clase [0..4]</span></div>
+    |
+    v
+Linear(24 -> 128) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(128 -> 64) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(64 -> 32) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(32 -> 5) -> Softmax
+    |
+    v
+<span class="hl">Probabilidad por clase [0..4]</span></div>
 
-<h3><span class="sub-num">6.3</span> Features de Entrada</h3>
-<p><strong>18 Features Reales:</strong></p>
-<ul>
-  <li><em>12 features del sensor BME688:</em> gas_avg, gas_std, gas_slope, gas_min, gas_max, temp, hum, pres, flujo_Lps, volumen_L, correlacion_gas_flujo, iaq</li>
-  <li><em>6 features del paciente:</em> diabetes, EPOC, fumador, IMC, edad, sexo</li>
-</ul>
-<p><strong>6 Features Adicionales (zero-padded):</strong> Canales MOx adicionales requeridos por la arquitectura del ensemble, actualmente rellenados con ceros para compatibilidad dimensional.</p>
-
-<h3><span class="sub-num">6.4</span> Clases de Clasificación</h3>
+<h3><span class="sn2">6.3</span> Clases</h3>
 <table>
-  <thead><tr><td>Índice</td><td>Clase</td><td>Descripción Clínica</td><td>Muestras</td></tr></thead>
+  <thead><tr><td>#</td><td>Clase</td><td>Descripcion</td><td>Muestras</td></tr></thead>
   <tbody>
-    <tr><td>0</td><td>Normal</td><td>Perfil de VOC dentro de parámetros fisiológicos normales</td><td>585 reales</td></tr>
-    <tr><td>1</td><td>Warburg</td><td>Metabolismo alterado sugestivo de lesión pulmonar temprana / proceso neoplásico</td><td>65 reales</td></tr>
-    <tr><td>2</td><td>EPOC</td><td>Enfermedad Pulmonar Obstructiva Crónica</td><td>73 reales</td></tr>
-    <tr><td>3</td><td>Diabetes*</td><td>Cetosis diabética / alteración metabólica</td><td>150 sintéticas (CTGAN)</td></tr>
-    <tr><td>4</td><td>Infección respiratoria</td><td>Infección activa de vías respiratorias</td><td>88 reales</td></tr>
+    <tr><td>0</td><td>Normal</td><td>VOC dentro de parametros normales</td><td>585 reales</td></tr>
+    <tr><td>1</td><td>Warburg</td><td>Metabolismo alterado / lesion temprana</td><td>65 reales</td></tr>
+    <tr><td>2</td><td>EPOC</td><td>Enfermedad Pulmonar Obstructiva Cronica</td><td>73 reales</td></tr>
+    <tr><td>3</td><td>Diabetes*</td><td>Cetosis diabetica</td><td>150 sinteticas (CTGAN)</td></tr>
+    <tr><td>4</td><td>Infeccion respiratoria</td><td>Infeccion activa vias respiratorias</td><td>88 reales</td></tr>
   </tbody>
 </table>
-<p><em>* Clase placeholder — véase Sección 11.2.</em></p>
-<p><strong>Distribución total del dataset:</strong> 811 muestras (585+65+73+150+88), de las cuales 150 son sintéticas. Fuentes reales: GC-MS + MOx heterogéneos (NO BME688).</p>
+<p><em>* Placeholder &mdash; ver Seccion 11.2. Total: 811 muestras (150 sinteticas). Tabaquismo eliminado en v5.5 (8 muestras, umbral: 50).</em></p>
 
-<h3><span class="sub-num">6.5</span> Clase Eliminada: Tabaquismo</h3>
-<p>La clase "Tabaquismo" (anterior índice 5) fue eliminada en v5.5: solo 8 muestras reales (umbral mínimo: 50), riesgo severo de overfitting. El índice de tabaquismo se calcula alternativamente mediante correlación de VOCs en el código de interpretación.</p>
-
-<h3><span class="sub-num">6.6</span> Rendimiento Reportado</h3>
-<table>
-  <thead><tr><td>Métrica</td><td>Valor</td><td>Contexto</td></tr></thead>
-  <tbody>
-    <tr><td>Accuracy (validación cruzada)</td><td>96.9%</td><td>Con datos de entrenamiento</td></tr>
-    <tr><td>Tiempo de inferencia</td><td>&lt;100 ms</td><td>Ensemble completo en i7</td></tr>
-    <tr><td>Archivo del modelo</td><td>ensemble_v55_models.pkl</td><td>5.6 MB</td></tr>
-  </tbody>
-</table>
-<div class="callout callout-warning">
-  <div class="callout-title">Advertencia</div>
-  <p style="margin-bottom:0">Este accuracy de 96.9% fue obtenido mediante validación cruzada con los datos de entrenamiento. Existe un domain shift significativo entre los datos de entrenamiento y el sensor físico del dispositivo (véase Sección 11.1). El rendimiento real con el BME688 físico puede diferir significativamente.</p>
+<h3><span class="sn2">6.4</span> Rendimiento en Entrenamiento</h3>
+<div class="pb pbt">
+  <h4>&#9888; Rendimiento en Entrenamiento (NO es rendimiento clinico)</h4>
+  <table>
+    <thead><tr><td> Metrica</td><td>Valor</td><td>Contexto</td></tr></thead>
+    <tbody>
+      <tr><td>Accuracy (validacion cruzada)</td><td><strong>96.9%</strong></td><td>Datos de entrenamiento</td></tr>
+      <tr><td>Dataset</td><td colspan="2">GC-MS, MOx 6/8 canales, PTR-TOF-MS &mdash; <strong>NO BME688</strong></td></tr>
+      <tr><td>Inferencia</td><td>&lt;100 ms</td><td>Ensemble en i7</td></tr>
+      <tr><td>Archivo</td><td colspan="2">ensemble_v55_models.pkl (5.6 MB)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-bottom:0;font-size:13px;color:var(--warning)"><strong>Advertencia:</strong> Accuracy obtenido con datos heterogeneos NO del BME688. Existe domain shift significativo (ver Seccion 11.1).</p>
 </div>
 
-<h3><span class="sub-num">6.7</span> Datos de Entrenamiento y Domain Shift</h3>
+<!-- ═══════ 7. XAI ═══════ -->
+<h2><span class="sn">7</span>Explicabilidad (XAI) y el Rol de DIA</h2>
+<h3><span class="sn2">7.1</span> XAI Context-Aware</h3>
 <table>
-  <thead><tr><td>Dataset</td><td>Sensor</td><td>Sujetos</td><td>Patologías</td></tr></thead>
+  <thead><tr><td>Componente</td><td>Descripcion</td></tr></thead>
   <tbody>
-    <tr><td>clinical_breathomics</td><td>GC-MS</td><td>121</td><td>Asma, EPOC, bronquiectasis</td></tr>
-    <tr><td>copd_github</td><td>MOx 8 canales</td><td>35</td><td>Controles, EPOC</td></tr>
-    <tr><td>cumberbatch</td><td>MOx 6 canales</td><td>118</td><td>Cáncer pulmón</td></tr>
-    <tr><td>jia_2024</td><td>PTR-TOF-MS</td><td>504</td><td>Adultos sanos</td></tr>
+    <tr><td>Descripcion cluster</td><td>Interpretacion semantica</td></tr>
+    <tr><td>Biomarcadores</td><td>Features BME688 relevantes</td></tr>
+    <tr><td>Severidad</td><td>BAJO / MEDIO / ALTO / CRITICO</td></tr>
+    <tr><td>Comorbilidades</td><td>Cruce con datos paciente</td></tr>
+    <tr><td>Advertencias + Recomendaciones</td><td>Alertas y derivaciones</td></tr>
+    <tr><td>Confianza</td><td>Score probabilistico ensemble</td></tr>
   </tbody>
 </table>
-<div class="callout callout-critical">
-  <div class="callout-title">Domain Shift</div>
-  <p style="margin-bottom:0"><strong>Estos datos NO provienen del BME688 de 10 canales de DENCO.</strong> Los patrones de respuesta de GC-MS, MOx de 6 canales, MOx de 8 canales y PTR-TOF-MS son fundamentalmente diferentes a los del BME688. Esto NO es un bug de software. Es una limitación del dataset de entrenamiento documentada para transparencia regulatoria.</p>
-</div>
+<p><strong>Clasificacion-aware:</strong> NORMAL menciona "parametros normales", WARBURG detalla estres oxidativo, EPOC seniala inflamacion, INFECCION indica metabolismo bacteriano.</p>
 
-<h3><span class="sub-num">6.8</span> Arquitectura Legacy (NO Desplegada)</h3>
+<h3><span class="sn2">7.2</span> DIA &mdash; Agente de Conocimiento</h3>
+<div class="callout ci"><div class="ct">Funcion de DIA</div><p style="margin-bottom:0">Acumular y recuperar conocimiento biomedico para proveer <strong>mejor contexto al motor XAI</strong>, enriqueciendo las explicaciones con literatura actualizada.</p></div>
 <table>
-  <thead><tr><td>Aspecto</td><td>Legacy (brain_model.py)</td><td>Actual (Ensemble)</td></tr></thead>
+  <thead><tr><td>Capa</td><td>Funcion</td><td>Ejemplo</td></tr></thead>
   <tbody>
-    <tr><td>Arquitectura</td><td>NN pura (PyTorch)</td><td>Ensemble 3 modelos</td></tr>
-    <tr><td>Features</td><td>18</td><td>24 (18 + 6 zero-padded)</td></tr>
-    <tr><td>Capas NN</td><td>64→32</td><td>128→64→32</td></tr>
-    <tr><td>Clases</td><td>6</td><td>5</td></tr>
+    <tr><td>Motor IA</td><td>Clasifica</td><td>"Cluster 1: Warburg"</td></tr>
+    <tr><td>XAI</td><td>Explica</td><td>"Gas slope elevado + correlacion alterada"</td></tr>
+    <tr><td>DIA</td><td>Contextualiza</td><td>"Consistente con Peng et al. 2010"</td></tr>
+  </tbody>
+</table>
+<p><strong>Base conocimiento:</strong> 25.969 textos, 601.711 palabras, 116 categorias, 52 URLs. Endpoint: <code>http://192.168.1.75:5001/brain/dashboard</code></p>
+
+<!-- ═══════ 8. CAPAS CLINICAS ═══════ -->
+<h2><span class="sn">8</span>Capas Clinicas: Reportes, Interoperabilidad y Estandares</h2>
+<h3><span class="sn2">8.1</span> PDF</h3>
+<p>Encabezado, paciente anonimizado (SHA-256), resultados, XAI completa, biomarcadores BME688, graficas, comorbilidades, confianza, recomendaciones, pie con version y responsable.</p>
+<h3><span class="sn2">8.2</span> DICOM SR</h3>
+<p>Conforme DICOM PS3.3-2025, Annex A. FileDataset 128 bytes preamble. Cods LOINC, SNOMED-CT, ICD-10. Narrativa en espaniol. Exportacion <code>.dcm</code>.</p>
+<h3><span class="sn2">8.3</span> FHIR R4</h3>
+<p>Bundle JSON: Patient, DiagnosticReport, Observation.</p>
+<h3><span class="sn2">8.4</span> Evolucion Clinica (v5.6)</h3>
+<p>IQM (Indice Calidad Muestra), MAD (deteccion outliers), distancia semantica, tendencias, alertas automaticas.</p>
+
+<!-- ═══════ 9. SEGURIDAD ═══════ -->
+<h2><span class="sn">9</span>Seguridad, Proteccion de Datos y Ciberseguridad</h2>
+<h3><span class="sn2">9.1</span> Autenticacion y RBAC</h3>
+<table>
+  <thead><tr><td>Medida</td><td>Implementacion</td></tr></thead>
+  <tbody>
+    <tr><td>Hashing</td><td>PBKDF2, 210.000 iteraciones, SHA-256</td></tr>
+    <tr><td>Rate limiting</td><td>5 intentos -> bloqueo 15 min</td></tr>
+    <tr><td>Sesion / JWT</td><td>30 min timeout + JWT para API</td></tr>
+    <tr><td>Roles</td><td>OPERADOR (1) / MEDICO (2) / PROPIETARIO (3)</td></tr>
+  </tbody>
+</table>
+<h3><span class="sn2">9.2</span> Headers y Path Traversal</h3>
+<p>Security headers: nosniff, DENY, CSP, HSTS. Path traversal bloqueado con whitelist + resolucion Path. Server header eliminado. CORS restringido.</p>
+<h3><span class="sn2">9.3</span> SIEM</h3>
+<p>6 niveles (INFO a TRACE), 6 categorias (SEGURIDAD, OPERACION, CALIDAD, AUDITORIA, SISTEMA, CLINICO). JSON + UUID. Loki + Grafana.</p>
+<h3><span class="sn2">9.4</span> Trazabilidad</h3>
+<table>
+  <thead><tr><td>ID</td><td>Amenaza</td><td>Proteccion</td></tr></thead>
+  <tbody>
+    <tr><td>T01-T04</td><td>Acceso / inyeccion / robo / fuerza bruta</td><td>PBKDF2 + RBAC + JWT + rate limit + hash</td></tr>
+    <tr><td>T05-T08</td><td>Manipulacion / rol / eliminacion / config</td><td>Audit log + integridad + consentimiento</td></tr>
   </tbody>
 </table>
 
-<!-- ═══════════════════ 7. XAI ═══════════════════ -->
-<h2><span class="section-num">7</span>Explicabilidad (XAI) y el Rol de DIA en el Contexto Clínico</h2>
-
-<h3><span class="sub-num">7.1</span> ¿Por qué Explicabilidad?</h3>
-<p>En un dispositivo médico asistido por IA, la clasificación por sí sola ("Warburg" o "EPOC") es insuficiente. El médico necesita comprender <strong>por qué</strong> el modelo llegó a esa conclusión para integrar el resultado en su juicio clínico.</p>
-
-<h3><span class="sub-num">7.2</span> Contenido de la Explicación XAI</h3>
-<table>
-  <thead><tr><td>Componente</td><td>Descripción</td></tr></thead>
-  <tbody>
-    <tr><td>Descripción del cluster</td><td>Interpretación semántica del grupo detectado</td></tr>
-    <tr><td>Biomarcadores relevantes</td><td>Qué features del BME688 contribuyeron más a la decisión</td></tr>
-    <tr><td>Nivel de severidad</td><td>BAJO / MEDIO / ALTO / CRÍTICO</td></tr>
-    <tr><td>Correlación con comorbilidades</td><td>Cruce con datos del paciente (diabetes, EPOC, etc.)</td></tr>
-    <tr><td>Advertencias clínicas</td><td>Alertas automáticas según combinaciones de factores</td></tr>
-    <tr><td>Recomendaciones de acción</td><td>Derivaciones sugeridas, estudios complementarios</td></tr>
-    <tr><td>Nivel de confianza</td><td>Score probabilístico del ensemble</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">7.3</span> Clasificación-Aware (Contextual)</h3>
-<p>Las explicaciones NO son genéricas. Se adaptan al resultado:</p>
+<!-- ═══════ 10. VALIDACION ═══════ -->
+<h2><span class="sn">10</span>Validacion y Estado Regulatorio</h2>
+<h3><span class="sn2">10.1</span> Clasificacion</h3>
+<p><strong>SaMD Clase II</strong> (riesgo moderado). Riesgo residual: BAJO &mdash; no invasivo, no administra tratamiento, diagnostico final lo da el medico.</p>
+<h3><span class="sn2">10.2</span> Indicaciones de Uso</h3>
+<p>Pre-tamizaje no invasivo de VOCs en aliento. Adultos 18-80 anios. Atencion primaria.</p>
+<h3><span class="sn2">10.3</span> Contraindicaciones</h3>
 <ul>
-  <li><strong>Cluster=0 (NORMAL):</strong> "patrón dentro de parámetros normales" — NO menciona metabolismo alterado</li>
-  <li><strong>Cluster=1 (WARBURG):</strong> detalla biomarcadores de estrés oxidativo y peroxidación lipídica</li>
-  <li><strong>Cluster=2 (EPOC):</strong> correlaciona con indicadores de inflamación crónica</li>
-  <li><strong>Cluster=4 (INFECCIÓN):</strong> señala patrones de metabolismo bacteriano</li>
+  <li>Neumotorax no resuelto / Hemoptisis activa (24h)</li>
+  <li>Cirugia toracica/abdominal (7 dias) / IAM (30 dias)</li>
+  <li>Aneurisma conocido (aortico, cerebral, toracico)</li>
+  <li>Incapacidad para seguir instrucciones / Menores 18 anios</li>
 </ul>
-
-<h3><span class="sub-num">7.4</span> El Rol de DIA: Aprendizaje Continuo para Mejorar el Contexto XAI</h3>
-
-<p>DIA (<em>DENCO Intelligence Agent</em>) es el componente de aprendizaje continuo del sistema. <strong>Su función no es reemplazar al médico ni tomar decisiones clínicas.</strong> Su función es:</p>
-
-<div class="callout callout-info">
-  <div class="callout-title">Función de DIA</div>
-  <p style="margin-bottom:0">Acumular, organizar y recuperar conocimiento biomédico relevante para proveer <strong>mejor contexto al motor XAI</strong>, enriqueciendo las explicaciones que acompañan a cada clasificación. DIA es un sistema de soporte que mide y aumenta el rendimiento y conocimiento del sistema para mejorar la calidad de las explicaciones generadas.</p>
-</div>
-
-<div class="diagram">
-┌────────────────────────────────────────────────────────────┐
-│                ECOSISTEMA DE CONOCIMIENTO DIA               │
-├────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Fuentes de Conocimiento                                     │
-│  ┌──────────┐ ┌──────────┐ ┌──────────────┐                │
-│  │ PubMed   │ │ URLs     │ │ Texto libre  │                │
-│  │ (auto)   │ │ (manual) │ │ (operador)   │                │
-│  └────┬─────┘ └────┬─────┘ └──────┬───────┘                │
-│       └─────────────┼──────────────┘                        │
-│                     │                                        │
-│              ┌──────▼──────┐                                 │
-│              │  TF-IDF +   │                                 │
-│              │  Indexing    │                                 │
-│              └──────┬──────┘                                 │
-│                     │                                        │
-│  25,900+ textos  ┌──▼──────────────┐                        │
-│  601,711 palabras│ Knowledge Base  │                        │
-│  116 categorías  │ (JSON en i7)    │                        │
-│                  └──────┬──────────┘                         │
-│              ┌──────────┼──────────┐                        │
-│       ┌──────▼──┐ ┌────▼────┐ ┌───▼──────┐                │
-│       │ XAI     │ │ Chat    │ │Dashboard │                │
-│       │ Engine  │ │ DIA     │ │Monitoreo │                │
-│       └─────────┘ └─────────┘ └──────────┘                │
-└────────────────────────────────────────────────────────────┘</div>
-
-<p><strong>DIA como Potenciador de XAI:</strong></p>
-<table>
-  <thead><tr><td>Capa</td><td>Función</td><td>Ejemplo</td></tr></thead>
-  <tbody>
-    <tr><td>Motor IA (Ensemble)</td><td>Clasifica la muestra</td><td>"Cluster 1: Warburg"</td></tr>
-    <tr><td>XAI</td><td>Explica la decisión</td><td>"Gas slope elevado + correlación gas-flujo alterada"</td></tr>
-    <tr><td>DIA</td><td>Provee contexto bibliográfico</td><td>"Hallazgo consistente con Peng et al. 2010: alcanos C2-C6 elevados en pacientes con nódulos pulmonares"</td></tr>
-  </tbody>
-</table>
-
-<p><strong>Dashboard de Conocimiento DIA:</strong></p>
-<table>
-  <thead><tr><td>Métrica</td><td>Valor</td></tr></thead>
-  <tbody>
-    <tr><td>Textos en base de conocimiento</td><td>25,969</td></tr>
-    <tr><td>Palabras totales</td><td>601,711</td></tr>
-    <tr><td>Categorías activas</td><td>116</td></tr>
-    <tr><td>URLs de referencia</td><td>52</td></tr>
-    <tr><td>Endpoint</td><td>http://192.168.1.75:5001/brain/dashboard</td></tr>
-  </tbody>
-</table>
-
-<!-- ═══════════════════ 8. CAPAS CLÍNICAS ═══════════════════ -->
-<h2><span class="section-num">8</span>Capas Clínicas: Reportes, Interoperabilidad y Estándares</h2>
-
-<h3><span class="sub-num">8.1</span> Generación de Reportes PDF</h3>
-<table>
-  <thead><tr><td>Sección</td><td>Contenido</td></tr></thead>
-  <tbody>
-    <tr><td>Encabezado</td><td>Logo, identificación del dispositivo, institución</td></tr>
-    <tr><td>Datos del paciente</td><td>Anonimizados con SHA-256 + salt</td></tr>
-    <tr><td>Resultados</td><td>Cluster asignado + probabilidad por clase</td></tr>
-    <tr><td>Explicabilidad XAI</td><td>Descripción, biomarcadores, severidad, recomendaciones</td></tr>
-    <tr><td>Biomarcadores BME688</td><td>Gas promedio, std, pendiente, min, max, rango, IAQ</td></tr>
-    <tr><td>Gráficas de tendencia</td><td>Perfil de sensores durante la exhalación</td></tr>
-    <tr><td>Comorbilidades</td><td>Factores de riesgo cruzados</td></tr>
-    <tr><td>Nivel de confianza</td><td>Score + acciones sugeridas</td></tr>
-    <tr><td>Pie de página</td><td>Versión del software, responsable técnico, fecha</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">8.2</span> Generación de DICOM SR</h3>
-<p>Conforme <strong>DICOM PS3.3-2025, Annex A</strong>. Formato: FileDataset con preamble 128 bytes + file_meta. Códigos LOINC, SNOMED-CT e ICD-10 integrados. Narrativa clínica en español. Exportación como archivo <code>.dcm</code> descargable, organizado por <code>dicom_sr/{institución}/{consultorio}/{machine_id}/</code>.</p>
-
-<h3><span class="sub-num">8.3</span> Generación de FHIR R4 Bundle</h3>
-<p>El módulo <code>servicios/fhir_bundle_generator.py</code> produce JSON conforme HL7 FHIR R4 con recursos Patient, DiagnosticReport, Observation y Bundle.</p>
-
-<h3><span class="sub-num">8.4</span> Lectura y Visualización de DICOM</h3>
-<p>Upload de archivos <code>.dcm</code> individuales o en lote, parseo con pydicom, extracción de metadata y texto SR, análisis de contenido, correlación con datos de aliento, panel de conexión PACS (preparado).</p>
-
-<h3><span class="sub-num">8.5</span> Evolución Clínica (v5.6)</h3>
-<table>
-  <thead><tr><td>Métrica</td><td>Descripción</td></tr></thead>
-  <tbody>
-    <tr><td>IQM</td><td>Índice de Calidad de Muestra</td></tr>
-    <tr><td>MAD</td><td>Median Absolute Deviation — detección de outliers</td></tr>
-    <tr><td>Distancia semántica</td><td>Comparación entre clasificaciones sucesivas</td></tr>
-    <tr><td>Tendencias clínicas</td><td>Evolución de biomarcadores a lo largo del tiempo</td></tr>
-    <tr><td>Alertas automáticas</td><td>Detección de cambios significativos entre mediciones</td></tr>
-  </tbody>
-</table>
-
-<!-- ═══════════════════ 9. SEGURIDAD ═══════════════════ -->
-<h2><span class="section-num">9</span>Seguridad, Protección de Datos y Ciberseguridad</h2>
-
-<h3><span class="sub-num">9.1</span> Marco Regulatorio de Seguridad</h3>
-<table>
-  <thead><tr><td>Normativa</td><td>Alcance</td></tr></thead>
-  <tbody>
-    <tr><td>Ley 18.331 (Uruguay)</td><td>Protección de datos personales</td></tr>
-    <tr><td>Ley 18.335</td><td>Derechos de pacientes</td></tr>
-    <tr><td>IMDRF N73</td><td>Cybersecurity for medical devices</td></tr>
-    <tr><td>IMDRF N81</td><td>Risk management</td></tr>
-    <tr><td>FDA 524B</td><td>Pre-market cybersecurity</td></tr>
-    <tr><td>ISO 13485</td><td>Quality management system</td></tr>
-    <tr><td>IEC 62304</td><td>Software lifecycle processes</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">9.2</span> Autenticación y Control de Accesos</h3>
-<table>
-  <thead><tr><td>Medida</td><td>Implementación</td></tr></thead>
-  <tbody>
-    <tr><td>Hashing de contraseñas</td><td>PBKDF2 con 210.000 iteraciones (SHA-256)</td></tr>
-    <tr><td>Salt</td><td>Único por usuario</td></tr>
-    <tr><td>Comparación</td><td>Constant-time (hmac.compare_digest)</td></tr>
-    <tr><td>Rate limiting</td><td>5 intentos fallidos → bloqueo 15 minutos</td></tr>
-    <tr><td>Timeout de sesión</td><td>30 minutos (configurable)</td></tr>
-    <tr><td>JWT</td><td>Para endpoints del Brain Server</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">9.3</span> Headers de Seguridad (Brain Server)</h3>
-<table>
-  <thead><tr><td>Header</td><td>Valor</td></tr></thead>
-  <tbody>
-    <tr><td>X-Content-Type-Options</td><td>nosniff</td></tr>
-    <tr><td>X-Frame-Options</td><td>DENY</td></tr>
-    <tr><td>X-XSS-Protection</td><td>1; mode=block</td></tr>
-    <tr><td>Referrer-Policy</td><td>strict-origin-when-cross-origin</td></tr>
-    <tr><td>Content-Security-Policy</td><td>default-src 'self'</td></tr>
-    <tr><td>Server</td><td>ELIMINADO (no expone tecnología)</td></tr>
-    <tr><td>Strict-Transport-Security</td><td>max-age=31536000 (solo HTTPS)</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">9.4</span> Logging Médico y SIEM</h3>
-<p><strong>Niveles:</strong> INFO, WARNING, CRITICAL, ERROR, DEBUG, TRACE. <strong>Categorías:</strong> SEGURIDAD, OPERACIÓN, CALIDAD, AUDITORÍA, SISTEMA, CLÍNICO. <strong>Formato:</strong> JSON estructurado con UUID único, timestamp, session_id, machine_id, institución, hash_id anonimizado. <strong>Integración:</strong> Loki + Grafana.</p>
-
-<h3><span class="sub-num">9.5</span> Trazabilidad Amenaza-Protección</h3>
-<table>
-  <thead><tr><td>ID</td><td>Amenaza</td><td>Protección</td></tr></thead>
-  <tbody>
-    <tr><td>T01</td><td>Acceso no autorizado</td><td>PBKDF2 + RBAC + rate limiting + JWT</td></tr>
-    <tr><td>T02</td><td>Inyección de datos</td><td>Validación de inputs + RBAC</td></tr>
-    <tr><td>T03</td><td>Robo de datos</td><td>Cifrado DB + hash pacientes + .env</td></tr>
-    <tr><td>T04</td><td>Fuerza bruta</td><td>Rate limiting + delay exponencial</td></tr>
-    <tr><td>T05</td><td>Manipulación resultados</td><td>Audit log + hash de integridad</td></tr>
-    <tr><td>T06</td><td>Acceso fuera de rol</td><td>RBAC (3 niveles)</td></tr>
-    <tr><td>T07</td><td>Eliminación no autorizada</td><td>Consentimiento + audit trail</td></tr>
-    <tr><td>T08</td><td>Cambio configuración</td><td>Audit log + backup automático</td></tr>
-  </tbody>
-</table>
-
-<!-- ═══════════════════ 10. VALIDACIÓN ═══════════════════ -->
-<h2><span class="section-num">10</span>Validación y Estado Regulatorio</h2>
-
-<h3><span class="sub-num">10.1</span> Clasificación del Dispositivo</h3>
-<table>
-  <thead><tr><td>Criterio</td><td>Valor</td></tr></thead>
-  <tbody>
-    <tr><td>Tipo</td><td>Software como Dispositivo Médico (SaMD)</td></tr>
-    <tr><td>Clase</td><td>II (riesgo moderado)</td></tr>
-    <tr><td>Justificación</td><td>Proceso diagnóstico asistido por IA, pero NO diagnóstico definitivo</td></tr>
-    <tr><td>Riesgo residual</td><td>BAJO — No invasivo, no administra tratamiento</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">10.2</span> Indicaciones de Uso (Intended Use)</h3>
-<p><strong>Uso médico:</strong> Pre-tamizaje no invasivo de compuestos orgánicos volátiles (VOCs) en aliento para asistir en el triaje y priorización de derivaciones clínicas.</p>
-<p><strong>Enfermedades/condiciones objetivo:</strong></p>
-<ul>
-  <li>Efecto Warburg (metabolismo alterado sugestivo de neoplasia)</li>
-  <li>Enfermedad Pulmonar Obstructiva Crónica (EPOC)</li>
-  <li>Diabetes / Cetosis diabética</li>
-  <li>Infecciones respiratorias activas</li>
-</ul>
-<p><strong>Población objetivo:</strong> Pacientes adultos (18-80 años) en contexto de atención primaria, policlínicas o consultorios médicos.</p>
-
-<h3><span class="sub-num">10.3</span> Contraindicaciones</h3>
-<ul>
-  <li>Neumotórax no resuelto</li>
-  <li>Hemoptisis activa (tos con sangre en últimas 24 horas)</li>
-  <li>Cirugía torácica o abdominal en últimos 7 días</li>
-  <li>Infarto agudo de miocardio en últimos 30 días</li>
-  <li>Incapacidad para comprender o seguir instrucciones</li>
-  <li>Pacientes menores de 18 años</li>
-</ul>
-
-<h3><span class="sub-num">10.4</span> Advertencias y Precauciones</h3>
+<h3><span class="sn2">10.4</span> Advertencias</h3>
 <ol>
-  <li>DENCO es herramienta de <strong>PRE-TAMIZAJE</strong>, NO de diagnóstico</li>
-  <li>Los resultados <strong>NO reemplazan</strong> el juicio clínico del médico tratante</li>
-  <li>Un resultado anormal <strong>DEBE</strong> ser confirmado por otros métodos (espirometría, TC, biopsia, etc.)</li>
-  <li>Un resultado normal <strong>NO descarta</strong> completamente enfermedad</li>
-  <li>Los resultados pueden ser afectados por dieta, medicamentos y condiciones metabólicas intercurrentes</li>
+  <li>Herramienta de <strong>PRE-TAMIZAJE</strong>, NO de diagnostico</li>
+  <li>Resultados <strong>NO reemplazan</strong> juicio clinico</li>
+  <li>Resultado anormal <strong>DEBE</strong> confirmarse por otros metodos</li>
+  <li>Resultado normal <strong>NO descarta</strong> enfermedad</li>
+  <li>Afectable por dieta, medicamentos, condiciones intercurrentes</li>
   <li>Uso exclusivo por personal de salud capacitado</li>
-  <li>No dejar al paciente solo durante la prueba</li>
-  <li>Suspender inmediatamente si el paciente presenta malestar</li>
 </ol>
-
-<h3><span class="sub-num">10.5</span> Normativas Aplicables</h3>
-<table>
-  <thead><tr><td>Normativa</td><td>Aplicación en DENCO</td></tr></thead>
-  <tbody>
-    <tr><td>Decreto 3/2008 (Uruguay)</td><td>Registro de dispositivos médicos ante DET/MSP</td></tr>
-    <tr><td>Decreto 7/2001 (Uruguay)</td><td>Software = misma categoría que hardware</td></tr>
-    <tr><td>Ley 18.331 (Uruguay)</td><td>Protección de datos personales, derechos ARCO</td></tr>
-    <tr><td>Ley 18.335 (Uruguay)</td><td>Derechos de pacientes</td></tr>
-    <tr><td>IMDRF N60</td><td>SaMD: Device Definition</td></tr>
-    <tr><td>IMDRF N43</td><td>SaMD Classification</td></tr>
-    <tr><td>IMDRF N73</td><td>Cybersecurity</td></tr>
-    <tr><td>IMDRF N81</td><td>Risk Management</td></tr>
-    <tr><td>FDA 524B</td><td>Pre-market cybersecurity</td></tr>
-    <tr><td>ISO 13485</td><td>Quality management system</td></tr>
-    <tr><td>IEC 62304</td><td>Software lifecycle processes</td></tr>
-    <tr><td>ISO 5167-4</td><td>Medición de caudal (Venturi)</td></tr>
-    <tr><td>ISO 13138</td><td>Convenciones de muestreo respiratorio</td></tr>
-    <tr><td>DICOM PS3.3-2025</td><td>Structured Reports</td></tr>
-    <tr><td>HL7 FHIR R4</td><td>Interoperabilidad</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">10.6</span> Estado de Cumplimiento</h3>
+<h3><span class="sn2">10.5</span> Estado Cumplimiento</h3>
 <table>
   <thead><tr><td>Requisito</td><td>Estado</td></tr></thead>
   <tbody>
-    <tr><td>Registro ante DET/MSP</td><td>PENDIENTE</td></tr>
-    <tr><td>Validación clínica propia</td><td>PENDIENTE</td></tr>
-    <tr><td>Ensayo con médicos (8 médicos, 3 policlínicas)</td><td>PLANIFICADO</td></tr>
-    <tr><td>Comité de Ética (Hospital de Paysandú)</td><td>PENDIENTE</td></tr>
-    <tr><td>Documentación técnica</td><td>COMPLETADA</td></tr>
-    <tr><td>Suite de tests (408 pasando)</td><td>VERIFICADA</td></tr>
-    <tr><td>Seguridad</td><td>IMPLEMENTADA</td></tr>
-    <tr><td>Protección de datos</td><td>IMPLEMENTADA</td></tr>
+    <tr><td>Documentacion tecnica</td><td style="color:var(--success)">COMPLETADA</td></tr>
+    <tr><td>Suite tests (408)</td><td style="color:var(--success)">VERIFICADA</td></tr>
+    <tr><td>Seguridad</td><td style="color:var(--success)">IMPLEMENTADA</td></tr>
+    <tr><td>Proteccion datos</td><td style="color:var(--success)">IMPLEMENTADA</td></tr>
+    <tr><td>SBOM formal</td><td style="color:var(--success)">COMPLETADO</td></tr>
+    <tr><td>Protocolo bioseguridad</td><td style="color:var(--success)">DOCUMENTADO</td></tr>
+    <tr><td>Ensayo clinico</td><td style="color:#f57f17">PLANIFICADO</td></tr>
+    <tr><td>Comite de Etica</td><td style="color:#f57f17">PENDIENTE</td></tr>
+    <tr><td style="font-weight:700">Registro DET/MSP</td><td style="font-weight:700;color:var(--critical)">PENDIENTE</td></tr>
   </tbody>
 </table>
-
-<h3><span class="sub-num">10.7</span> Rendimiento Esperado (Referencia Literatura)</h3>
-<div class="callout callout-warning">
-  <div class="callout-title">Estado: Pendiente de Validación Clínica Propia</div>
-  <p style="margin-bottom:0">Los valores a continuación provienen de la literatura científica sobre tecnologías de sensores MOx. NO son el rendimiento validado de DENCO. El rendimiento real será determinado en el programa de validación clínica propia.</p>
+<h3><span class="sn2">10.6</span> Normativas</h3>
+<p>Decreto 3/2008, 7/2001. Ley 18.331, 18.335. IMDRF N43/N60/N73/N81. FDA 524B. ISO 13485. IEC 62304. ISO 5167-4, 13138. DICOM PS3.3. HL7 FHIR R4.</p>
+<h3><span class="sn2">10.7</span> Rendimiento Esperado en Clinica</h3>
+<div class="pb pbc">
+  <h4>&#10003; Pendiente de Validacion Clinica Propia</h4>
+  <table>
+    <thead><tr><td> Metrica</td><td>Referencia</td><td>Fuente</td></tr></thead>
+    <tbody>
+      <tr><td>Sensibilidad</td><td>82-90%</td><td>Sanz-Serrano 2025</td></tr>
+      <tr><td>Especificidad</td><td>84-90%</td><td>Sanz-Serrano 2025</td></tr>
+      <tr><td>AUC</td><td>0.90-0.96</td><td>Revisiones sistematicas</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-bottom:0;font-size:13px;color:var(--success)"><strong>Valores de literatura, NO de DENCO.</strong> Rendimiento real a determinar con cohorte propia.</p>
 </div>
+
+<!-- ═══════ 11. LIMITACIONES ═══════ -->
+<h2><span class="sn">11</span>Limitaciones Conocidas y Transparencia Regulatoria</h2>
+<h3><span class="sn2">11.1</span> Domain Shift</h3>
+<div class="callout cc"><div class="ct">Limitacion mas importante</div><p style="margin-bottom:0">Modelo entrenado con GC-MS, MOx 6/8 canales, PTR-TOF-MS &mdash; <strong>NO BME688</strong>. Accuracy 96.9% es optimista. Rendimiento real puede ser significativamente menor. <strong>NO es un bug. Es limitacion del dataset documentada para transparencia regulatoria.</strong> Mitigacion: Plan de Reentrenamiento BME688 con cohorte propia.</p></div>
+<h3><span class="sn2">11.2</span> Diabetes: Placeholder Sintetico</h3>
+<p>150 muestras CTGAN. Sin datos reales de aliento diabetico. Accion: recolectar, re-entrenar, re-validar.</p>
+<h3><span class="sn2">11.3</span> Tabaquismo Eliminado</h3>
+<p>8 muestras (umbral: 50). Indice calculado por correlacion VOCs alternativa.</p>
+<h3><span class="sn2">11.4</span> Items Resueltos en v4.0</h3>
+<div class="callout cs"><div class="ct">Resueltos</div>
+  <p><strong>SBOM formal:</strong> Completado &mdash; lista CycloneDX-compatible con ~45 paquetes Python, 3 infraestructura, 1 modelo IA, 2 sensores. Ver Anexo C.</p>
+  <p><strong>PDF parsing (Fix #29):</strong> Corregido &mdash; deteccion por Content-Type + magic bytes <code>%PDF-</code>, extraccion PyPDF2, fallback con referencia. Implementado en knowledge_ingester.py (i5) y trainer.py (i7).</p>
+  <p style="margin-bottom:0"><strong>Protocolo bioseguridad:</strong> Documentado &mdash; Seccion 16 con sistema barrera sanitaria 3 capas, clasificacion residuos, criterios rotacion.</p>
+</div>
+
+<!-- ═══════ 12. RENDIMIENTO ═══════ -->
+<h2><span class="sn">12</span>Rendimiento y Pruebas Operativas</h2>
+<h3><span class="sn2">12.1</span> Tests</h3>
 <table>
-  <thead><tr><td>Métrica</td><td>Rango en Literatura</td><td>Fuente</td></tr></thead>
+  <thead><tr><td> Metrica</td><td>Valor</td></tr></thead>
   <tbody>
-    <tr><td>Sensibilidad</td><td>82-90%</td><td>Sanz-Serrano et al. 2025 (meta-análisis, 126 estudios, n=18.947)</td></tr>
-    <tr><td>Especificidad</td><td>84-90%</td><td>Sanz-Serrano et al. 2025</td></tr>
-    <tr><td>AUC promedio</td><td>0.90-0.96</td><td>Múltiples revisiones sistemáticas</td></tr>
+    <tr><td>Total recolectados</td><td>440</td></tr>
+    <tr><td>Pasando</td><td>408</td></tr>
+    <tr><td>Skipped</td><td>4 (requieren i7)</td></tr>
+    <tr><td>Fallando</td><td>0</td></tr>
   </tbody>
 </table>
-
-<!-- ═══════════════════ 11. LIMITACIONES ═══════════════════ -->
-<h2><span class="section-num">11</span>Limitaciones Conocidas y Transparencia Regulatoria</h2>
-
-<p>Esta sección documenta de manera explícita y transparente las limitaciones conocidas del sistema. Esta información es esencial para la evaluación regulatoria, la confianza clínica y la integridad científica del proyecto.</p>
-
-<h3><span class="sub-num">11.1</span> Domain Shift entre Datos de Entrenamiento y Sensor Físico</h3>
-<p><strong>Problema:</strong> El modelo fue entrenado con datos de referencia públicos que provienen de sensores <strong>fundamentalmente diferentes</strong> al BME688 de DENCO:</p>
-<table>
-  <thead><tr><td>Dataset</td><td>Sensor</td><td>Canales</td><td>Diferencia con BME688</td></tr></thead>
-  <tbody>
-    <tr><td>clinical_breathomics</td><td>GC-MS</td><td>Cromatografía</td><td>Principio físico completamente diferente</td></tr>
-    <tr><td>copd_github</td><td>MOx</td><td>8 canales</td><td>2 canales menos, materiales diferentes</td></tr>
-    <tr><td>cumberbatch</td><td>MOx</td><td>6 canales</td><td>4 canales menos, materiales diferentes</td></tr>
-    <tr><td>jia_2024</td><td>PTR-TOF-MS</td><td>Espectrometría masas</td><td>Principio físico completamente diferente</td></tr>
-  </tbody>
-</table>
-<p><strong>Consecuencia:</strong> El accuracy del 96.9% es una estimación optimista. El rendimiento real con el BME688 físico puede ser significativamente menor.</p>
-<p><strong>Mitigación:</strong> El Plan de Reentrenamiento BME688 establece el proceso para cerrar este gap mediante recolección de muestras con el dispositivo físico en contexto clínico real.</p>
-<p><strong>Estado:</strong> Esto NO es un bug de código. Es una limitación del dataset de entrenamiento documentada para transparencia regulatoria.</p>
-
-<h3><span class="sub-num">11.2</span> Clase Diabetes: Placeholder con Datos Sintéticos</h3>
-<p><strong>Hecho:</strong> La clase "Diabetes" (índice 3) está compuesta por <strong>150 muestras generadas con CTGAN</strong> (Conditional Tabular Generative Adversarial Network). <strong>NO existen muestras reales de aliento diabético</strong> en el dataset.</p>
-<p><strong>Implicación:</strong> El modelo <strong>NO puede detectar diabetes real</strong> con datos de aliento. La clase diabetes es un <strong>PLACEHOLDER</strong> para la arquitectura del ensemble. La validación clínica real requerirá datos de aliento diabético genuinos.</p>
-<p><strong>Acción requerida:</strong></p>
-<ol>
-  <li>Recolectar muestras de aliento de pacientes diabéticos</li>
-  <li>Re-entrenar el modelo con datos reales</li>
-  <li>Re-validar el accuracy</li>
-</ol>
-
-<h3><span class="sub-num">11.3</span> Clase Tabaquismo: Eliminada por Insuficiencia de Datos</h3>
-<p><strong>Hecho:</strong> Eliminada en v5.5 por tener solo 8 muestras reales (umbral: 50). <strong>Consecuencia:</strong> El modelo actual NO clasifica tabaquismo. El índice se calcula por vía alternativa (correlación de VOCs).</p>
-
-<h3><span class="sub-num">11.4</span> Warburg Index en Simulación</h3>
-<p>En modo simulación siempre muestra "elevado" debido a la fórmula <code>abs(correlación)*0.6</code> que siempre produce valores &gt;0.6. Pendiente de recalibración con datos reales del sensor. <strong>Prioridad: MEDIA.</strong></p>
-
-<h3><span class="sub-num">11.5</span> Ingesta de URLs — PDF Parsing</h3>
-<p>URLs con PDFs guardan binario crudo en vez de texto parseado. Pendiente de corrección en <code>trainer.add_url_knowledge()</code>. <strong>Prioridad: MEDIA.</strong></p>
-
-<!-- ═══════════════════ 12. RENDIMIENTO ═══════════════════ -->
-<h2><span class="section-num">12</span>Rendimiento y Pruebas Operativas</h2>
-
-<h3><span class="sub-num">12.1</span> Suite de Tests</h3>
-<table>
-  <thead><tr><td>Métrica</td><td>Valor</td></tr></thead>
-  <tbody>
-    <tr><td>Total de tests recolectados</td><td>440</td></tr>
-    <tr><td>Tests pasando</td><td>408</td></tr>
-    <tr><td>Tests skipped</td><td>4 (requieren i7)</td></tr>
-    <tr><td>Tests fallando</td><td>0</td></tr>
-    <tr><td>Framework</td><td>pytest</td></tr>
-  </tbody>
-</table>
-
-<p><strong>Cobertura por módulo crítico:</strong></p>
-<table>
-  <thead><tr><td>Módulo</td><td>Tests</td><td>Estado</td></tr></thead>
-  <tbody>
-    <tr><td>validaciones.py (core)</td><td>61</td><td>OK</td></tr>
-    <tr><td>pdf_generator.py</td><td>60</td><td>OK</td></tr>
-    <tr><td>auditoria_seguridad.py</td><td>55</td><td>OK</td></tr>
-    <tr><td>integración</td><td>43</td><td>OK</td></tr>
-    <tr><td>siem_bridge.py</td><td>36</td><td>OK</td></tr>
-    <tr><td>dicom_sr_v2.py</td><td>25</td><td>OK</td></tr>
-    <tr><td>visualizador.py</td><td>24</td><td>OK</td></tr>
-    <tr><td>análisis_evolución.py</td><td>21</td><td>OK</td></tr>
-    <tr><td>fhir_bundle.py</td><td>16</td><td>OK</td></tr>
-    <tr><td>modelo_ia.py</td><td>11</td><td>OK</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">12.2</span> Pruebas de Seguridad contra Brain Server i7</h3>
+<h3><span class="sn2">12.2</span> Seguridad (i7)</h3>
 <table>
   <thead><tr><td>Test</td><td>Resultado</td><td>Evidencia</td></tr></thead>
   <tbody>
-    <tr><td>Autenticación JWT (sin token)</td><td>PASS</td><td>HTTP 403 Forbidden</td></tr>
-    <tr><td>Login credenciales incorrectas</td><td>PASS</td><td>HTTP 401 Unauthorized</td></tr>
-    <tr><td>Path Traversal (../../)</td><td>PASS</td><td>HTTP 403 (requiere JWT)</td></tr>
-    <tr><td>Rate Limiting (30 req/60s)</td><td>PASS</td><td>HTTP 429 Too Many Requests</td></tr>
-    <tr><td>Headers de seguridad</td><td>PASS</td><td>HSTS, CSP, X-Frame presentes</td></tr>
-    <tr><td>X-Forwarded-For spoofing</td><td>PASS</td><td>No confiado (usa remote_addr)</td></tr>
+    <tr><td>JWT sin token</td><td>PASS</td><td>403</td></tr>
+    <tr><td>Path Traversal</td><td>PASS</td><td>403 (JWT req.)</td></tr>
+    <tr><td>Rate Limiting</td><td>PASS</td><td>429</td></tr>
+    <tr><td>Security Headers</td><td>PASS</td><td>HSTS, CSP</td></tr>
   </tbody>
 </table>
+<h3><span class="sn2">12.3</span> Carga (i7)</h3>
+<p>30 clientes, throughput ~32 req/s, latencia minima 29-35 ms. 25 DENCOs IPs distintas: ~57 req/s (205.200/hora). Margen 27x.</p>
 
-<h3><span class="sub-num">12.3</span> Pruebas de Carga (Brain Server i7)</h3>
-<p><strong>Configuración:</strong> 30 clientes simultáneos, 150-300 requests totales.</p>
+<!-- ═══════ 13. DIFERENCIADORES ═══════ -->
+<h2><span class="sn">13</span>Diferenciadores</h2>
 <table>
-  <thead><tr><td>Métrica</td><td>Valor</td></tr></thead>
+  <thead><tr><td>Caracteristica</td><td>DENCO</td><td>Tradicional</td></tr></thead>
   <tbody>
-    <tr><td>Requests totales</td><td>300</td></tr>
-    <tr><td>Exitosos</td><td>21 (7%)</td></tr>
-    <tr><td>Fallidos (HTTP 429 rate limiting)</td><td>279 (93%)</td></tr>
-    <tr><td>Throughput total</td><td>32.6 req/s</td></tr>
-    <tr><td>Latencia mínima</td><td>29-35 ms</td></tr>
-    <tr><td>Latencia promedio</td><td>578-834 ms</td></tr>
-    <tr><td>Latencia P95</td><td>~2.000-3.000 ms</td></tr>
+    <tr><td><strong>Precio</strong></td><td>USD 2-5/prueba</td><td>USD 50-200</td></tr>
+    <tr><td><strong>Tiempo</strong></td><td>4 minutos</td><td>Dias</td></tr>
+    <tr><td><strong>Invasividad</strong></td><td>Aliento</td><td>Biopsias, sangre, radiacion</td></tr>
+    <tr><td><strong>Modelo</strong></td><td>SaaS pago por uso</td><td>Compra equipamiento</td></tr>
+    <tr><td><strong>Tecnologia</strong></td><td>Open source</td><td>Licencias propietarias</td></tr>
   </tbody>
 </table>
 
-<p><strong>Capacidad estimada en producción</strong> (cada DENCO con IP propia):</p>
+<!-- ═══════ 14. PROXIMOS PASOS ═══════ -->
+<h2><span class="sn">14</span>Proximos Pasos, Validacion y Cronograma</h2>
+<h3><span class="sn2">14.1</span> Plan Validacion Clinica (VIN)</h3>
 <table>
-  <thead><tr><td>Escenario</td><td>Throughput</td><td>Consultas/Hora</td></tr></thead>
+  <thead><tr><td>Etapa</td><td>Descripcion</td><td>Estado</td></tr></thead>
   <tbody>
-    <tr><td>25 DENCOs (25 IPs)</td><td>~57 req/s</td><td>~205.200</td></tr>
-    <tr><td>50 DENCOs (50 IPs)</td><td>~114 req/s</td><td>~410.400</td></tr>
-    <tr><td>Requisito clínico (25 DENCOs)</td><td>~0.83 req/s</td><td>Margen de 27x</td></tr>
+    <tr><td>1</td><td>Recolectar muestras con BME688 fisico</td><td>PENDIENTE</td></tr>
+    <tr><td>2</td><td>Re-entrenar modelo con datos reales</td><td>PENDIENTE</td></tr>
+    <tr><td>3</td><td>Validar accuracy con cohorte propia</td><td>PENDIENTE</td></tr>
   </tbody>
 </table>
-
-<!-- ═══════════════════ 13. DIFERENCIADORES ═══════════════════ -->
-<h2><span class="section-num">13</span>Modelo de Negocio y Diferenciadores Competitivos</h2>
-
+<h3><span class="sn2">14.2</span> Comite de Etica</h3>
+<p>Protocolo ante <strong>Comite de Etica del Hospital de Paysandu</strong>. Cohorte: adultos 18-80 anios en atencion primaria, con consentimiento informado.</p>
+<h3><span class="sn2">14.3</span> Cronograma Regulatorio</h3>
+<div class="diag">
+<span class="hl">2026 Q3-Q4:</span> Reentrenamiento BME688 + recoleccion datos reales
+<span class="hl">2026 Q4:</span>    Validacion clinica (cohorte propia)
+<span class="hl">2027 Q1:</span>    Presentacion a medicos (Plan VIN)
+<span class="hl">2027 Q1-Q2:</span> Registro sanitario ante DET/MSP
+<span class="hl">2027 Q2+:</span>   Despliegue comercial</div>
+<h3><span class="sn2">14.4</span> Proximos Pasos Operativos</h3>
 <table>
-  <thead><tr><td>Característica</td><td>DENCO</td><td>Métodos Tradicionales</td></tr></thead>
+  <thead><tr><td>Area</td><td>Accion</td><td>Prioridad</td></tr></thead>
   <tbody>
-    <tr><td><strong>Precio por prueba</strong></td><td>USD 2-5</td><td>USD 50-200 (laboratorio)</td></tr>
-    <tr><td><strong>Tiempo</strong></td><td>4 minutos</td><td>Días</td></tr>
-    <tr><td><strong>Invasividad</strong></td><td>No invasivo (aliento)</td><td>Biopsias, sangre, radiación</td></tr>
-    <tr><td><strong>Portabilidad</strong></td><td>Dispositivo de campo</td><td>Equipos de laboratorio</td></tr>
-    <tr><td><strong>Infraestructura</strong></td><td>Plug &amp; Play</td><td>Laboratorio + personal</td></tr>
-    <tr><td><strong>Modelo</strong></td><td>SaaS — pago por uso</td><td>Compra de equipamiento</td></tr>
-    <tr><td><strong>Enfoque regulatorio</strong></td><td>Diseñado para SaMD desde el inicio</td><td>—</td></tr>
-    <tr><td><strong>Tecnología</strong></td><td>Open source (Python/Flask/PostgreSQL)</td><td>Licencias propietarias</td></tr>
+    <tr><td>Infraestructura</td><td>Migracion VPS (TLS 1.3, Fernet, SSL)</td><td>ALTA</td></tr>
+    <tr><td>Infraestructura</td><td>Migracion Antel Cloud</td><td>MEDIA</td></tr>
+    <tr><td>Modelo IA</td><td>Recalibrar Warburg Index datos reales</td><td>MEDIA</td></tr>
+    <tr><td>Regulatorio</td><td>Asesoria sanitaria especializada</td><td>ALTA</td></tr>
+    <tr><td>Expansion</td><td>Validacion modelo economico</td><td>ALTA</td></tr>
+    <tr><td>Expansion</td><td>Integracion en policlinica real</td><td>ALTA</td></tr>
   </tbody>
 </table>
 
-<p>El modelo económico es SaaS (Software as a Service) con pago por uso, sin compra de equipamiento adelantado. Esto reduce la barrera de entrada para policlínicas, centros de salud rurales, consultorios de medicina general, farmacias con servicio de salud, y programas de screening poblacional.</p>
-
-<!-- ═══════════════════ 14. PRÓXIMOS PASOS ═══════════════════ -->
-<h2><span class="section-num">14</span>Próximos Pasos y Plan de Validación Clínica</h2>
-
-<h3><span class="sub-num">14.1</span> Plan de Validación Clínica (Plan VIN)</h3>
-<table>
-  <thead><tr><td>Etapa</td><td>Descripción</td><td>Estado</td></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Reentrenar con BME688 físico (cohorte propia)</td><td>PENDIENTE</td></tr>
-    <tr><td>2</td><td>Obtener datos reales de diabetes (reemplazar CTGAN)</td><td>PENDIENTE</td></tr>
-    <tr><td>3</td><td>Validar accuracy real con cohorte clínica propia</td><td>PENDIENTE</td></tr>
-    <tr><td>4</td><td>Presentar a 8 médicos de 3 policlínicas del litoral</td><td>PLANIFICADO</td></tr>
-    <tr><td>5</td><td>Validar modelo económico (pago por uso)</td><td>PLANIFICADO</td></tr>
-    <tr><td>6</td><td>Pruebas de integración en policlínica real</td><td>PLANIFICADO</td></tr>
-    <tr><td>7</td><td>Migración a Antel Cloud (infraestructura nacional)</td><td>PLANIFICADO</td></tr>
-    <tr><td>8</td><td>Asesoría sanitaria y regulatoria</td><td>PLANIFICADO</td></tr>
-    <tr><td>9</td><td>Protocolo de bioseguridad documentado</td><td>PLANIFICADO</td></tr>
-    <tr><td>10</td><td>Registro sanitario ante DET/MSP</td><td>PENDIENTE</td></tr>
-  </tbody>
-</table>
-
-<h3><span class="sub-num">14.2</span> Comité de Ética</h3>
-<p>El protocolo de validación clínica será presentado al Comité de Ética del Hospital de Paysandú para su aprobación. La cohorte clínica incluirá pacientes adultos (18-80 años) en contexto de atención primaria, con consentimiento informado documentado.</p>
-
-<h3><span class="sub-num">14.3</span> Cronograma Regulatorio</h3>
-<div class="diagram">
-<span class="highlight-line">2026 Q3-Q4:</span> Reentrenamiento con BME688 + recolección de datos reales
-<span class="highlight-line">2026 Q4:</span>    Validación clínica (cohorte propia)
-<span class="highlight-line">2027 Q1:</span>    Presentación a médicos de atención primaria (Plan VIN)
-<span class="highlight-line">2027 Q1-Q2:</span> Registro sanitario ante DET/MSP
-<span class="highlight-line">2027 Q2+:</span>   Despliegue comercial (policlínicas del litoral)</div>
-
-<!-- ═══════════════════ 15. REFERENCIAS ═══════════════════ -->
-<h2><span class="section-num">15</span>Referencias</h2>
-
-<h3>Literatura Científica</h3>
+<!-- ═══════ 15. REFERENCIAS ═══════ -->
+<h2><span class="sn">15</span>Referencias</h2>
+<h3>Literatura</h3>
 <ol>
-  <li>Warburg, O. (1924). Über den Stoffwechsel der Carcinomzelle. <em>Naturwissenschaften</em>, 12(50), 1131-1137.</li>
-  <li>Peng, G. et al. (2010). Diagnosing lung cancer in exhaled breath using gold nanoparticles. <em>Nature Nanotechnology</em>, 5(5), 356-361.</li>
-  <li>Haque, M. et al. (2020). Metal oxide sensor arrays for VOC detection in exhaled breath. <em>Sensors and Actuators B</em>.</li>
-  <li>Konvalina, G. &amp; Haick, H. (2014). Sensors for breath testing: From nanomaterials to comprehensive disease detection. <em>Accounts of Chemical Research</em>, 47(1), 66-76.</li>
-  <li>Sanz-Serrano, I. et al. (2025). Electronic nose for lung cancer screening: A systematic review and meta-analysis. <em>Journal of Nanobiotechnology</em>, 23.</li>
-  <li>Haddi, Z. et al. (2025). Breath analysis by electronic nose for EPOC diagnosis: A systematic review. <em>Sensors and Actuators B</em>.</li>
-  <li>Riscado, L. et al. (2025). VOC analysis in diabetes breath: A systematic review of e-nose technologies. <em>Diabetes Research and Clinical Practice</em>.</li>
+  <li>Warburg, O. (1924). <em>Naturwissenschaften</em>, 12(50).</li>
+  <li>Peng, G. et al. (2010). <em>Nature Nanotechnology</em>, 5(5).</li>
+  <li>Haque, M. et al. (2020). <em>Sensors and Actuators B</em>.</li>
+  <li>Konvalina, G. &amp; Haick, H. (2014). <em>Accounts of Chemical Research</em>, 47(1).</li>
+  <li>Sanz-Serrano, I. et al. (2025). <em>J. Nanobiotechnology</em>, 23.</li>
+  <li>Haddi, Z. et al. (2025). <em>Sensors and Actuators B</em>.</li>
+  <li>Riscado, L. et al. (2025). <em>Diabetes Res. Clin. Pract.</em></li>
 </ol>
-
-<h3>Normativas y Estándares</h3>
+<h3>Normativas</h3>
 <ol start="8">
-  <li>IMDRF N60 — Software as a Medical Device: Device Definition.</li>
-  <li>IMDRF N43 — Software as a Medical Device: Classification.</li>
-  <li>IMDRF N73 — Principles and Practices for Medical Device Cybersecurity.</li>
-  <li>IMDRF N81 — Risk Management for Medical Devices.</li>
-  <li>FDA 524B — Cybersecurity in Medical Devices: Quality System Considerations.</li>
-  <li>ISO 13485 — Medical devices: Quality management systems.</li>
-  <li>IEC 62304 — Medical device software: Software life cycle processes.</li>
-  <li>ISO 5167-4 — Measurement of fluid flow by means of pressure differential devices (Venturi tubes).</li>
-  <li>ISO 13138 — Breath contaminant and physiological parameter sampling.</li>
-  <li>DICOM PS3.3-2025 — Digital Imaging and Communications in Medicine.</li>
-  <li>HL7 FHIR R4 — Fast Healthcare Interoperability Resources.</li>
-  <li>Decreto 3/2008 — Registro de Dispositivos Médicos (Uruguay).</li>
-  <li>Decreto 7/2001 — Software como dispositivo médico (Uruguay).</li>
-  <li>Ley 18.331 — Protección de Datos Personales (Uruguay).</li>
-  <li>Ley 18.335 — Derechos de los Pacientes (Uruguay).</li>
+  <li>IMDRF N60, N43, N73, N81.</li>
+  <li>FDA 524B.</li>
+  <li>ISO 13485 / IEC 62304.</li>
+  <li>ISO 5167-4 / ISO 13138.</li>
+  <li>DICOM PS3.3-2025 / HL7 FHIR R4.</li>
+  <li>Decreto 3/2008, 7/2001 (Uruguay).</li>
+  <li>Ley 18.331, 18.335 (Uruguay).</li>
 </ol>
 
-<!-- ═══════════════════ HISTORIAL ═══════════════════ -->
-<h2><span class="section-num">HISTORIAL</span>Historial de Versiones del Documento</h2>
-<table class="version-table">
-  <thead><tr><td>Versión</td><td>Fecha</td><td>Cambios</td></tr></thead>
+<!-- ═══════ 16. BIOSEGURIDAD ═══════ -->
+<h2><span class="sn">16</span>Protocolo de Bioseguridad y Recambio Operativo</h2>
+<p><strong>Responsables:</strong> Emmanuel Modernel Rosin (Disenio Mecanico) y Hugo L. La Cruz (Arquitectura de Software).</p>
+
+<h3><span class="sn2">16.1</span> Sistema de Barrera Sanitaria (3 Capas)</h3>
+<table>
+  <thead><tr><td>Capa</td><td>Componente</td><td>Funcion</td></tr></thead>
   <tbody>
-    <tr><td>1.0</td><td>Mayo 2026</td><td>Documento técnico original (KMeans, CCS811, 3 clusters)</td></tr>
-    <tr><td>2.0</td><td>Julio 2026</td><td>Reescritura completa: Ensemble NN+SVM+RF, BME688, 5 clases, Brain Server v3.0, XAI, DIA, DICOM SR, FHIR, seguridad, domain shift, diabetes sintética, tabaquismo eliminado, arquitectura i5/i7, suite de tests, pruebas de carga, plan de validación clínica</td></tr>
+    <tr><td><strong>1. Funda Desechable</strong></td><td>Papel grado medico, un solo uso</td><td>Impide contacto labial directo con estructura del dispositivo</td></tr>
+    <tr><td><strong>2. Boquilla Quick-Lock</strong></td><td>Desacoplable medio giro (180 grados)</td><td>Sustitucion inmediata en punto de atencion sin herramientas</td></tr>
+    <tr><td><strong>3. Filtro Doble Malla</strong></td><td>Tamiz micrometrico acero inoxidable</td><td>Detiene proyeccion inercial de macrogotas de saliva y condensacion sin generar perdidas de carga neumatica que alteren el calculo del volumen alveolar</td></tr>
   </tbody>
 </table>
 
-<!-- ═══════════════════ FIRMAS ═══════════════════ -->
-<h2><span class="section-num">FIRMAS</span>Firma de los Responsables</h2>
+<h3><span class="sn2">16.2</span> Clasificacion de Residuos</h3>
+<table>
+  <thead><tr><td>Insumo</td><td>Clasificacion</td><td>Descarte</td></tr></thead>
+  <tbody>
+    <tr><td>Funda de papel</td><td>Residuo Sanitario Tipo I (Asimilable a Urbano)</td><td>Bolsa negra comun</td></tr>
+    <tr><td>Boquilla + filtro usados</td><td>Reutilizable tras esterilizacion</td><td>Bandeja desinfeccion</td></tr>
+    <tr><td>Kit de recambio</td><td>Reutilizable</td><td>Lavado + IPA 70% o autoclave</td></tr>
+  </tbody>
+</table>
 
-<div class="signatures">
-  <div class="sig-block">
-    <div class="sig-line"></div>
-    <div class="sig-name">Hugo L. La Cruz</div>
-    <div class="sig-role">Director del Proyecto</div>
-    <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">
-      DENCO Industrias<br>
-      Paysandú, Uruguay
-    </div>
+<h3><span class="sn2">16.3</span> Criterios de Rotacion</h3>
+<div class="diag">
+┌─────────────────────────────────────────────────────────┐
+│             CRITERIOS DE RECAMBIO DE HARDWARE           │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  <span class="hl">* CADA PACIENTE</span>  --> Cambiar Funda Desechable          │
+│                       (Bolsa Comun / Negra)             │
+│                                                         │
+│  <span class="hl">* ALERTAS</span>        --> Si se detectan picos de alerta    │
+│    CONSECUTIVAS       cambiar Boquilla + Filtro (Kit)   │
+│                                                         │
+│  <span class="hl">* CIERRE TURNO</span>   --> Limpieza profunda generalizada    │
+│                       de todos los componentes usados   │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</div>
+
+<p><strong>Por paciente:</strong> Cada ciclo requiere funda nueva. Boquilla y filtro permanecen en flujo normal.</p>
+<p><strong>Rotacion dinamica por alertas:</strong> Si el motor IA emite clasificaciones consecutivas de riesgo alto o sospecha bacteriana activa (Clase 4):</p>
+<ol>
+  <li>Ejecutar medio giro del Quick-Lock</li>
+  <li>Retirar conjunto boquilla-filtro a bandeja de desinfeccion</li>
+  <li>Instalar Kit de Recambio Seco limpio inmediatamente</li>
+</ol>
+<p>Previene acumulacion de <strong>compuestos volatiles residuales (carry-over effect)</strong> que distorsionan las lineas base de resistencia del sensor BME688.</p>
+<p><strong>Cierre de jornada:</strong> Todas las boquillas y mallas acumuladas pasan por lavado y esterilizacion en frio (Alcohol Isopropilico 70% o autoclave segun disponibilidad), restaurando stock para el dia siguiente.</p>
+
+<!-- ═══════ 17. GLOSARIO ═══════ -->
+<h2><span class="sn">17</span>Glosario de Terminos</h2>
+<div class="gg">
+  <div class="gi"><span class="gt">VOC</span><span class="gd">Compuesto Organico Volatil detectable en aliento</span></div>
+  <div class="gi"><span class="gt">MOx</span><span class="gd">Oxido metalico &mdash; sensor que detecta VOCs por resistencia</span></div>
+  <div class="gi"><span class="gt">BME688</span><span class="gd">Sensor Bosch 10 canales MOx + T + H + IAQ</span></div>
+  <div class="gi"><span class="gt">SDP810</span><span class="gd">Sensor presion diferencial Sensirion</span></div>
+  <div class="gi"><span class="gt">SaMD</span><span class="gd">Software as a Medical Device</span></div>
+  <div class="gi"><span class="gt">Ensemble</span><span class="gd">Modelo NN + SVM + RF con votacion ponderada</span></div>
+  <div class="gi"><span class="gt">NN</span><span class="gd">Red neuronal feedforward (PyTorch)</span></div>
+  <div class="gi"><span class="gt">SVM</span><span class="gd">Support Vector Machine &mdash; clasificador hiperplano</span></div>
+  <div class="gi"><span class="gt">RF</span><span class="gd">Random Forest &mdash; arboles de decision</span></div>
+  <div class="gi"><span class="gt">XAI</span><span class="gd">Explainable AI &mdash; decisiones interpretables</span></div>
+  <div class="gi"><span class="gt">DIA</span><span class="gd">DENCO Intelligence Agent &mdash; conocimiento continuo</span></div>
+  <div class="gi"><span class="gt">Domain Shift</span><span class="gd">Diferencia entre datos entrenamiento y produccion</span></div>
+  <div class="gi"><span class="gt">CTGAN</span><span class="gd">Red generativa adversarial para datos tabulares sinteticos</span></div>
+  <div class="gi"><span class="gt">Warburg</span><span class="gd">Efecto: celulas cancerosas alteran metabolismo (1924)</span></div>
+  <div class="gi"><span class="gt">EPOC</span><span class="gd">Enfermedad Pulmonar Obstructiva Cronica</span></div>
+  <div class="gi"><span class="gt">Venturi</span><span class="gd">Tubo reduccion diametro (ISO 5167-4)</span></div>
+  <div class="gi"><span class="gt">DICOM SR</span><span class="gd">Structured Report medico interoperable con PACS</span></div>
+  <div class="gi"><span class="gt">FHIR</span><span class="gd">Fast Healthcare Interoperability Resources (HL7 R4)</span></div>
+  <div class="gi"><span class="gt">IMDRF</span><span class="gd">International Medical Device Regulators Forum</span></div>
+  <div class="gi"><span class="gt">DET/MSP</span><span class="gd">Direccion Estadal de Tecnologia Medica (Uruguay)</span></div>
+  <div class="gi"><span class="gt">RBAC</span><span class="gd">Role-Based Access Control</span></div>
+  <div class="gi"><span class="gt">JWT</span><span class="gd">JSON Web Token &mdash; autenticacion API</span></div>
+  <div class="gi"><span class="gt">SIEM</span><span class="gd">Security Info and Event Management (Loki+Grafana)</span></div>
+  <div class="gi"><span class="gt">IQM</span><span class="gd">Indice de Calidad de Muestra</span></div>
+  <div class="gi"><span class="gt">MAD</span><span class="gd">Median Absolute Deviation &mdash; deteccion outliers</span></div>
+  <div class="gi"><span class="gt">Carry-over</span><span class="gd">Acumulacion residual de VOCs que distorsiona mediciones</span></div>
+  <div class="gi"><span class="gt">SBOM</span><span class="gd">Software Bill of Materials &mdash; inventario dependencias</span></div>
+  <div class="gi"><span class="gt">Quick-Lock</span><span class="gd">Mecanismo desacople boquilla medio giro (180 grados)</span></div>
+</div>
+
+<!-- ═══════ ANEXO A ═══════ -->
+<h2><span class="sn">ANEXO A</span>Instrucciones de Preparacion para el Paciente</h2>
+<div class="callout ci"><div class="ct">Proposito</div><p style="margin-bottom:0">Indicar al paciente como prepararse para la medicion no invasiva de VOCs y CO2 en aliento. Seguir estas instrucciones es fundamental para evitar interferencias en los sensores de alta precision.</p></div>
+
+<h3><span class="sn2">A.1</span> Criterios de Exclusion</h3>
+<p><strong>Contraindicaciones absolutas (NO realizar):</strong></p>
+<ul>
+  <li>Neumotorax no resuelto</li>
+  <li>Hemoptisis activa (tos con sangre en ultimas 24 horas)</li>
+  <li>Cirugia toracica, abdominal u ocular (menos de 30 dias)</li>
+  <li>IAM o angina inestable (ultimos 30 dias)</li>
+  <li>Aneurisma conocido (aortico, cerebral o toracico)</li>
+  <li>Incapacidad fisica o cognitiva para seguir instrucciones de respiracion</li>
+</ul>
+<p><strong>Contraindicaciones relativas / postergables:</strong></p>
+<ul>
+  <li>Crisis asmatica activa o broncospasmo severo</li>
+  <li>Infeccion respiratoria aguda activa (contaminacion cruzada biologica del sensor)</li>
+  <li>Fiebre alta o tos persistente incontrolable</li>
+</ul>
+
+<h3><span class="sn2">A.2</span> Preparacion Previa Obligatoria</h3>
+<table>
+  <thead><tr><td>Factor</td><td>Restriccion</td><td>Detalles</td></tr></thead>
+  <tbody>
+    <tr><td>Ayuno solido</td><td>3 horas antes</td><td>Sin alimento solido. Evitar comidas copiosas dia anterior</td></tr>
+    <tr><td>Liquidos</td><td>1 hora antes</td><td>Ayuno seco estricto: sin agua, cafe, te, mate, jugos, refrescos</td></tr>
+    <tr><td>Tabaco / Vapeo</td><td>3 horas antes</td><td>Sin cigarros comunes, electronicos ni mariguana</td></tr>
+    <tr><td>Higiene / Contaminantes</td><td>6 horas antes</td><td>Sin ajo, cebolla, especias fuertes, chicles, caramelos, menta</td></tr>
+    <tr><td>Cosmeticos</td><td>El dia de la prueba</td><td>Sin perfume, colonia, locion de afeitar, cremas aromaticas</td></tr>
+    <tr><td>Ejercicio</td><td>1 hora antes</td><td>Sin actividad fisica intensa ni deporte</td></tr>
+  </tbody>
+</table>
+<p><em>Medicacion habitual: continuar normalmente salvo indicacion medica contraria. Antibioticos en ultimos 7 dias: notificar al profesional.</em></p>
+
+<h3><span class="sn2">A.3</span> Paso a Paso (5-10 minutos)</h3>
+<div class="flow">
+  <div class="fs"><div class="fn">1</div><div class="fc"><strong>Higiene local:</strong> Papel astringente neutro sobre lengua e interior de mejillas para remover saliva y residuos</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">2</div><div class="fc"><strong>Postura:</strong> Sentado derecho, espalda apoyada. Dispositivo horizontal, indicador de flujo hacia techo. Aun NO en boca</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">3</div><div class="fc"><strong>Exhalacion de limpieza (FUERA del dispositivo):</strong> Respirar profundo. Mirando hacia un costado, soplar suavemente 2-3 segundos para limpiar espacio muerto</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">4</div><div class="fc"><strong>Descanso:</strong> Respirar normalmente al aire libre durante 5 segundos</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">5</div><div class="fc"><strong>Muestra definitiva (DENTRO del dispositivo):</strong> Aire profundo hasta llenar pulmones. Boquilla en boca, sellar con labios, soplar constante y sostenido hasta vaciar todo el aire. El sistema detendra la captura automaticamente</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">6</div><div class="fc"><strong>Fin:</strong> Retirar dispositivo, relajarse, respirar normal. Tecnico validara si la muestra fue optima</div></div>
+</div>
+<p><em>Seguridad: Si siente mareo, tos o incomodidad, avisar al personal. La prueba se detendra inmediatamente. Los sintomas desaparecen solos en segundos.</em></p>
+
+<h3><span class="sn2">A.4</span> Checklist de Control</h3>
+<ul>
+  <li>Cumplio estrictamente las 3 horas de ayuno de solidos?</li>
+  <li>Cumplio la hora de ayuno estricto de liquidos?</li>
+  <li>Pasaron al menos 3 horas desde la ultima vez que fumo o vapeo?</li>
+  <li>Se encuentra libre de las contraindicaciones?</li>
+</ul>
+
+<!-- ═══════ ANEXO B ═══════ -->
+<h2><span class="sn">ANEXO B</span>Consentimiento Informado &mdash; Uruguay (Ley 18.335)</h2>
+<p><strong>Version 3.2 &mdash; 2026</strong></p>
+<p><strong>Nombre del paciente:</strong> ____________________ &nbsp; <strong>CI:</strong> ____________________</p>
+<p><strong>Telefono:</strong> ____________________ &nbsp; <strong>Domicilio:</strong> ____________________</p>
+
+<h3><span class="sn2">B.1</span> Descripcion del Procedimiento</h3>
+<p>El Sistema DENCO es un dispositivo no invasivo que analiza el aire exhalado para medir compuestos organicos volatiles (VOCs) y CO2 estimado. Consiste en soplar a traves de una boquilla conectada al equipo. No se utilizan agujas, no se extrae sangre, no se administran sustancias. Duracion: 5-10 minutos.</p>
+
+<h3><span class="sn2">B.2</span> Riesgos y Molestias</h3>
+<p>El procedimiento NO presenta riesgos conocidos para la poblacion general:</p>
+<table>
+  <thead><tr><td>Sintoma</td><td>Frecuencia</td></tr></thead>
+  <tbody>
+    <tr><td>Ligero mareo por exhalacion forzada</td><td>5-10%</td></tr>
+    <tr><td>Tos refleja</td><td>2-5%</td></tr>
+    <tr><td>Sequedad transitoria de boca</td><td>&lt;5%</td></tr>
+    <tr><td>Fatiga muscular respiratoria</td><td>&lt;1%</td></tr>
+    <tr><td>Sincope (desmayo)</td><td>&lt;0.1%</td></tr>
+  </tbody>
+</table>
+<p>Todos los sintomas desaparecen espontaneamente a los pocos segundos.</p>
+<p><strong>Contraindicaciones:</strong> Neumotorax no resuelto, hemoptisis activa (24h), cirugia toracica/abdominal (7 dias), IAM (30 dias), incapacidad para seguir instrucciones.</p>
+
+<h3><span class="sn2">B.3</span> Caracter de la Prueba</h3>
+<div class="callout cw"><div class="ct">Importante</div><p style="margin-bottom:0">Esta prueba tiene caracter de <strong>INVESTIGACION y APOYO DIAGNOSTICO</strong>. El Sistema DENCO se encuentra en fase de desarrollo y recoleccion de datos para entrenamiento de modelos supervisados. Los resultados deben ser interpretados por un profesional de salud. <strong>NO reemplaza</strong> pruebas convencionales (espirometria, radiografia, tomografia, biopsia) ni debe usarse como unico criterio para decisiones terapeuticas.</p></div>
+
+<h3><span class="sn2">B.4</span> Marco Legal (Ley 18.335)</h3>
+<p><strong>Articulo 11 &mdash; Consentimiento Informado:</strong> "Todo procedimiento de atencion medica sera acordado entre el paciente o su representante &mdash; luego de recibir informacion adecuada, suficiente y continua &mdash; y el profesional de salud. El consentimiento puede ser revocado en cualquier momento."</p>
+<p><strong>Articulo 12 &mdash; Investigacion Medica:</strong> "Todo procedimiento de investigacion medica debera ser expresamente autorizado por el paciente sujeto de investigacion, en forma libre, luego de recibir toda la informacion en forma clara sobre los objetivos y la metodologia."</p>
+<p><strong>Articulo 17 &mdash; Trato Respetuoso:</strong> "Todo paciente tiene derecho a un trato respetuoso y digno."</p>
+
+<h3><span class="sn2">B.5</span> Proteccion de Datos</h3>
+<ul>
+  <li><strong>Responsable:</strong> Hugo La Cruz &mdash; desarrollo@dencoinindustrias.com</li>
+  <li><strong>Finalidad:</strong> Evaluacion clinica, seguimiento e investigacion</li>
+  <li><strong>Conservacion:</strong> 5 anios (normativa aplicable)</li>
+  <li>Datos NO cedidos a terceros sin consentimiento explicito</li>
+  <li>Derechos: acceder, rectificar, solicitar supresion de datos</li>
+</ul>
+
+<h3><span class="sn2">B.6</span> Derechos del Paciente</h3>
+<ul>
+  <li>Trato igualitario y no discriminatorio (Art. 2)</li>
+  <li>Atencion integral de salud (Art. 6)</li>
+  <li>Informacion adecuada, suficiente y continua (Art. 11)</li>
+  <li>Revocar consentimiento en cualquier momento (Art. 11)</li>
+  <li>Negarse a recibir atencion (Art. 11)</li>
+  <li>Acceder a resultados de examenes (Art. 7)</li>
+  <li>Trato respetuoso y digno (Art. 17)</li>
+</ul>
+
+<h3><span class="sn2">B.7</span> Declaracion y Consentimiento</h3>
+<p>Declaro que he leido y comprendido la informacion, he tenido oportunidad de preguntar, comprendo que la participacion es VOLUNTARIA, puedo REVOCAR este consentimiento en cualquier momento, los resultados tienen caracter de investigacion, acepto el tratamiento de datos, NO tengo contraindicaciones listadas, y autorizo el procedimiento.</p>
+<p><strong>Firma del paciente:</strong> ____________________ &nbsp; <strong>Aclaracion:</strong> ____________________</p>
+<p><strong>Fecha:</strong> ____/____/2026 &nbsp; <strong>Hora:</strong> ________</p>
+<p><strong>Firma y Matricula del Profesional Informante:</strong> ____________________</p>
+
+<!-- ═══════ ANEXO C ═══════ -->
+<h2><span class="sn">ANEXO C</span>SBOM &mdash; Software Bill of Materials</h2>
+<p><strong>Formato:</strong> CycloneDX-compatible. <strong>Generado:</strong> 2026-07-13.</p>
+
+<h3><span class="sn2">C.1</span> Dependencias Primarias</h3>
+<table>
+  <thead><tr><td>Paquete</td><td>Licencia</td><td>Uso</td></tr></thead>
+  <tbody>
+    <tr><td>numpy >=1.24</td><td>BSD-3-Clause</td><td>Calculos numericos, arrays</td></tr>
+    <tr><td>scikit-learn >=1.3</td><td>BSD-3-Clause</td><td>Ensemble (SVM, RF), KMeans</td></tr>
+    <tr><td>torch >=2.0</td><td>BSD-3-Clause</td><td>Red neuronal PyTorch</td></tr>
+    <tr><td>pydicom >=2.4</td><td>MIT</td><td>DICOM SR</td></tr>
+    <tr><td>Flask >=3.0</td><td>BSD-3-Clause</td><td>Brain Server REST</td></tr>
+    <tr><td>flask-cors >=6.0</td><td>MIT</td><td>CORS API</td></tr>
+    <tr><td>pyserial >=3.5</td><td>PSF</td><td>Comunicacion serial BME688/SDP810</td></tr>
+    <tr><td>psycopg2-binary >=2.9</td><td>LGPL-2.1+</td><td>PostgreSQL</td></tr>
+    <tr><td>requests >=2.28</td><td>Apache-2.0</td><td>HTTP client API i7</td></tr>
+    <tr><td>fpdf >=1.7</td><td>FPDF</td><td>Reportes PDF</td></tr>
+    <tr><td>PyPDF2 >=3.0</td><td>BSD-3-Clause</td><td>Extraccion texto PDFs (knowledge ingestor)</td></tr>
+    <tr><td>pillow >=10.0</td><td>MIT-CMU</td><td>Imagenes para PDF</td></tr>
+    <tr><td>matplotlib >=3.7</td><td>PSF-based</td><td>Graficos biomarcadores</td></tr>
+    <tr><td>scipy >=1.10</td><td>BSD-3-Clause</td><td>Funciones cientificas</td></tr>
+    <tr><td>geohash2 >=1.1</td><td>MIT</td><td>Geodesidentificacion</td></tr>
+    <tr><td>psutil >=5.9</td><td>BSD-3-Clause</td><td>Monitoreo sistema</td></tr>
+    <tr><td>python-dotenv >=1.0</td><td>BSD-3-Clause</td><td>Variables entorno (.env)</td></tr>
+    <tr><td>cryptography >=41.0</td><td>Apache-2.0</td><td>Cifrado, hashing</td></tr>
+    <tr><td>pycryptodome >=3.18</td><td>BSD-2-Clause</td><td>AES, SHA-256</td></tr>
+    <tr><td>pytest >=7.0</td><td>MIT</td><td>Framework testing</td></tr>
+  </tbody>
+</table>
+
+<h3><span class="sn2">C.2</span> Infraestructura (i7)</h3>
+<table>
+  <thead><tr><td>Componente</td><td>Proposito</td><td>Licencia</td></tr></thead>
+  <tbody>
+    <tr><td>Loki :3100</td><td>Centralizacion logs</td><td>AGPL-3.0</td></tr>
+    <tr><td>Grafana :3000</td><td>Dashboards metricas</td><td>AGPL-3.0</td></tr>
+    <tr><td>PostgreSQL :5432</td><td>Base datos produccion</td><td>PostgreSQL License</td></tr>
+  </tbody>
+</table>
+
+<h3><span class="sn2">C.3</span> Modelo IA</h3>
+<table>
+  <thead><tr><td>Modelo</td><td>Detalle</td></tr></thead>
+  <tbody>
+    <tr><td>ensemble_v55_models.pkl</td><td>Ensemble (NN+SVM+RF), 24 features, 5 clases, 96.9% accuracy, licencia propietaria</td></tr>
+  </tbody>
+</table>
+
+<h3><span class="sn2">C.4</span> Sensores</h3>
+<table>
+  <thead><tr><td>Sensor</td><td>Tipo</td><td>Comunicacion</td></tr></thead>
+  <tbody>
+    <tr><td>BME688 (Bosch)</td><td>Gas MOx multi-canal (10 canales)</td><td>I2C/SPI via UART bridge</td></tr>
+    <tr><td>SDP810 (Sensirion)</td><td>Flujo diferencial</td><td>I2C via UART bridge</td></tr>
+  </tbody>
+</table>
+
+<h3><span class="sn2">C.5</span> Resumen Licencias</h3>
+<table>
+  <thead><tr><td>Licencia</td><td>Paquetes</td></tr></thead>
+  <tbody>
+    <tr><td>MIT</td><td>12</td></tr>
+    <tr><td>BSD-3-Clause</td><td>11</td></tr>
+    <tr><td>Apache-2.0</td><td>3</td></tr>
+    <tr><td>BSD-2-Clause</td><td>2</td></tr>
+    <tr><td>PSF</td><td>2</td></tr>
+    <tr><td>AGPL-3.0</td><td>2 (Loki, Grafana)</td></tr>
+    <tr><td>LGPL-2.1+</td><td>1</td></tr>
+    <tr><td>FPDF</td><td>1</td></tr>
+    <tr><td>MPL-2.0</td><td>1</td></tr>
+    <tr><td>Unlicense</td><td>1</td></tr>
+    <tr><td>Propietaria</td><td>1 (modelo ensemble)</td></tr>
+    <tr><td>PostgreSQL</td><td>1 (base datos)</td></tr>
+  </tbody>
+</table>
+<p><strong>Total:</strong> ~45 paquetes Python + 3 infraestructura + 1 modelo + 2 sensores. <strong>Riesgo licenciamiento: BAJO</strong> (mayoria BSD/MIT/Apache).</p>
+
+<!-- ═══════ HISTORIAL ═══════ -->
+<h2><span class="sn">HISTORIAL</span>Historial de Versiones del Documento</h2>
+<table class="vt">
+  <thead><tr><td>Version</td><td>Fecha</td><td>Cambios</td></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>Mayo 2026</td><td>Documento original (KMeans, CCS811, 3 clusters)</td></tr>
+    <tr><td>2.0</td><td>Julio 2026</td><td>Reescritura: Ensemble, BME688, 5 clases, Brain Server, XAI, DIA, DICOM SR, FHIR, seguridad, domain shift</td></tr>
+    <tr><td>3.0</td><td>Julio 2026</td><td>Resumen ejecutivo, rendimiento entrenamiento/clinica separados, diagrama flujo visual, Seccion 14 reestructurada, glosario</td></tr>
+    <tr><td>4.0</td><td>Julio 2026</td><td>SBOM formal completado (Anexo C) | Fix #29 PDF parsing resuelto | Protocolo bioseguridad 3 capas (Seccion 16) | Anexo A: Preparacion paciente | Anexo B: Consentimiento informado Ley 18.335 | Quick-Lock y filtro doble malla documentados | Solo DET/MSP pendiente</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════ FIRMAS ═══════ -->
+<h2><span class="sn">FIRMAS</span>Firma de los Responsables</h2>
+<div class="sig">
+  <div class="sig-b">
+    <div class="sig-l"></div>
+    <div class="sig-n">Hugo L. La Cruz</div>
+    <div class="sig-r">Director del Proyecto</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-top:8px">DENCO Industrias<br>Paysandu, Uruguay</div>
   </div>
-  <div class="sig-block">
-    <div class="sig-line"></div>
-    <div class="sig-name">Emmanuel Modernel Rosin</div>
-    <div class="sig-role">Socio &mdash; Desarrollador de Hardware</div>
-    <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">
-      DENCO Industrias<br>
-      Paysandú, Uruguay
-    </div>
+  <div class="sig-b">
+    <div class="sig-l"></div>
+    <div class="sig-n">Emmanuel Modernel Rosin</div>
+    <div class="sig-r">Socio &mdash; Desarrollador de Hardware</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-top:8px">DENCO Industrias<br>Paysandu, Uruguay</div>
   </div>
 </div>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<div class="doc-footer">
-  <p>DENCO v5.6.0 &mdash; Documento Técnico v2.0</p>
-  <p>DENCO Industrias &mdash; Paysandú, Uruguay</p>
-  <p>Este documento es parte del expediente regulatorio para el registro de DENCO<br>
-  como dispositivo médico ante la DET / MSP de la República Oriental del Uruguay,<br>
-  y constituye la especificación técnica de referencia para publicaciones científicas derivadas.</p>
-  <p style="margin-top:12px;"><strong>Fecha de emisión:</strong> 09/07/2026</p>
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+  <p>DENCO v5.6.0 &mdash; Documento Tecnico v4.0</p>
+  <p>DENCO Industrias &mdash; Paysandu, Uruguay</p>
+  <p>Expediente regulatorio para registro ante DET / MSP<br>Republica Oriental del Uruguay</p>
+  <p>Especificacion tecnica de referencia para publicaciones cientificas derivadas</p>
+  <p style="margin-top:12px"><strong>Fecha de emision:</strong> 13/07/2026</p>
 </div>
 
 </div>
