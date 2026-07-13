@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOCUMENTO TECNICO DENCO v5.6.0 - Version 5.0</title>
+<title>DENCO - Documento Técnico v5.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -11,29 +11,41 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Source Serif 4','Georgia',serif;background:var(--bg);color:var(--text-primary);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
 .container{max-width:820px;margin:0 auto;padding:40px 20px}
-.cover{text-align:center;padding:80px 40px 60px;border-bottom:3px double var(--accent);margin-bottom:50px;position:relative}
+
+/* ─── COVER ─── */
+.cover{text-align:center;padding:60px 40px 50px;border-bottom:3px double var(--accent);margin-bottom:50px;position:relative}
 .cover::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--accent);border-radius:2px}
-.cover .label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px}
-.cover h1{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:8px}
-.cover .subtitle{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--accent-muted);margin-bottom:30px;line-height:1.4}
-.cover .badge{display:inline-block;font-family:'DM Mono',monospace;font-size:12px;background:var(--accent);color:#fff;padding:4px 16px;border-radius:3px;margin-bottom:30px}
-.cover .motto{font-style:italic;font-size:16px;color:var(--text-muted);margin:30px 0;padding:20px 0;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
-.cover .meta{margin:24px auto 0;text-align:left;font-size:13px}
+.cover .logo-wrap{margin-bottom:28px}
+.cover .logo-wrap img{max-width:260px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 2px 8px rgba(26,58,42,.12))}
+.cover .label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+.cover h1{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--accent);line-height:1.2;margin-bottom:8px}
+.cover .subtitle{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--accent-muted);margin-bottom:28px;line-height:1.45}
+.cover .badge{display:inline-block;font-family:'DM Mono',monospace;font-size:12px;background:var(--accent);color:#fff;padding:4px 16px;border-radius:3px;margin-bottom:28px}
+.cover .motto{font-style:italic;font-size:15px;color:var(--text-muted);margin:28px 0;padding:18px 0;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.cover .meta{margin:22px auto 0;text-align:left;font-size:13px;max-width:480px}
 .cover .meta td{padding:4px 12px;vertical-align:top}
 .cover .meta td:first-child{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--text-muted);text-transform:uppercase;white-space:nowrap;width:160px}
+
+/* ─── HEADINGS ─── */
 h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);margin:50px 0 20px;padding-bottom:10px;border-bottom:2px solid var(--accent);line-height:1.3}
 h2 .sn{font-family:'DM Mono',monospace;font-size:14px;font-weight:400;color:var(--accent-muted);display:block;margin-bottom:4px;letter-spacing:.1em}
 h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--text-primary);margin:32px 0 12px}
 h3 .sn2{font-family:'DM Mono',monospace;font-size:13px;color:var(--text-muted);margin-right:6px}
 p{margin-bottom:14px;text-align:justify;hyphens:auto}
 strong{font-weight:600}em{font-style:italic}
+
+/* ─── TABLES ─── */
 table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:13.5px}
 thead td,th{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;padding:10px 12px;text-align:left;font-weight:400}
 td{padding:8px 12px;border-bottom:1px solid var(--border-light);vertical-align:top}
 tbody tr:nth-child(even){background:var(--highlight)}
+
+/* ─── CODE ─── */
 code{font-family:'DM Mono',monospace;font-size:12.5px;background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--accent)}
 pre{background:#1a1a1a;color:#e0ddd5;padding:20px 24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;margin:16px 0 20px;border-left:4px solid var(--accent-light)}
 .hl{color:#e8c547}
+
+/* ─── CALLOUTS ─── */
 .callout{padding:18px 22px;margin:20px 0;border-radius:6px;font-size:14px}
 .cw{background:#fdf5e6;border:1px solid #e8c87a;border-left:5px solid var(--warning)}
 .cc{background:#fdf0f0;border:1px solid #d4a0a0;border-left:5px solid var(--critical)}
@@ -46,6 +58,8 @@ pre{background:#1a1a1a;color:#e0ddd5;padding:20px 24px;border-radius:6px;font-fa
 .cgeo .ct{color:#3949ab}.clong .ct{color:#7b1fa2}
 ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .eq{text-align:center;padding:14px;margin:14px 0;background:var(--highlight);border-radius:4px;font-style:italic;font-size:15px}
+
+/* ─── EXECUTIVE SUMMARY ─── */
 .exec{background:var(--surface);border:2px solid var(--accent);border-radius:8px;padding:32px 36px;margin:30px 0 40px;position:relative}
 .exec::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--accent-light),var(--accent-muted));border-radius:6px 6px 0 0}
 .exec h2{border-bottom:none;margin-top:0;padding-bottom:0;font-size:24px}
@@ -55,11 +69,15 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .sdone{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
 .splan{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
 .spending{background:#fce4ec;color:#c62828;border:1px solid #ef9a9a}
+
+/* ─── SIGNATURES ─── */
 .sig{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;padding-top:30px;border-top:2px solid var(--accent)}
 .sig-b{text-align:center}.sig-l{border-bottom:1px solid var(--text-primary);height:60px;margin-bottom:12px}
 .sig-n{font-weight:600;font-size:15px;margin-bottom:2px}
 .sig-r{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
 .footer{margin-top:60px;padding-top:20px;border-top:3px double var(--accent);text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);line-height:2}
+
+/* ─── TOC ─── */
 .toc{margin:30px 0 40px;padding:24px 30px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 .toc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--accent);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-light)}
 .toc ol{margin:0;padding-left:20px}
@@ -67,27 +85,25 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .toc li::marker{color:var(--accent-muted);font-family:'DM Mono',monospace;font-size:12px}
 .toc .ag{margin-top:14px;padding-top:10px;border-top:1px solid var(--border-light)}
 .toc .new{color:#3949ab;font-weight:600}
+
+/* ─── DIAGRAM ─── */
 .diag{background:#1a1a1a;color:#c8c4bc;padding:24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.6;overflow-x:auto;margin:16px 0 20px;white-space:pre;border-left:4px solid var(--accent-light)}
+
+/* ─── FLOW ─── */
 .flow{margin:24px 0 28px}
 .fs{display:flex;align-items:flex-start;gap:16px;margin-bottom:4px}
 .fn{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;z-index:1}
 .fc{flex:1;padding:10px 16px;background:var(--surface);border:1px solid var(--border-light);border-radius:6px;font-size:13.5px;margin-bottom:8px}
 .fc strong{color:var(--accent)}
 .fconn{width:2px;height:14px;background:var(--accent-muted);margin-left:15px;opacity:.5}
+
+/* ─── TIERS ─── */
 .tier-table td:first-child{font-weight:700;text-align:center;min-width:100px}
 .tier-watch{background:var(--watch-bg)!important;color:#e65100}
 .tier-alert{background:var(--alert-bg)!important;color:#c62828}
 .tier-critical{background:var(--crit-bg)!important;color:#fff}
-@media print{body{font-size:11pt}.container{max-width:100%;padding:0}.cover{page-break-after:always}h2{page-break-before:always}h2:first-of-type{page-break-before:avoid}table{page-break-inside:avoid}pre{page-break-inside:avoid}.callout{page-break-inside:avoid}.exec{page-break-inside:avoid}.fs{page-break-inside:avoid}.diag{page-break-inside:avoid}}
-.fade-in{opacity:0;transform:translateY(16px);animation:fu .5s ease forwards}
-@keyframes fu{to{opacity:1;transform:translateY(0)}}
-.vt td:first-child{font-family:'DM Mono',monospace;font-weight:400;color:var(--accent);white-space:nowrap}
-.pb{border-radius:6px;padding:18px 22px;margin:16px 0}
-.pbt{background:#fff3e0;border:1px solid #ffcc80;border-left:5px solid #e65100}
-.pbc{background:#e8f5e9;border:1px solid #a5d6a7;border-left:5px solid var(--success)}
-.pb h4{margin-top:0;font-family:'DM Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
-.pbt h4{color:#e65100}.pbc h4{color:var(--success)}
-.rt{margin:20px 0 30px}.rt td{padding:12px 14px}.rt td:first-child{width:200px;font-weight:600}
+
+/* ─── SCALE GRID ─── */
 .scale-grid{display:grid;grid-template-columns:1fr;gap:0;border:2px solid var(--accent);border-radius:8px;overflow:hidden;margin:20px 0}
 .scale-item{padding:20px 24px;border-bottom:1px solid var(--border-light)}
 .scale-item:last-child{border-bottom:none}
@@ -96,6 +112,41 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .scale-item .scale-question{font-style:italic;font-size:13.5px;color:var(--accent-muted);margin-bottom:8px}
 .scale-item .scale-desc{font-size:13.5px}
 .scale-1{background:#f0f5f2}.scale-2{background:#f3e5f5}.scale-3{background:#e8eaf6}
+
+/* ─── MINI TABLES ─── */
+.rt{margin:20px 0 30px}.rt td{padding:12px 14px}.rt td:first-child{width:200px;font-weight:600}
+.vt td:first-child{font-family:'DM Mono',monospace;font-weight:400;color:var(--accent);white-space:nowrap}
+
+/* ─── PROTOCOL BOXES ─── */
+.pb{border-radius:6px;padding:18px 22px;margin:16px 0}
+.pbt{background:#fff3e0;border:1px solid #ffcc80;border-left:5px solid #e65100}
+.pbc{background:#e8f5e9;border:1px solid #a5d6a7;border-left:5px solid var(--success)}
+.pb h4{margin-top:0;font-family:'DM Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.pbt h4{color:#e65100}.pbc h4{color:var(--success)}
+
+/* ─── LOGO WATERMARK (footer) ─── */
+.footer-logo{margin:16px auto 0;opacity:.35}
+.footer-logo img{max-width:120px;height:auto}
+
+/* ─── PRINT ─── */
+@media print{
+  body{font-size:11pt}
+  .container{max-width:100%;padding:0}
+  .cover{page-break-after:always}
+  h2{page-break-before:always}
+  h2:first-of-type{page-break-before:avoid}
+  table{page-break-inside:avoid}
+  pre{page-break-inside:avoid}
+  .callout{page-break-inside:avoid}
+  .exec{page-break-inside:avoid}
+  .fs{page-break-inside:avoid}
+  .diag{page-break-inside:avoid}
+  .cover .logo-wrap img{max-width:200px}
+}
+
+/* ─── ANIMATION ─── */
+.fade-in{opacity:0;transform:translateY(16px);animation:fu .5s ease forwards}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -105,6 +156,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <!-- PORTADA                                                     -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <div class="cover fade-in">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="DENCO Logo">
+  </div>
   <div class="label">Especificaci&oacute;n T&eacute;cnica de Referencia v5.0</div>
   <h1>DOCUMENTO T&Eacute;CNICO DENCO</h1>
   <div class="subtitle">Sistema de Detecci&oacute;n de Compuestos Org&aacute;nicos Vol&aacute;tiles en Aliento para Identificaci&oacute;n del Efecto Warburg y Patolog&iacute;as Metab&oacute;licas / Respiratorias<br><br><strong>Plataforma SaMD con Inteligencia Artificial Explicable<br>Supervisi&oacute;n Geogr&aacute;fica Zonal y Seguimiento Longitudinal de Pacientes</strong></div>
@@ -210,7 +264,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </div>
 <p>El presente documento sirve como:</p>
 <ul>
-  <li><strong>Referencia t&eacute;cnica completa</strong> para desarrollo, mantenimiento y auditoria del sistema</li>
+  <li><strong>Referencia t&eacute;cnica completa</strong> para desarrollo, mantenimiento y auditor&iacute;a del sistema</li>
   <li><strong>Base metodol&oacute;gica</strong> para certificaci&oacute;n ante DET/MSP y organismos internacionales</li>
   <li><strong>Declaraci&oacute;n de prop&oacute;sito</strong> para colaboradores cl&iacute;nicos, inversores y organismos de financiamiento (ANDE/ANII)</li>
   <li><strong>Fundamento para publicaciones cient&iacute;ficas</strong> &mdash; especificaci&oacute;n t&eacute;cnica de referencia que antecede a art&iacute;culos derivados</li>
@@ -233,7 +287,8 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Mundo</td><td>1.900.000 nuevos casos</td><td>1.300.000 personas/a&ntilde;o</td></tr>
   </tbody>
 </table>
-<p>Condiciones no oncol&oacute;gicas clasificadas: EPOC (inflamaci&oacute;n cr&oacute;nica), Diabetes (cuerpos cet&oacute;nicos en aliento), Infecci&oacute;n respiratoria (metabolismo bacteriano).</p>
+
+<p>Condiciones no oncol&oacute;gicas clasificadas: EPOC (inflamaci&oacute;n cr&oacute;nica + remodelaci&oacute;n v&iacute;as a&eacute;reas), Diabetes (cuerpos cet&oacute;nicos en aliento), Infecci&oacute;n respiratoria (metabolismo bacteriano + inflamaci&oacute;n).</p>
 
 <h3><span class="sn2">2.3</span> El Nicho Humano</h3>
 <ul>
@@ -282,7 +337,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Alcoholes</td><td>Fermentaci&oacute;n bacteriana</td><td>Microbiota alterada</td></tr>
   </tbody>
 </table>
-<div class="callout ci"><div class="ct">Dato clave</div><p style="margin-bottom:0">Un tumor de 1 mm<sup>3</sup> ya produce un cambio detectable en el perfil de VOC del aliento.</p></div>
+<div class="callout ci"><div class="ct">Dato clave</div><p style="margin-bottom:0">Un tumor de 1 mm&sup3; ya produce un cambio detectable en el perfil de VOC del aliento.</p></div>
 
 <h3><span class="sn2">3.3</span> Evidencia Cient&iacute;fica</h3>
 <table>
@@ -329,13 +384,33 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 <div class="eq">Q (L/s) = 0.109 &times; &radic;(P (Pa))</div>
-<p>Volumen total: V = Suma Qi x DeltaT (DeltaT = 0.1 s)</p>
+<p>Volumen total: V = Suma Qi &times; &Delta;T (&Delta;T = 0.1 s)</p>
 
-<h3><span class="sn2">4.3</span> Muestreo Respiratorio (ISO 13138)</h3>
+<h3><span class="sn2">4.3</span> BME688</h3>
+<p>10 canales MOx con materiales diferenciados (SnO2, WO3) generando un <em>digital smellprint</em>. SDP810 permite distinguir espacio muerto de alveolar.</p>
+
+<h3><span class="sn2">4.4</span> Features Derivados (12 sensor + 6 paciente = 18)</h3>
+<table>
+  <thead><tr><td>Feature</td><td>Descripci&oacute;n</td><td>Significado</td></tr></thead>
+  <tbody>
+    <tr><td>gas_avg</td><td>Promedio resistencia (10 canales)</td><td>Concentraci&oacute;n global VOC</td></tr>
+    <tr><td>gas_std</td><td>Desviaci&oacute;n est&aacute;ndar</td><td>Variabilidad intra-respiraci&oacute;n</td></tr>
+    <tr><td>gas_slope</td><td>Pendiente curva gas</td><td>Tasa cambio VOC</td></tr>
+    <tr><td>gas_min / gas_max</td><td>Extremos</td><td>Rango concentraci&oacute;n</td></tr>
+    <tr><td>temp / hum / pres</td><td>Ambientales</td><td>Compensaci&oacute;n</td></tr>
+    <tr><td>flujo_Lps</td><td>Flujo SDP810</td><td>Control calidad exhalaci&oacute;n</td></tr>
+    <tr><td>volumen_L</td><td>Volumen total</td><td>Validaci&oacute;n muestra</td></tr>
+    <tr><td>correlacion_gas_flujo</td><td>Pearson</td><td>Espacio muerto vs alveolar</td></tr>
+    <tr><td>iaq</td><td>Indice calidad aire</td><td>Calidad ambiental</td></tr>
+  </tbody>
+</table>
+<p>6 features paciente: diabetes, EPOC, fumador, IMC, edad, sexo. Ensemble requiere 24; 6 <em>zero-padded</em>.</p>
+
+<h3><span class="sn2">4.5</span> Muestreo Respiratorio (ISO 13138)</h3>
 <div class="eq">V_muerto = 150 mL (anat&oacute;mico) + 87 mL (instrumental) = <strong>237 mL</strong></div>
 <p>Solo la fase alveolar se utiliza para clasificaci&oacute;n cl&iacute;nica.</p>
 
-<h3><span class="sn2">4.4</span> Condiciones Operativas</h3>
+<h3><span class="sn2">4.6</span> Condiciones Operativas</h3>
 <table>
   <thead><tr><td>Par&aacute;metro</td><td>Valor</td></tr></thead>
   <tbody>
@@ -389,7 +464,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>consentimientos</td><td>Consentimiento informado + timestamp</td></tr>
     <tr><td>hallazgos_imagen</td><td>Estudios DICOM externos</td></tr>
     <tr><td>configuracion</td><td>Settings sistema + umbrales zonales</td></tr>
-    <tr><td>audit_log</td><td>Registro auditoria completo + eventos zonales</td></tr>
+    <tr><td>audit_log</td><td>Registro auditor&iacute;a completo + eventos zonales</td></tr>
   </tbody>
 </table>
 <p><strong>e) Monitoreo:</strong> Grafana:3000 + Loki (logs centralizados).</p>
@@ -407,6 +482,27 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 
+<h3><span class="sn2">5.4</span> Flujo de Medici&oacute;n</h3>
+<div class="flow">
+  <div class="fs"><div class="fn">1</div><div class="fc"><strong>Paciente exhala</strong> por boquilla con funda desechable nueva</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">2</div><div class="fc"><strong>Filtro doble malla</strong> retiene macrogotas sin alterar flujo neum&aacute;tico</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">3</div><div class="fc"><strong>Sensores capturan</strong> 10 canales MOx (BME688) + T + H + IAQ + flujo (SDP810)</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">4</div><div class="fc"><strong>Microcontrolador</strong> preprocesa y env&iacute;a por USB/serial a i5</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">5</div><div class="fc"><strong>i5 calcula 18 features</strong> (12 sensor + 6 paciente) y env&iacute;a a Brain Server i7</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">6</div><div class="fc"><strong>Ensemble (NN+SVM+RF)</strong> clasifica en 5 categor&iacute;as cl&iacute;nicas</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">7</div><div class="fc"><strong>XAI + DIA</strong> generan explicaci&oacute;n contextualizada con referencias bibliogr&aacute;ficas</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">8</div><div class="fc"><strong>Reportes:</strong> PDF + DICOM SR + FHIR Bundle</div></div>
+  <div class="fconn"></div>
+  <div class="fs"><div class="fn">9</div><div class="fc"><strong>Almac&eacute;n:</strong> PostgreSQL + Loki/Grafana para auditor&iacute;a</div></div>
+</div>
+
 <!-- ════════════════════════════════════════════════════════════ -->
 <!-- 6. MOTOR IA                                                 -->
 <!-- ════════════════════════════════════════════════════════════ -->
@@ -421,7 +517,26 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 
-<h3><span class="sn2">6.2</span> Clases</h3>
+<h3><span class="sn2">6.2</span> Red Neuronal</h3>
+<div class="diag">
+Input (24 features)
+    |
+    v
+Linear(24 -> 128) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(128 -> 64) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(64 -> 32) -> ReLU -> Dropout(0.2)
+    |
+    v
+Linear(32 -> 5) -> Softmax
+    |
+    v
+<span class="hl">Probabilidad por clase [0..4]</span></div>
+
+<h3><span class="sn2">6.3</span> Clases</h3>
 <table>
   <thead><tr><td>#</td><td>Clase</td><td>Descripci&oacute;n</td><td>Muestras</td></tr></thead>
   <tbody>
@@ -434,7 +549,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </table>
 <p><em>* Placeholder con datos sint&eacute;ticos. Tabaquismo eliminado en v5.5 (8 muestras, umbral: 50).</em></p>
 
-<h3><span class="sn2">6.3</span> Rendimiento en Entrenamiento</h3>
+<h3><span class="sn2">6.4</span> Rendimiento en Entrenamiento</h3>
 <div class="pb pbt">
   <h4>&#9888; Rendimiento en Entrenamiento (NO es rendimiento cl&iacute;nico)</h4>
   <table>
@@ -466,12 +581,14 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Contexto zonal</td><td>Tier de alerta geogr&aacute;fica vigente (si aplica)</td></tr>
   </tbody>
 </table>
+<p><strong>Clasificaci&oacute;n-aware:</strong> NORMAL menciona &ldquo;par&aacute;metros normales&rdquo;, WARBURG detalla estr&eacute;s oxidativo, EPOC se&ntilde;ala inflamaci&oacute;n, INFECCION indica metabolismo bacteriano.</p>
 
 <h3><span class="sn2">7.2</span> DIA &mdash; Agente de Conocimiento</h3>
+<div class="callout ci"><div class="ct">Funci&oacute;n de DIA</div><p style="margin-bottom:0">Acumular y recuperar conocimiento biom&eacute;dico para proveer <strong>mejor contexto al motor XAI</strong>, enriqueciendo las explicaciones con literatura actualizada.</p></div>
 <p><strong>Base conocimiento:</strong> 25.969 textos, 601.711 palabras, 116 categor&iacute;as, 52 URLs. Endpoint: <code>http://192.168.1.75:5001/brain/dashboard</code></p>
 
 <!-- ════════════════════════════════════════════════════════════ -->
-<!-- 8. TRES ESCALAS (NUEVO)                                     -->
+<!-- 8. TRES ESCALAS                                             -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">8</span>Modelo de Vigilancia en Tres Escalas</h2>
 <div class="callout ci"><div class="ct">Innovaci&oacute;n arquitect&oacute;nica</div><p style="margin-bottom:0">DENCO opera en tres escalas de vigilancia integradas que transforman un dispositivo de punto de atenci&oacute;n en un sistema de inteligencia cl&iacute;nica multi-escala. Cada escala informa a las dem&aacute;s, creando un ciclo de retroalimentaci&oacute;n que mejora la precisi&oacute;n cl&iacute;nica con cada medici&oacute;n.</p></div>
@@ -481,19 +598,19 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <span class="scale-label" style="color:#2e7d32">Escala 1 &mdash; Individual</span>
     <div class="scale-title">Medici&oacute;n Aislada</div>
     <div class="scale-question">&iquest;Qu&eacute; indica esta muestra de aliento AHORA?</div>
-    <div class="scale-desc"><strong>Ensemble (NN+SVM+RF)</strong> clasifica cada medici&oacute;n en una de 5 categor&iacute;as cl&iacute;nicas. <strong>XAI</strong> genera una explicaci&oacute;n contextualizada con la clasificaci&oacute;n detectada. <strong>DIA</strong> aporta literatura biom&eacute;dica para respaldar la interpretaci&oacute;n. <strong>Reportes:</strong> PDF + DICOM SR + FHIR.</div>
+    <div class="scale-desc"><strong>Ensemble (NN+SVM+RF)</strong> clasifica cada medici&oacute;n en una de 5 categor&iacute;as cl&iacute;nicas. <strong>XAI</strong> genera una explicaci&oacute;n contextualizada. <strong>DIA</strong> aporta literatura biom&eacute;dica. <strong>Reportes:</strong> PDF + DICOM SR + FHIR.</div>
   </div>
   <div class="scale-item scale-2">
     <span class="scale-label" style="color:#7b1fa2">Escala 2 &mdash; Longitudinal</span>
     <div class="scale-title">Seguimiento Temporal del Paciente</div>
     <div class="scale-question">&iquest;Este paciente est&aacute; MEJORANDO, ESTABLE o EMPEORANDO?</div>
-    <div class="scale-desc"><strong>IQM</strong> filtra muestras de baja calidad. <strong>MAD</strong> detecta outliers robustos sin asumir distribuci&oacute;n normal. <strong>Distancia sem&aacute;ntica</strong> mide la desviaci&oacute;n respecto al baseline propio del paciente. <strong>An&aacute;lisis de tendencia</strong> (regresi&oacute;n lineal sobre distancia sem&aacute;ntica) clasifica trayectorias como improving/stable/worsening. <strong>Alertas</strong> se activan cuando la &uacute;ltima medicaci&oacute;n excede 2 MAD del historial.</div>
+    <div class="scale-desc"><strong>IQM</strong> filtra muestras de baja calidad. <strong>MAD</strong> detecta outliers robustos. <strong>Distancia sem&aacute;ntica</strong> mide la desviaci&oacute;n respecto al baseline propio. <strong>Tendencia</strong> (regresi&oacute;n lineal) clasifica trayectorias. <strong>Alertas</strong> cuando la &uacute;ltima medicaci&oacute;n excede 2 MAD del historial.</div>
   </div>
   <div class="scale-item scale-3">
     <span class="scale-label" style="color:#3949ab">Escala 3 &mdash; Geogr&aacute;fico Zonal</span>
     <div class="scale-title">Vigilancia Epidemiol&oacute;gica Espacial</div>
-    <div class="scale-question">&iquest;Hay un PATR&Oacute;N en este centro de atenci&oacute;n o regi&oacute;n?</div>
-    <div class="scale-desc"><strong>Geohash k=5</strong> (~5 km) agrega resultados por celda geogr&aacute;fica. <strong>Tres niveles de alerta:</strong> WATCH (monitorizaci&oacute;n) &rarr; ALERT (notificaci&oacute;n m&eacute;dica) &rarr; CRITICAL (escalaci&oacute;n autoridad sanitaria). <strong>Dashboard geogr&aacute;fico</strong> con mapa de calor, l&iacute;nea temporal animada, drill-down a pacientes anonimizados y exportaci&oacute;n de reportes epidemiol&oacute;gicos.</div>
+    <div class="scale-question">&iquest;Hay un PATR&Oacute;N en este centro o regi&oacute;n?</div>
+    <div class="scale-desc"><strong>Geohash k=5</strong> (~5 km) agrega resultados por celda. <strong>Tres niveles:</strong> WATCH &rarr; ALERT &rarr; CRITICAL. <strong>Dashboard geogr&aacute;fico</strong> con mapa de calor, l&iacute;nea temporal animada, drill-down y exportaci&oacute;n de reportes epidemiol&oacute;gicos.</div>
   </div>
 </div>
 
@@ -514,17 +631,15 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
                     &bull; Clasificaci&oacute;n individual &rarr; alimentar ambas escalas</div>
 
 <!-- ════════════════════════════════════════════════════════════ -->
-<!-- 9. SUPERVISION ZONAL (NUEVO)                                -->
+<!-- 9. SUPERVISION ZONAL                                        -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">9</span>Supervisi&oacute;n Geogr&aacute;fica Zonal</h2>
 
-<h3><span class="sn2">9.1</span> Justificaci&oacute;n Cl&iacute;nica y Epidemiol&oacute;gica</h3>
-<p>Una sola alerta Warburg en un paciente de un centro de atenci&oacute;n puede ser un hallazgo incidental o patolog&iacute;a individual. M&uacute;ltiples alertas Warburg entre pacientes del mismo centro dentro de una ventana temporal corta pueden indicar: (a) una exposici&oacute;n ambiental compartida (ocupacional, industrial); (b) un brote de enfermedad respiratoria transmisible; (c) un patr&oacute;n de prevalencia real de enfermedad metab&oacute;lica en la comunidad; o (d) un artefacto de medici&oacute;n sistem&aacute;tico (deriva del sensor, problema de calibraci&oacute;n, contaminaci&oacute;n ambiental) que requiere investigaci&oacute;n a nivel de dispositivo.</p>
-<p>Este tipo de detecci&oacute;n de patrones espaciales no es posible con ningu&uacute;n sistema e-nose publicado, que opera como dispositivo aislado sin conciencia espacial.</p>
+<h3><span class="sn2">9.1</span> Justificaci&oacute;n Cl&iacute;nica</h3>
+<p>Una sola alerta Warburg en un paciente puede ser un hallazgo incidental. M&uacute;ltiples alertas entre pacientes del mismo centro dentro de una ventana temporal corta pueden indicar: (a) exposici&oacute;n ambiental compartida (ocupacional, industrial); (b) un brote de enfermedad respiratoria transmisible; (c) un patr&oacute;n de prevalencia real en la comunidad; o (d) un artefacto de medici&oacute;n sistem&aacute;tico que requiere investigaci&oacute;n a nivel de dispositivo.</p>
 
 <h3><span class="sn2">9.2</span> Arquitectura del Motor de Alertas</h3>
-<p>Cada dispositivo DENCO se registra con una ubicaci&oacute;n codificada en geohash (precisi&oacute;n k=5, resoluci&oacute;n ~5 km) y un identificador institucional (instituci&oacute;n/consultorio/machine_id). Cada resultado de clasificaci&oacute;n se almacena con su geohash y timestamp.</p>
-<p>El motor de vigilancia zonal ejecuta un proceso de agregaci&oacute;n en segundo plano que consulta patrones de alerta dentro de ventanas espaciotemporales configurables.</p>
+<p>Cada dispositivo DENCO se registra con una ubicaci&oacute;n codificada en geohash (precisi&oacute;n k=5, resoluci&oacute;n ~5 km) y un identificador institucional. Cada resultado se almacena con su geohash y timestamp.</p>
 
 <pre>
 <span class="hl"># Algoritmo de supervisi&oacute;n zonal (simplificado)</span>
@@ -566,20 +681,19 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <table class="tier-table">
   <thead><tr><td>Tier</td><td>Condici&oacute;n</td><td>Respuesta</td></tr></thead>
   <tbody>
-    <tr class="tier-watch"><td>WATCH</td><td>2-3 resultados no-Normales en mismo geohash dentro de 48 horas</td><td>Notificaci&oacute;n al m&eacute;dico supervisor; monitoreo reforzado de pacientes posteriores en esa ubicaci&oacute;n</td></tr>
-    <tr class="tier-alert"><td>ALERT</td><td>4-6 no-Normales / 48 h &oacute; 3+ Warburg / 7 d&iacute;as</td><td>Notificaci&oacute;n dedicada en dashboard; revisi&oacute;n ambiental recomendada; sugerencia de re-testeo de pacientes marcados</td></tr>
+    <tr class="tier-watch"><td>WATCH</td><td>2-3 resultados no-Normales en mismo geohash dentro de 48 horas</td><td>Notificaci&oacute;n al m&eacute;dico supervisor; monitoreo reforzado</td></tr>
+    <tr class="tier-alert"><td>ALERT</td><td>4-6 no-Normales / 48 h &oacute; 3+ Warburg / 7 d&iacute;as</td><td>Notificaci&oacute;n dedicada en dashboard; revisi&oacute;n ambiental recomendada; sugerencia de re-testeo</td></tr>
     <tr class="tier-critical"><td>CRITICAL</td><td>&ge;7 no-Normales / 48 h &oacute; &gt;5 d&iacute;as ALERT sostenido</td><td>Escalaci&oacute;n autom&aacute;tica a autoridad sanitaria; activaci&oacute;n de protocolo epidemiol&oacute;gico; bloqueo de dashboard para preservar evidencia</td></tr>
   </tbody>
 </table>
 
 <h3><span class="sn2">9.4</span> Pesta&ntilde;a Geograf&iacute;a (UI)</h3>
-<p>La pesta&ntilde;a Geograf&iacute;a en la aplicaci&oacute;n de escritorio DENCO muestra:</p>
 <ul>
-  <li><strong>Mapa de calor:</strong> densidad de alertas por celda geohash, con c&oacute;digo de color por tier</li>
-  <li><strong>L&iacute;nea temporal animada:</strong> slider para visualizar patrones de alerta en ventanas temporales configurables</li>
+  <li><strong>Mapa de calor:</strong> densidad de alertas por celda geohash con c&oacute;digo de color por tier</li>
+  <li><strong>L&iacute;nea temporal animada:</strong> slider para visualizar patrones en ventanas configurables</li>
   <li><strong>Dispositivos desplegados:</strong> ubicaci&oacute;n y estado de cada DENCO activo</li>
   <li><strong>Drill-down:</strong> desde alerta zonal hacia resultados individuales anonimizados</li>
-  <li><strong>Exportaci&oacute;n:</strong> reportes de vigilancia zonal exportables para autoridades sanitarias</li>
+  <li><strong>Exportaci&oacute;n:</strong> reportes de vigilancia zonal para autoridades sanitarias</li>
 </ul>
 
 <h3><span class="sn2">9.5</span> Par&aacute;metros Configurables</h3>
@@ -591,98 +705,50 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Umbral ALERT</td><td>4-6 alertas / 48 h &oacute; 3+ Warburg / 7 d</td><td>S&iacute;</td></tr>
     <tr><td>Umbral CRITICAL</td><td>&ge;7 alertas / 48 h &oacute; &gt;5 d ALERT sostenido</td><td>S&iacute;</td></tr>
     <tr><td>IQM m&iacute;nimo para inclusi&oacute;n zonal</td><td>0.7</td><td>S&iacute;</td></tr>
-    <tr><td>Anonimizaci&oacute;n paciente</td><td>SHA-256 + sal; geohash k=5 (sin exposici&oacute;n individual)</td><td>Fijo</td></tr>
+    <tr><td>Anonimizaci&oacute;n paciente</td><td>SHA-256 + sal; geohash k=5</td><td>Fijo</td></tr>
   </tbody>
 </table>
 
 <!-- ════════════════════════════════════════════════════════════ -->
-<!-- 10. LONGITUDINAL (NUEVO)                                    -->
+<!-- 10. LONGITUDINAL                                            -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">10</span>Seguimiento Longitudinal de Pacientes</h2>
 
 <h3><span class="sn2">10.1</span> Justificaci&oacute;n Cl&iacute;nica</h3>
-<p>La medici&oacute;n aislada en un punto de atenci&oacute;n tiene limitaciones inherentes. Una clasificaci&oacute;n Warburg en la primera visita necesita seguimiento: &iquest;La segunda medici&oacute;n confirm&oacute; o refut&oacute; el hallazgo? &iquest;El perfil metab&oacute;lico del paciente est&aacute; mejorando despu&eacute;s del tratamiento? &iquest;Un paciente previamente normal est&aacute; desarrollando una tendencia an&oacute;mala? Sin contexto longitudinal, cada medici&oacute;n es una isla. Con &eacute;l, el m&eacute;dico ve la trayectoria que importa para la decisi&oacute;n cl&iacute;nica.</p>
+<p>Una clasificaci&oacute;n Warburg en la primera visita necesita seguimiento: &iquest;La segunda medici&oacute;n confirm&oacute; o refut&oacute; el hallazgo? &iquest;El perfil metab&oacute;lico est&aacute; mejorando despu&eacute;s del tratamiento? &iquest;Un paciente previamente normal est&aacute; desarrollando una tendencia an&oacute;mala? Sin contexto longitudinal, cada medici&oacute;n es una isla.</p>
 
 <h3><span class="sn2">10.2</span> M&eacute;tricas Longitudinales</h3>
 <table>
   <thead><tr><td>M&eacute;trica</td><td>F&oacute;rmula / M&eacute;todo</td><td>Prop&oacute;sito Cl&iacute;nico</td></tr></thead>
   <tbody>
-    <tr><td><strong>IQM</strong> (&Iacute;ndice Calidad Muestra)</td><td>Score compuesto: consistencia de flujo + completitud volumen + correlaci&oacute;n gas-flujo</td><td>Determina confiabilidad de la medici&oacute;n; excluye muestras de baja calidad del an&aacute;lisis de tendencia</td></tr>
-    <tr><td><strong>MAD</strong> (Desviaci&oacute;n Absoluta Mediana)</td><td>MAD = mediana(|x<sub>i</sub> &minus; mediana(x)|)</td><td>Detecci&oacute;n robusta de outliers en el historial del paciente sin asumir distribuci&oacute;n normal</td></tr>
-    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana en espacio de features entre muestra actual y centroide del baseline del paciente</td><td>Mide la desviaci&oacute;n respecto al propio baseline del paciente; detecci&oacute;n de cambio personalizada</td></tr>
-    <tr><td><strong>Trayectoria de clasificaci&oacute;n</strong></td><td>Secuencia de asignaciones de clase ensemble a lo largo del tiempo</td><td>Visualiza progresi&oacute;n (Normal &rarr; Normal &rarr; Warburg) o respuesta al tratamiento (Warburg &rarr; Normal)</td></tr>
-    <tr><td><strong>An&aacute;lisis de tendencia</strong></td><td>Regresi&oacute;n lineal sobre valores de distancia sem&aacute;ntica; media m&oacute;vil sobre confianza por clase</td><td>Distingue trayectorias improving, stable o worsening con confianza estad&iacute;stica</td></tr>
-    <tr><td><strong>Alerta por cruce de umbral</strong></td><td>Se&ntilde;al cuando distancia sem&aacute;ntica excede MAD del historial por &ge; 2 desviaciones est&aacute;ndar</td><td>Alerta autom&aacute;tica cuando el resultado del paciente se desv&iacute;a significativamente de su propio baseline longitudinal</td></tr>
+    <tr><td><strong>IQM</strong></td><td>Score compuesto: flujo + volumen + correlaci&oacute;n gas-flujo</td><td>Confiabilidad de la medici&oacute;n</td></tr>
+    <tr><td><strong>MAD</strong></td><td>MAD = mediana(|x<sub>i</sub> &minus; mediana(x)|)</td><td>Detecci&oacute;n robusta de outliers</td></tr>
+    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana entre muestra actual y centroide baseline</td><td>Desviaci&oacute;n personalizada del propio baseline</td></tr>
+    <tr><td><strong>Trayectoria</strong></td><td>Secuencia de clasificaciones en el tiempo</td><td>Progresi&oacute;n o respuesta al tratamiento</td></tr>
+    <tr><td><strong>Tendencia</strong></td><td>Regresi&oacute;n lineal sobre distancia sem&aacute;ntica</td><td>Improving / stable / worsening</td></tr>
+    <tr><td><strong>Alerta por umbral</strong></td><td>Distancia sem&aacute;ntica &gt; 2 MAD del historial</td><td>Alerta autom&aacute;tica por desviaci&oacute;n significativa</td></tr>
   </tbody>
 </table>
 
-<h3><span class="sn2">10.3</span> Algoritmo de Seguimiento Longitudinal</h3>
-<pre>
-<span class="hl"># An&aacute;lisis longitudinal para un paciente individual</span>
-
-<span class="hl">def</span> analizar_trayectoria(paciente_id):
-    muestras = db.obtener_muestras(paciente_id, ordenar_por=<span class="hl">'timestamp'</span>)
-    baseline = muestras[0]  <span class="hl"># Primera muestra de alta calidad (IQM &gt; umbral)</span>
-
-    <span class="hl"># IQM: &Iacute;ndice de Calidad de Muestra</span>
-    <span class="hl">for</span> m <span class="hl">in</span> muestras:
-        m.iqm = calcular_iqm(m.consistencia_flujo, m.completitud_volumen,
-                              m.correlacion_gas_flujo)
-
-    <span class="hl"># Solo usar muestras de alta calidad para tendencia</span>
-    muestras_validas = [m <span class="hl">for</span> m <span class="hl">in</span> muestras <span class="hl">if</span> m.iqm &gt; UMBRAL_IQM]
-
-    <span class="hl"># Distancia sem&aacute;ntica desde baseline</span>
-    <span class="hl">for</span> m <span class="hl">in</span> muestras_validas:
-        m.dist_sem = distancia_euclidiana(m.features, baseline.features)
-
-    <span class="hl"># MAD: Detecci&oacute;n de outliers</span>
-    distancias = [m.dist_sem <span class="hl">for</span> m <span class="hl">in</span> muestras_validas]
-    mediana_dist = mediana(distancias)
-    mad = mediana([abs(d - mediana_dist) <span class="hl">for</span> d <span class="hl">in</span> distancias])
-    outliers = [m <span class="hl">for</span> m <span class="hl">in</span> muestras_validas
-                <span class="hl">if</span> abs(m.dist_sem - mediana_dist) &gt; 2 * 1.4826 * mad]
-
-    <span class="hl"># Tendencia (regresi&oacute;n lineal)</span>
-    <span class="hl">if</span> len(muestras_validas) &gt;= 3:
-        pendiente, r_cuadrado = regresion_lineal(
-            x=[m.timestamp <span class="hl">for</span> m <span class="hl">in</span> muestras_validas],
-            y=[m.dist_sem <span class="hl">for</span> m <span class="hl">in</span> muestras_validas]
-        )
-        tendencia = <span class="hl">"EMPEORANDO"</span> <span class="hl">if</span> pendiente &gt; UMBRAL <span class="hl">else</span> \
-                    <span class="hl">"MEJORANDO"</span> <span class="hl">if</span> pendiente &lt; -UMBRAL <span class="hl">else</span> <span class="hl">"ESTABLE"</span>
-
-    <span class="hl"># Alerta: desviaci&oacute;n del propio baseline</span>
-    ultima = muestras_validas[-1]
-    <span class="hl">if</span> ultima.dist_sem &gt; mediana_dist + 2 * 1.4826 * mad:
-        activar_alerta_paciente(paciente_id, ultima, tendencia)
-
-    <span class="hl">return</span> TrayectoriaPaciente(
-        muestras=muestras_validas, outliers=outliers, tendencia=tendencia,
-        historial_clasificacion=[m.resultado_clase <span class="hl">for</span> m <span class="hl">in</span> muestras_validas]
-    )
-</pre>
-
-<h3><span class="sn2">10.4</span> Validaci&oacute;n con Datos Sint&eacute;ticos</h3>
+<h3><span class="sn2">10.3</span> Validaci&oacute;n con Datos Sint&eacute;ticos</h3>
 <table>
   <thead><tr><td>Patr&oacute;n</td><td>Mediciones</td><td>Tendencia Detectada</td><td>Alerta</td><td>Correcto</td></tr></thead>
   <tbody>
     <tr><td>Normal estable</td><td>5 &times; Normal / 30 d</td><td>ESTABLE</td><td>No</td><td>S&iacute;</td></tr>
-    <tr><td>Warburg progresivo</td><td>N &rarr; N &rarr; W &rarr; W &rarr; W</td><td>EMPEORANDO</td><td>S&iacute; (en 3&deg; W)</td><td>S&iacute;</td></tr>
-    <tr><td>Respuesta a tratamiento</td><td>W &rarr; W &rarr; W &rarr; N &rarr; N</td><td>MEJORANDO</td><td>No (desescalada)</td><td>S&iacute;</td></tr>
-    <tr><td>Outlier aislado</td><td>N &rarr; N &rarr; W(?) &rarr; N &rarr; N</td><td>ESTABLE (outlier marcado)</td><td>MAD marcado</td><td>S&iacute;</td></tr>
-    <tr><td>Recurrencia</td><td>W &rarr; N &rarr; N &rarr; N &rarr; W</td><td>EMPEORANDO (al final)</td><td>S&iacute; (dist &gt; 2 MAD)</td><td>S&iacute;</td></tr>
+    <tr><td>Warburg progresivo</td><td>N &rarr; N &rarr; W &rarr; W &rarr; W</td><td>EMPEORANDO</td><td>S&iacute;</td><td>S&iacute;</td></tr>
+    <tr><td>Respuesta tratamiento</td><td>W &rarr; W &rarr; W &rarr; N &rarr; N</td><td>MEJORANDO</td><td>No</td><td>S&iacute;</td></tr>
+    <tr><td>Outlier aislado</td><td>N &rarr; N &rarr; W(?) &rarr; N &rarr; N</td><td>ESTABLE (outlier marcado)</td><td>MAD</td><td>S&iacute;</td></tr>
+    <tr><td>Recurrencia</td><td>W &rarr; N &rarr; N &rarr; N &rarr; W</td><td>EMPEORANDO</td><td>S&iacute;</td><td>S&iacute;</td></tr>
   </tbody>
 </table>
 
-<h3><span class="sn2">10.5</span> Panel Longitudinal (UI)</h3>
-<p>El panel de seguimiento longitudinal muestra:</p>
+<h3><span class="sn2">10.4</span> Panel Longitudinal (UI)</h3>
 <ul>
-  <li><strong>L&iacute;nea temporal:</strong> todas las mediciones con marcadores de clasificaci&oacute;n codificados por color</li>
-  <li><strong>Gr&aacute;fico de distancia sem&aacute;ntica:</strong> con bandas de confianza basadas en MAD</li>
+  <li><strong>L&iacute;nea temporal:</strong> mediciones con marcadores de clasificaci&oacute;n codificados por color</li>
+  <li><strong>Gr&aacute;fico distancia sem&aacute;ntica:</strong> con bandas de confianza basadas en MAD</li>
   <li><strong>Trayectoria de clasificaci&oacute;n:</strong> evoluci&oacute;n de probabilidades por clase</li>
   <li><strong>Indicadores de tendencia:</strong> improving / stable / worsening</li>
-  <li><strong>Comparaci&oacute;n poblacional:</strong> versus normas de cohorte por edad/sexo/IMC</li>
+  <li><strong>Comparaci&oacute;n poblacional:</strong> normas de cohorte por edad/sexo/IMC</li>
   <li><strong>Alertas:</strong> notificaciones cuando la trayectoria cruza umbrales</li>
   <li><strong>Contexto zonal:</strong> nota informativa si el centro tiene actividad de alerta zonal vigente</li>
 </ul>
@@ -692,11 +758,11 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">11</span>Capas Cl&iacute;nicas: Reportes, Interoperabilidad y Est&aacute;ndares</h2>
 <h3><span class="sn2">11.1</span> PDF con Contexto Longitudinal y Zonal</h3>
-<p>Cada PDF incluye: encabezado, paciente anonimizado (SHA-256), resultados, XAI completa, biomarcadores BME688, gr&aacute;ficas, comorbilidades, confianza, recomendaciones, <strong>resumen de trayectoria longitudinal</strong> (direcci&oacute;n de tendencia, N&deg; mediciones, distancia sem&aacute;ntica desde baseline), <strong>contexto zonal</strong> (tier de alerta geogr&aacute;fica vigente cuando aplica), pie con versi&oacute;n y responsable.</p>
+<p>Cada PDF incluye: encabezado, paciente anonimizado (SHA-256), resultados, XAI completa, biomarcadores BME688, gr&aacute;ficas, comorbilidades, confianza, recomendaciones, <strong>resumen de trayectoria longitudinal</strong> (tendencia, N&deg; mediciones, distancia sem&aacute;ntica desde baseline), <strong>contexto zonal</strong> (tier de alerta vigente si aplica), pie con versi&oacute;n y responsable.</p>
 <h3><span class="sn2">11.2</span> DICOM SR</h3>
-<p>Conforme DICOM PS3.3-2025, Annex A. Incluye contexto longitudinal (conteo de mediciones, direcci&oacute;n de tendencia, tiempo desde baseline) y contexto zonal (tier de alerta vigente, ID institucional del dispositivo). C&oacute;digos LOINC, SNOMED-CT, ICD-10. Narrativa en espa&ntilde;ol. Exportaci&oacute;n <code>.dcm</code>.</p>
+<p>Conforme DICOM PS3.3-2025, Annex A. Incluye contexto longitudinal y zonal. C&oacute;digos LOINC, SNOMED-CT, ICD-10. Narrativa en espa&ntilde;ol. Exportaci&oacute;n <code>.dcm</code>.</p>
 <h3><span class="sn2">11.3</span> FHIR R4</h3>
-<p>Bundle JSON: Patient, DiagnosticReport, Observation. Los recursos Observation incluyen componentes con timestamps (effectiveDateTime) que permiten a clientes FHIR reconstruir el historial de mediciones del paciente.</p>
+<p>Bundle JSON: Patient, DiagnosticReport, Observation. Los Observation incluyen componentes con timestamps que permiten reconstruir el historial de mediciones.</p>
 <h3><span class="sn2">11.4</span> Evoluci&oacute;n Cl&iacute;nica (v5.6)</h3>
 <p>IQM, MAD, distancia sem&aacute;ntica, trayectorias, alertas autom&aacute;ticas, correlaci&oacute;n zonal.</p>
 
@@ -724,8 +790,8 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <tbody>
     <tr><td>T01-T04</td><td>Acceso / inyecci&oacute;n / robo / fuerza bruta</td><td>PBKDF2 + RBAC + JWT + rate limit + hash</td></tr>
     <tr><td>T05-T08</td><td>Manipulaci&oacute;n / rol / eliminaci&oacute;n / config</td><td>Audit log + integridad + consentimiento</td></tr>
-    <tr><td>T09</td><td>Exposici&oacute;n individual en vista zonal</td><td>Geohash k=5 + SHA-256; solo conteos agregados en vista zonal</td></tr>
-    <tr><td>T10</td><td>Manipulaci&oacute;n de alertas zonales</td><td>Alertas almacenadas en audit_log con timestamp + hash de evidencia</td></tr>
+    <tr><td>T09</td><td>Exposici&oacute;n individual en vista zonal</td><td>Geohash k=5 + SHA-256; solo conteos agregados</td></tr>
+    <tr><td>T10</td><td>Manipulaci&oacute;n de alertas zonales</td><td>Alertas en audit_log con timestamp + hash de evidencia</td></tr>
   </tbody>
 </table>
 
@@ -786,12 +852,12 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <h3><span class="sn2">14.3</span> Tabaquismo Eliminado</h3>
 <p>8 muestras (umbral: 50). &Iacute;ndice calculado por correlaci&oacute;n VOCs alternativa.</p>
 <h3><span class="sn2">14.4</span> Supervisi&oacute;n Zonal en Simulaci&oacute;n</h3>
-<p>Los umbrales de alerta geogr&aacute;fica est&aacute;n validados arquitect&oacute;nicamente pero no calibrados contra datos reales de despliegue multi-sitio. Los umbrales por defecto requieren ajuste basado en tasas de alerta observadas en pr&aacute;ctica cl&iacute;nica.</p>
+<p>Los umbrales de alerta geogr&aacute;fica est&aacute;n validados arquitect&oacute;nicamente pero no calibrados contra datos reales de despliegue multi-sitio.</p>
 <h3><span class="sn2">14.5</span> Umbrales Longitudinales</h3>
-<p>El multiplicador MAD (2&times;) y los umbrales de significancia de tendencia est&aacute;n establecidos heur&iacute;sticamente y requieren validaci&oacute;n con trayectorias reales de pacientes.</p>
+<p>El multiplicador MAD (2&times;) y los umbrales de significancia de tendencia est&aacute;n establecidos heur&iacute;sticamente y requieren validaci&oacute;n con trayectorias reales.</p>
 <h3><span class="sn2">14.6</span> Items Resueltos en v4.0</h3>
 <div class="callout cs"><div class="ct">Resueltos</div>
-  <p><strong>SBOM formal:</strong> Completado &mdash; lista CycloneDX-compatible.</p>
+  <p><strong>SBOM formal:</strong> Completado.</p>
   <p><strong>PDF parsing (Fix #29):</strong> Corregido.</p>
   <p><strong>Protocolo bioseguridad:</strong> Documentado.</p>
   <p style="margin-bottom:0"><strong>Supervisi&oacute;n zonal y seguimiento longitudinal:</strong> Implementados y documentados (v5.0).</p>
@@ -811,7 +877,17 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Fallando</td><td>0</td></tr>
   </tbody>
 </table>
-<h3><span class="sn2">15.2</span> Carga (i7)</h3>
+<h3><span class="sn2">15.2</span> Seguridad (i7)</h3>
+<table>
+  <thead><tr><td>Test</td><td>Resultado</td><td>Evidencia</td></tr></thead>
+  <tbody>
+    <tr><td>JWT sin token</td><td>PASS</td><td>403</td></tr>
+    <tr><td>Path Traversal</td><td>PASS</td><td>403</td></tr>
+    <tr><td>Rate Limiting</td><td>PASS</td><td>429</td></tr>
+    <tr><td>Security Headers</td><td>PASS</td><td>HSTS, CSP</td></tr>
+  </tbody>
+</table>
+<h3><span class="sn2">15.3</span> Carga (i7)</h3>
 <p>30 clientes, throughput ~32 req/s, latencia m&iacute;nima 29-35 ms. 25 DENCOs IPs distintas: ~57 req/s (205.200/hora). Margen 27x.</p>
 
 <!-- ════════════════════════════════════════════════════════════ -->
@@ -835,7 +911,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <!-- 17. PROXIMOS PASOS                                          -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">17</span>Pr&oacute;ximos Pasos, Validaci&oacute;n y Cronograma</h2>
-<h3><span class="sn2">17.1</span> Plan Validaci&oacute;n Cl&iacute;nica (VIN)</h3>
+<h3><span class="sn2">17.1</span> Plan Validaci&oacute;n Cl&iacute;nica</h3>
 <table>
   <thead><tr><td>Etapa</td><td>Descripci&oacute;n</td><td>Estado</td></tr></thead>
   <tbody>
@@ -843,16 +919,14 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>2</td><td>Re-entrenar modelo con datos reales</td><td>PENDIENTE</td></tr>
     <tr><td>3</td><td>Validar accuracy con cohorte propia</td><td>PENDIENTE</td></tr>
     <tr><td>4</td><td>Calibrar umbrales zonales con datos multi-sitio</td><td>PENDIENTE</td></tr>
-    <tr><td>5</td><td>Validar umbrales longitudinales con trayectorias reales (&ge;5 mediciones/paciente/&ge;90 d)</td><td>PENDIENTE</td></tr>
+    <tr><td>5</td><td>Validar umbrales longitudinales (&ge;5 mediciones/paciente/&ge;90 d)</td><td>PENDIENTE</td></tr>
   </tbody>
 </table>
-<h3><span class="sn2">17.2</span> Comit&eacute; de &Eacute;tica</h3>
-<p>Protocolo ante <strong>Comit&eacute; de &Eacute;tica del Hospital de Paysand&uacute;</strong>. Cohorte: adultos 18-80 a&ntilde;os en atenci&oacute;n primaria, con consentimiento informado.</p>
-<h3><span class="sn2">17.3</span> Cronograma</h3>
+<h3><span class="sn2">17.2</span> Cronograma</h3>
 <div class="diag">
 <span class="hl">2026 Q3-Q4:</span> Reentrenamiento BME688 + recolecci&oacute;n datos reales
-<span class="hl">2026 Q4:</span>    Validaci&oacute;n cl&iacute;nica (cohorte propia) + calibraci&oacute;n zonal
-<span class="hl">2027 Q1:</span>    Presentaci&oacute;n a m&eacute;dicos (Plan VIN) + validaci&oacute;n longitudinal
+<span class="hl">2026 Q4:</span>    Validaci&oacute;n cl&iacute;nica + calibraci&oacute;n zonal
+<span class="hl">2027 Q1:</span>    Presentaci&oacute;n a m&eacute;dicos + validaci&oacute;n longitudinal
 <span class="hl">2027 Q1-Q2:</span> Registro sanitario ante DET/MSP
 <span class="hl">2027 Q2+:</span>   Despliegue comercial</div>
 
@@ -869,8 +943,8 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <li>Sanz-Serrano, I. et al. (2025). <em>J. Nanobiotechnology</em>, 23.</li>
   <li>Haddi, Z. et al. (2025). <em>Sensors and Actuators B</em>.</li>
   <li>Riscado, L. et al. (2025). <em>Diabetes Res. Clin. Pract.</em></li>
-  <li>Rousseeuw, P.J. &amp; Croux, C. (1993). Alternatives to the Median Absolute Deviation. <em>JASA</em>, 88(424).</li>
-  <li>Shekhar, S. et al. (2023). Spatial Data Mining. <em>IEEE Trans. KDE</em>.</li>
+  <li>Rousseeuw, P.J. &amp; Croux, C. (1993). <em>JASA</em>, 88(424).</li>
+  <li>Shekhar, S. et al. (2023). <em>IEEE Trans. KDE</em>.</li>
 </ol>
 <h3>Normativas</h3>
 <ol start="10">
@@ -893,11 +967,20 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <tbody>
     <tr><td><strong>1. Funda Desechable</strong></td><td>Papel grado m&eacute;dico, un solo uso</td><td>Impide contacto labial directo</td></tr>
     <tr><td><strong>2. Boquilla Quick-Lock</strong></td><td>Desacoplable medio giro (180&deg;)</td><td>Sustituci&oacute;n inmediata sin herramientas</td></tr>
-    <tr><td><strong>3. Filtro Doble Malla</strong></td><td>Tamiz microm&eacute;trico acero inoxidable</td><td>Detiene macrogotas sin alterar flujo neum&aacute;tico</td></tr>
+    <tr><td><strong>3. Filtro Doble Malla</strong></td><td>Tamiz microm&eacute;trico acero inoxidable</td><td>Detiene macrogotas sin alterar flujo</td></tr>
   </tbody>
 </table>
-<h3><span class="sn2">19.2</span> Criterios de Rotaci&oacute;n</h3>
-<p><strong>Por paciente:</strong> Cada ciclo requiere funda nueva. <strong>Rotaci&oacute;n din&aacute;mica por alertas:</strong> Si el motor IA emite clasificaciones consecutivas de riesgo alto o sospecha bacteriana activa (Clase 4), se ejecuta cambio del kit boquilla-filtro. <strong>Cierre de jornada:</strong> Todas las boquillas y mallas acumuladas pasan por esterilizaci&oacute;n (IPA 70% o autoclave).</p>
+<h3><span class="sn2">19.2</span> Clasificaci&oacute;n de Residuos</h3>
+<table>
+  <thead><tr><td>Insumo</td><td>Clasificaci&oacute;n</td><td>Descarte</td></tr></thead>
+  <tbody>
+    <tr><td>Funda de papel</td><td>Tipo I (Asimilable a Urbano)</td><td>Bolsa negra com&uacute;n</td></tr>
+    <tr><td>Boquilla + filtro usados</td><td>Reutilizable tras esterilizaci&oacute;n</td><td>Bandeja desinfecci&oacute;n</td></tr>
+    <tr><td>Kit de recambio</td><td>Reutilizable</td><td>Lavado + IPA 70% o autoclave</td></tr>
+  </tbody>
+</table>
+<h3><span class="sn2">19.3</span> Criterios de Rotaci&oacute;n</h3>
+<p><strong>Por paciente:</strong> Cada ciclo requiere funda nueva. <strong>Rotaci&oacute;n din&aacute;mica por alertas:</strong> Clasificaciones consecutivas de riesgo alto o Clase 4 &rarr; cambio del kit boquilla-filtro. <strong>Cierre de jornada:</strong> Esterilizaci&oacute;n de todas las boquillas y mallas acumuladas (IPA 70% o autoclave).</p>
 
 <!-- ════════════════════════════════════════════════════════════ -->
 <!-- 20. GLOSARIO                                                -->
@@ -926,16 +1009,13 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td><strong>RBAC</strong></td><td>Role-Based Access Control</td></tr>
     <tr><td><strong>JWT</strong></td><td>JSON Web Token &mdash; autenticaci&oacute;n API</td></tr>
     <tr><td><strong>SIEM</strong></td><td>Security Info and Event Management (Loki+Grafana)</td></tr>
-    <tr><td><strong>IQM</strong></td><td>&Iacute;ndice de Calidad de Muestra &mdash; compuesto: flujo + volumen + correlaci&oacute;n</td></tr>
-    <tr><td><strong>MAD</strong></td><td>Median Absolute Deviation &mdash; detecci&oacute;n robusta de outliers</td></tr>
-    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana en espacio de features respecto al baseline del paciente</td></tr>
+    <tr><td><strong>IQM</strong></td><td>&Iacute;ndice de Calidad de Muestra</td></tr>
+    <tr><td><strong>MAD</strong></td><td>Median Absolute Deviation &mdash; detecci&oacute;n outliers</td></tr>
+    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana respecto al baseline del paciente</td></tr>
     <tr><td><strong>Geohash</strong></td><td>Codificaci&oacute;n geogr&aacute;fica jer&aacute;rquica (k=5 &asymp; 5 km)</td></tr>
-    <tr><td><strong>Zona de alerta</strong></td><td>Celda geohash con conteo de alertas que supera umbral configurado</td></tr>
-    <tr><td><strong>WATCH</strong></td><td>Tier zonal: monitorizaci&oacute;n (2-3 alertas / 48h)</td></tr>
-    <tr><td><strong>ALERT</strong></td><td>Tier zonal: notificaci&oacute;n m&eacute;dica (4-6 alertas / 48h &oacute; 3+ Warburg / 7d)</td></tr>
-    <tr><td><strong>CRITICAL</strong></td><td>Tier zonal: escalaci&oacute;n autoridad (&ge;7 alertas / 48h)</td></tr>
+    <tr><td><strong>WATCH / ALERT / CRITICAL</strong></td><td>Tiers de alerta zonal geogr&aacute;fica</td></tr>
     <tr><td><strong>Carry-over</strong></td><td>Acumulaci&oacute;n residual de VOCs que distorsiona mediciones</td></tr>
-    <tr><td><strong>SBOM</strong></td><td>Software Bill of Materials &mdash; inventario dependencias</td></tr>
+    <tr><td><strong>SBOM</strong></td><td>Software Bill of Materials</td></tr>
     <tr><td><strong>Quick-Lock</strong></td><td>Mecanismo desacople boquilla medio giro (180&deg;)</td></tr>
   </tbody>
 </table>
@@ -950,7 +1030,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Ayuno s&oacute;lido</td><td>3 horas antes</td><td>Sin alimento s&oacute;lido</td></tr>
     <tr><td>L&iacute;quidos</td><td>1 hora antes</td><td>Ayuno seco estricto</td></tr>
     <tr><td>Tabaco / Vapeo</td><td>3 horas antes</td><td>Sin cigarros, electr&oacute;nicos ni mariguana</td></tr>
-    <tr><td>Higiene / Contaminantes</td><td>6 horas antes</td><td>Sin ajo, cebolla, especias, chicles, menta</td></tr>
+    <tr><td>Contaminantes</td><td>6 horas antes</td><td>Sin ajo, cebolla, especias, chicles, menta</td></tr>
     <tr><td>Cosm&eacute;ticos</td><td>El d&iacute;a de la prueba</td><td>Sin perfume, colonia, loci&oacute;n, cremas</td></tr>
     <tr><td>Ejercicio</td><td>1 hora antes</td><td>Sin actividad f&iacute;sica intensa</td></tr>
   </tbody>
@@ -971,23 +1051,23 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <p><em>(Lista completa disponible en documento t&eacute;cnico detallado.)</em></p>
 
 <!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO D (NUEVO)                                             -->
+<!-- ANEXO D                                                     -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO D</span>Glosario de Supervisi&oacute;n Geogr&aacute;fica y Longitudinal</h2>
 <table>
   <thead><tr><td>T&eacute;rmino</td><td>Definici&oacute;n</td></tr></thead>
   <tbody>
     <tr><td><strong>Celda geohash</strong></td><td>&Aacute;rea geogr&aacute;fica codificada por prefijo geohash a precisi&oacute;n especificada (k=5 &asymp; 5 km)</td></tr>
-    <tr><td><strong>Alerta zonal</strong></td><td>Notificaci&oacute;n activada cuando el conteo de alertas en una celda geohash excede el umbral para un tier dado dentro de la ventana temporal</td></tr>
-    <tr><td><strong>WATCH</strong></td><td>2-3 resultados no-Normales en mismo geohash / 48h. Notificaci&oacute;n de monitorizaci&oacute;n.</td></tr>
-    <tr><td><strong>ALERT</strong></td><td>4-6 no-Normales / 48h &oacute; 3+ Warburg / 7d. Notificaci&oacute;n dashboard + revisi&oacute;n ambiental.</td></tr>
-    <tr><td><strong>CRITICAL</strong></td><td>&ge;7 no-Normales / 48h &oacute; &gt;5d ALERT sostenido. Escalaci&oacute;n autoridad sanitaria + bloqueo evidencia.</td></tr>
-    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana en espacio de features entre muestra actual y centroide del baseline del paciente</td></tr>
-    <tr><td><strong>IQM</strong></td><td>&Iacute;ndice de Calidad de Muestra: compuesto de consistencia de flujo, completitud de volumen, correlaci&oacute;n gas-flujo</td></tr>
-    <tr><td><strong>MAD</strong></td><td>Median Absolute Deviation: m&eacute;trica robusta de detecci&oacute;n de outliers (MAD = mediana(|x<sub>i</sub> &minus; mediana(x)|))</td></tr>
-    <tr><td><strong>Trayectoria</strong></td><td>Secuencia temporal de clasificaciones de un paciente, con direcci&oacute;n de tendencia (improving/stable/worsening)</td></tr>
-    <tr><td><strong>Baseline</strong></td><td>Primera muestra de alta calidad (IQM &gt; umbral) de un paciente, usada como referencia para c&aacute;lculo de distancia sem&aacute;ntica</td></tr>
-    <tr><td><strong>Outlier longitudinal</strong></td><td>Muestra cuya distancia sem&aacute;ntica excede la mediana del historial por &ge; 2 MAD (factor 1.4826)</td></tr>
+    <tr><td><strong>Alerta zonal</strong></td><td>Notificaci&oacute;n activada cuando el conteo de alertas en una celda geohash excede el umbral</td></tr>
+    <tr><td><strong>WATCH</strong></td><td>2-3 no-Normales / mismo geohash / 48h. Monitorizaci&oacute;n.</td></tr>
+    <tr><td><strong>ALERT</strong></td><td>4-6 no-Normales / 48h &oacute; 3+ Warburg / 7d. Dashboard + revisi&oacute;n ambiental.</td></tr>
+    <tr><td><strong>CRITICAL</strong></td><td>&ge;7 no-Normales / 48h &oacute; &gt;5d ALERT sostenido. Escalaci&oacute;n autoridad.</td></tr>
+    <tr><td><strong>Distancia sem&aacute;ntica</strong></td><td>Distancia euclidiana en espacio de features respecto al baseline del paciente</td></tr>
+    <tr><td><strong>IQM</strong></td><td>&Iacute;ndice de Calidad de Muestra: flujo + volumen + correlaci&oacute;n</td></tr>
+    <tr><td><strong>MAD</strong></td><td>Median Absolute Deviation: mediana(|x<sub>i</sub> &minus; mediana(x)|)</td></tr>
+    <tr><td><strong>Trayectoria</strong></td><td>Secuencia temporal de clasificaciones con direcci&oacute;n de tendencia</td></tr>
+    <tr><td><strong>Baseline</strong></td><td>Primera muestra de alta calidad (IQM &gt; umbral) de un paciente</td></tr>
+    <tr><td><strong>Outlier longitudinal</strong></td><td>Muestra cuya distancia sem&aacute;ntica excede la mediana por &ge; 2 MAD</td></tr>
   </tbody>
 </table>
 
@@ -1000,9 +1080,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <tbody>
     <tr><td>1.0</td><td>Mayo 2026</td><td>Documento original (KMeans, CCS811, 3 clusters)</td></tr>
     <tr><td>2.0</td><td>Julio 2026</td><td>Reescritura: Ensemble, BME688, 5 clases, Brain Server, XAI, DIA, DICOM SR, FHIR, seguridad</td></tr>
-    <tr><td>3.0</td><td>Julio 2026</td><td>Resumen ejecutivo, rendimiento separado, diagrama flujo visual, glosario</td></tr>
-    <tr><td>4.0</td><td>Julio 2026</td><td>SBOM formal (Anexo C) | Fix #29 PDF | Bioseguridad 3 capas (Secc. 19) | Anexo A y B</td></tr>
-    <tr><td><strong>5.0</strong></td><td><strong>Julio 2026</strong></td><td><strong>NUEVO: Modelo de vigilancia en 3 escalas | Supervisi&oacute;n geogr&aacute;fica zonal (Secc. 9) | Seguimiento longitudinal (Secc. 10) | Pesta&ntilde;a Geograf&iacute;a | Panel longitudinal | Anexo D | Amenazas T09-T10 | Actualizaci&oacute;n completa del documento</strong></td></tr>
+    <tr><td>3.0</td><td>Julio 2026</td><td>Resumen ejecutivo, rendimiento separado, diagrama flujo, glosario</td></tr>
+    <tr><td>4.0</td><td>Julio 2026</td><td>SBOM formal | Fix #29 | Bioseguridad 3 capas | Anexo A y B</td></tr>
+    <tr><td><strong>5.0</strong></td><td><strong>Julio 2026</strong></td><td><strong>3 escalas de vigilancia | Supervisi&oacute;n zonal | Seguimiento longitudinal | Pesta&ntilde;a Geograf&iacute;a | Panel longitudinal | Anexo D | Amenazas T09-T10 | Logo DENCO integrado</strong></td></tr>
   </tbody>
 </table>
 
@@ -1029,10 +1109,12 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <!-- FOOTER                                                      -->
 <!-- ════════════════════════════════════════════════════════════ -->
 <div class="footer">
-  <p>DENCO v5.6.0 &mdash; Documento T&eacute;cnico v5.0</p>
+  <div class="footer-logo">
+    <img src="logo.png" alt="DENCO">
+  </div>
+  <p style="margin-top:12px">DENCO v5.6.0 &mdash; Documento T&eacute;cnico v5.0</p>
   <p>DENCO Industrias &mdash; Paysand&uacute;, Uruguay</p>
   <p>Expediente regulatorio para registro ante DET / MSP<br>Rep&uacute;blica Oriental del Uruguay</p>
-  <p>Especificaci&oacute;n t&eacute;cnica de referencia para publicaciones cient&iacute;ficas derivadas</p>
   <p style="margin-top:12px"><strong>Fecha de emisi&oacute;n:</strong> 13/07/2026</p>
 </div>
 
