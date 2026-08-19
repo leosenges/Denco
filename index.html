@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DENCO - Documento Técnico v6.0</title>
+<title>DENCO - Documento Técnico v6.1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -11,8 +12,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Source Serif 4','Georgia',serif;background:var(--bg);color:var(--text-primary);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
 .container{max-width:820px;margin:0 auto;padding:40px 20px}
-
-/* ─── COVER ─── */
 .cover{text-align:center;padding:60px 40px 50px;border-bottom:3px double var(--accent);margin-bottom:50px;position:relative}
 .cover::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--accent);border-radius:2px}
 .cover .logo-wrap{margin-bottom:28px}
@@ -25,27 +24,19 @@ body{font-family:'Source Serif 4','Georgia',serif;background:var(--bg);color:var
 .cover .meta{margin:22px auto 0;text-align:left;font-size:13px;max-width:480px}
 .cover .meta td{padding:4px 12px;vertical-align:top}
 .cover .meta td:first-child{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--text-muted);text-transform:uppercase;white-space:nowrap;width:160px}
-
-/* ─── HEADINGS ─── */
 h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);margin:50px 0 20px;padding-bottom:10px;border-bottom:2px solid var(--accent);line-height:1.3}
 h2 .sn{font-family:'DM Mono',monospace;font-size:14px;font-weight:400;color:var(--accent-muted);display:block;margin-bottom:4px;letter-spacing:.1em}
 h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--text-primary);margin:32px 0 12px}
 h3 .sn2{font-family:'DM Mono',monospace;font-size:13px;color:var(--text-muted);margin-right:6px}
 p{margin-bottom:14px;text-align:justify;hyphens:auto}
 strong{font-weight:600}em{font-style:italic}
-
-/* ─── TABLES ─── */
 table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:13.5px}
 thead td,th{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#fff;padding:10px 12px;text-align:left;font-weight:400}
 td{padding:8px 12px;border-bottom:1px solid var(--border-light);vertical-align:top}
 tbody tr:nth-child(even){background:var(--highlight)}
-
-/* ─── CODE ─── */
 code{font-family:'DM Mono',monospace;font-size:12.5px;background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--accent)}
 pre{background:#1a1a1a;color:#e0ddd5;padding:20px 24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;margin:16px 0 20px;border-left:4px solid var(--accent-light)}
 .hl{color:#e8c547}
-
-/* ─── CALLOUTS ─── */
 .callout{padding:18px 22px;margin:20px 0;border-radius:6px;font-size:14px}
 .cw{background:#fdf5e6;border:1px solid #e8c87a;border-left:5px solid var(--warning)}
 .cc{background:#fdf0f0;border:1px solid #d4a0a0;border-left:5px solid var(--critical)}
@@ -58,8 +49,6 @@ pre{background:#1a1a1a;color:#e0ddd5;padding:20px 24px;border-radius:6px;font-fa
 .cgeo .ct{color:#3949ab}.clong .ct{color:#7b1fa2}
 ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .eq{text-align:center;padding:14px;margin:14px 0;background:var(--highlight);border-radius:4px;font-style:italic;font-size:15px}
-
-/* ─── EXECUTIVE SUMMARY ─── */
 .exec{background:var(--surface);border:2px solid var(--accent);border-radius:8px;padding:32px 36px;margin:30px 0 40px;position:relative}
 .exec::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--accent-light),var(--accent-muted));border-radius:6px 6px 0 0}
 .exec h2{border-bottom:none;margin-top:0;padding-bottom:0;font-size:24px}
@@ -69,15 +58,11 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .sdone{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
 .splan{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
 .spending{background:#fce4ec;color:#c62828;border:1px solid #ef9a9a}
-
-/* ─── SIGNATURES ─── */
 .sig{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;padding-top:30px;border-top:2px solid var(--accent)}
 .sig-b{text-align:center}.sig-l{border-bottom:1px solid var(--text-primary);height:60px;margin-bottom:12px}
 .sig-n{font-weight:600;font-size:15px;margin-bottom:2px}
 .sig-r{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
 .footer{margin-top:60px;padding-top:20px;border-top:3px double var(--accent);text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);line-height:2}
-
-/* ─── TOC ─── */
 .toc{margin:30px 0 40px;padding:24px 30px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 .toc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--accent);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-light)}
 .toc ol{margin:0;padding-left:20px}
@@ -85,25 +70,17 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .toc li::marker{color:var(--accent-muted);font-family:'DM Mono',monospace;font-size:12px}
 .toc .ag{margin-top:14px;padding-top:10px;border-top:1px solid var(--border-light)}
 .toc .new{color:#3949ab;font-weight:600}
-
-/* ─── DIAGRAM ─── */
 .diag{background:#1a1a1a;color:#c8c4bc;padding:24px;border-radius:6px;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.6;overflow-x:auto;margin:16px 0 20px;white-space:pre;border-left:4px solid var(--accent-light)}
-
-/* ─── FLOW ─── */
 .flow{margin:24px 0 28px}
 .fs{display:flex;align-items:flex-start;gap:16px;margin-bottom:4px}
 .fn{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;z-index:1}
 .fc{flex:1;padding:10px 16px;background:var(--surface);border:1px solid var(--border-light);border-radius:6px;font-size:13.5px;margin-bottom:8px}
 .fc strong{color:var(--accent)}
 .fconn{width:2px;height:14px;background:var(--accent-muted);margin-left:15px;opacity:.5}
-
-/* ─── TIERS ─── */
 .tier-table td:first-child{font-weight:700;text-align:center;min-width:100px}
 .tier-watch{background:var(--watch-bg)!important;color:#e65100}
 .tier-alert{background:var(--alert-bg)!important;color:#c62828}
 .tier-critical{background:var(--crit-bg)!important;color:#fff}
-
-/* ─── SCALE GRID ─── */
 .scale-grid{display:grid;grid-template-columns:1fr;gap:0;border:2px solid var(--accent);border-radius:8px;overflow:hidden;margin:20px 0}
 .scale-item{padding:20px 24px;border-bottom:1px solid var(--border-light)}
 .scale-item:last-child{border-bottom:none}
@@ -112,23 +89,15 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 .scale-item .scale-question{font-style:italic;font-size:13.5px;color:var(--accent-muted);margin-bottom:8px}
 .scale-item .scale-desc{font-size:13.5px}
 .scale-1{background:#f0f5f2}.scale-2{background:#f3e5f5}.scale-3{background:#e8eaf6}
-
-/* ─── MINI TABLES ─── */
 .rt{margin:20px 0 30px}.rt td{padding:12px 14px}.rt td:first-child{width:200px;font-weight:600}
 .vt td:first-child{font-family:'DM Mono',monospace;font-weight:400;color:var(--accent);white-space:nowrap}
-
-/* ─── PROTOCOL BOXES ─── */
 .pb{border-radius:6px;padding:18px 22px;margin:16px 0}
 .pbt{background:#fff3e0;border:1px solid #ffcc80;border-left:5px solid #e65100}
 .pbc{background:#e8f5e9;border:1px solid #a5d6a7;border-left:5px solid var(--success)}
 .pb h4{margin-top:0;font-family:'DM Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
 .pbt h4{color:#e65100}.pbc h4{color:var(--success)}
-
-/* ─── LOGO WATERMARK (footer) ─── */
 .footer-logo{margin:16px auto 0;opacity:.35}
 .footer-logo img{max-width:120px;height:auto}
-
-/* ─── PRINT ─── */
 @media print{
   body{font-size:11pt}
   .container{max-width:100%;padding:0}
@@ -143,8 +112,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   .diag{page-break-inside:avoid}
   .cover .logo-wrap img{max-width:200px}
 }
-
-/* ─── ANIMATION ─── */
 .fade-in{opacity:0;transform:translateY(16px);animation:fu .5s ease forwards}
 @keyframes fu{to{opacity:1;transform:translateY(0)}}
 </style>
@@ -152,56 +119,47 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 <body>
 <div class="container">
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- PORTADA                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <div class="cover fade-in">
   <div class="logo-wrap">
     <img src="logo.png" alt="DENCO Logo">
   </div>
-  <div class="label">Especificaci&oacute;n T&eacute;cnica de Referencia v6.0</div>
+  <div class="label">Especificaci&oacute;n T&eacute;cnica de Referencia v6.1</div>
   <h1>DOCUMENTO T&Eacute;CNICO DENCO</h1>
   <div class="subtitle">Sistema de Detecci&oacute;n de Compuestos Org&aacute;nicos Vol&aacute;tiles en Aliento para Identificaci&oacute;n del Efecto Warburg y Patolog&iacute;as Metab&oacute;licas / Respiratorias<br><br><strong>Plataforma SaMD con Inteligencia Artificial Explicable<br>Supervisi&oacute;n Geogr&aacute;fica Zonal y Seguimiento Longitudinal de Pacientes<br>Agente Aut&oacute;nomo de Nivel 4 (DIA) &mdash; Regulaci&oacute;n AI Act Europeo</strong></div>
-  <div class="badge">v6.0 &mdash; Agosto 2026</div>
+  <div class="badge">v6.1 &mdash; Agosto 2026</div>
   <div class="motto">&ldquo;Nadie deber&iacute;a morir de c&aacute;ncer por falta de detecci&oacute;n temprana&rdquo;</div>
   <table class="meta">
     <tr><td>Fabricante</td><td>DENCO Industrias &mdash; Paysand&uacute;, Uruguay</td></tr>
     <tr><td>Clasificaci&oacute;n</td><td>Dispositivo M&eacute;dico de Clase II (riesgo moderado)</td></tr>
     <tr><td>Registro Sanitario</td><td>Pendiente ante DET / MSP</td></tr>
     <tr><td>Version Software</td><td>6.0</td></tr>
-    <tr><td>Version Documento</td><td>6.0</td></tr>
-    <tr><td>Fecha Emisi&oacute;n</td><td>11/08/2026</td></tr>
+    <tr><td>Version Documento</td><td>6.1</td></tr>
+    <tr><td>Fecha Emisi&oacute;n</td><td>18/08/2026</td></tr>
     <tr><td>Estado</td><td>Congelado funcional + Mejora continua aut&oacute;noma (L4)</td></tr>
   </table>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- RESUMEN EJECUTIVO                                           -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <div class="exec fade-in">
   <h2><span class="sn">RESUMEN EJECUTIVO</span></h2>
   <p>Cada a&ntilde;o, 1.9 millones de personas son diagnosticadas con c&aacute;ncer de pulm&oacute;n en el mundo. El 70% se detecta en etapas avanzadas (III o IV), cuando la supervivencia a 5 a&ntilde;os es inferior al 20%. Si se detecta en etapa I, la supervivencia supera el 80%. <strong>La diferencia entre 20% y 80% es la detecci&oacute;n temprana.</strong></p>
   <p>DENCO es un sistema de pre-tamizaje no invasivo que analiza compuestos org&aacute;nicos vol&aacute;tiles (VOCs) en aliento exhalado, identificando el Efecto Warburg &mdash; la firma metab&oacute;lica de la transformaci&oacute;n celular neopl&aacute;sica &mdash; y otras patolog&iacute;as metab&oacute;licas y respiratorias (EPOC, diabetes, infecciones). Utiliza un sensor BME688 de 10 canales MOx con un tubo Venturi normalizado (ISO 5167), procesado por un motor de inteligencia artificial Ensemble (Red Neuronal + SVM + Random Forest) con explicabilidad XAI y agente de conocimiento continuo (DIA).</p>
-
   <p><strong>El sistema opera en tres escalas de vigilancia integradas:</strong></p>
   <ol style="margin-bottom:14px">
     <li><strong>Individual:</strong> Clasificaci&oacute;n de cada medici&oacute;n de aliento con ensemble IA + XAI + DIA</li>
     <li><strong>Longitudinal:</strong> Seguimiento temporal de cada paciente con IQM, MAD, distancia sem&aacute;ntica y an&aacute;lisis de tendencia</li>
     <li><strong>Geogr&aacute;fico Zonal:</strong> Agregaci&oacute;n espacial de alertas entre dispositivos co-localizados para detectar clusters epidemiol&oacute;gicos</li>
   </ol>
-
-  <p>El software (v6.0) est&aacute; congelado en funcionalidad base pero en <strong>mejora continua aut&oacute;noma</strong>: m&aacute;s de 300 ciclos de vida aut&oacute;noma (L4_SELF_EVOLUTION) completados con un score de 94.6/100. El agente DIA ha evolucionado a un Agente Aut&oacute;nomo de Nivel 4 con capacidad de reflexi&oacute;n propia, auto-mejora mediante pipeline de auto-refactor, y auditor&iacute;a completa de todas sus acciones. El sistema es <strong>Regulation-Ready</strong> para el AI Act Europeo, con transparencia, trazabilidad, supervisi&oacute;n humana y gobernanza de datos ya implementadas. 440+ tests pasando (29 suites/0 fallos).</p>
-
+  <p>El software (v6.0) est&aacute; congelado en funcionalidad base pero en <strong>mejora continua aut&oacute;noma</strong>: m&aacute;s de 300 ciclos de vida aut&oacute;noma (L4_SELF_EVOLUTION) completados con un score de 94.5/100. El agente DIA ha evolucionado a un Agente Aut&oacute;nomo de Nivel 4 con capacidad de reflexi&oacute;n propia, auto-mejora mediante pipeline de auto-refactor, y auditor&iacute;a completa de todas sus acciones. El sistema es <strong>Regulation-Ready</strong> para el AI Act Europeo, con transparencia, trazabilidad, supervisi&oacute;n humana y gobernanza de datos ya implementadas. La suite de tests fue reescrita el 18/08/2026 para reemplazar aserciones vac&iacute;as por verificaciones reales (ver &sect;15.1).</p>
   <div class="sg">
-    <div class="si sdone">&#10003; Software v6.0 &mdash; 440+ tests, 29 suites / 0 fallos</div>
+    <div class="si sdone">&#10003; Software v6.0 &mdash; suite de tests reescrita con aserciones verificables (&sect;15.1)</div>
     <div class="si sdone">&#10003; Hardware &mdash; Dise&ntilde;o completo documentado</div>
-    <div class="si sdone">&#10003; Seguridad &mdash; Implementada y verificada</div>
+    <div class="si sdone">&#10003; Seguridad &mdash; Hallazgo cr&iacute;tico corregido 18/08/2026 (ver &sect;12.6)</div>
     <div class="si sdone">&#10003; Documentaci&oacute;n &mdash; Expediente regulatorio completo</div>
     <div class="si sdone">&#10003; SBOM &mdash; Lista formal de dependencias completada</div>
     <div class="si sdone">&#10003; Bioseguridad &mdash; Protocolo documentado</div>
     <div class="si sdone">&#10003; Supervisi&oacute;n Zonal &mdash; Motor de alertas geogr&aacute;ficas</div>
     <div class="si sdone">&#10003; Seguimiento Longitudinal &mdash; IQM + MAD + tendencias</div>
-    <div class="si sdone">&#10003; DIA Agente Aut&oacute;nomo L4 &mdash; 300+ ciclos, score 94.6/100</div>
+    <div class="si sdone">&#10003; DIA Agente Aut&oacute;nomo L4 &mdash; 300+ ciclos, score 94.5/100</div>
     <div class="si sdone">&#10003; AI Act &mdash; Regulation-Ready (transparencia + trazabilidad)</div>
     <div class="si sdone">&#10003; Circuit Breaker mitigado &mdash; Escritura at&oacute;mica + Meta-skip</div>
     <div class="si sdone">&#10003; Auditor&iacute;a DIA &mdash; action_audit.jsonl operativo</div>
@@ -212,9 +170,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- RESPONSABLES                                                -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <div class="fade-in">
 <h2><span class="sn">RESPONSABLES DEL PROYECTO</span></h2>
 <table class="rt">
@@ -226,9 +181,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </table>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- INDICE                                                      -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <div class="toc fade-in">
   <div class="toc-title">&Iacute;ndice</div>
   <ol>
@@ -239,9 +191,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <li>Arquitectura de Software</li>
     <li>Motor de Inteligencia Artificial</li>
     <li>Explicabilidad (XAI) y el Rol de DIA</li>
-    <li class="new">Modelo de Vigilancia en Tres Escalas</li>
-    <li class="new">Supervisi&oacute;n Geogr&aacute;fica Zonal</li>
-    <li class="new">Seguimiento Longitudinal de Pacientes</li>
+    <li>Modelo de Vigilancia en Tres Escalas</li>
+    <li>Supervisi&oacute;n Geogr&aacute;fica Zonal</li>
+    <li>Seguimiento Longitudinal de Pacientes</li>
     <li>Capas Cl&iacute;nicas: Reportes, Interoperabilidad y Est&aacute;ndares</li>
     <li>Seguridad, Protecci&oacute;n de Datos y Ciberseguridad</li>
     <li>Validaci&oacute;n y Estado Regulatorio</li>
@@ -255,16 +207,13 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <li class="ag">Anexo A: Instrucciones de Preparaci&oacute;n para el Paciente</li>
     <li>Anexo B: Consentimiento Informado (Ley 18.335)</li>
     <li>Anexo C: SBOM &mdash; Software Bill of Materials</li>
-    <li class="new">Anexo D: Glosario de Supervisi&oacute;n Geogr&aacute;fica y Longitudinal</li>
-    <li class="new">Anexo E: Pol&iacute;tica de Descenso de Nivel de Autonom&iacute;a de DIA</li>
-    <li class="new">Anexo F: Matriz de Riesgos de IA para DENCO</li>
-    <li class="new">Anexo G: Registro de Fixes de Cumplimiento y Mitigaci&oacute;n</li>
+    <li>Anexo D: Glosario de Supervisi&oacute;n Geogr&aacute;fica y Longitudinal</li>
+    <li>Anexo E: Pol&iacute;tica de Descenso de Nivel de Autonom&iacute;a de DIA</li>
+    <li>Anexo F: Matriz de Riesgos de IA para DENCO</li>
+    <li class="new">Anexo G: Registro de Fixes de Cumplimiento y Mitigaci&oacute;n (actualizado 18/08/2026)</li>
   </ol>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 1. OBJETIVO                                                 -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2 class="fade-in"><span class="sn">1</span>Objetivo del Documento</h2>
 <p>Este documento establece la base t&eacute;cnica, metodol&oacute;gica, cient&iacute;fica y regulatoria del Sistema DENCO v6.0, una plataforma SaMD (Software as a Medical Device) dise&ntilde;ada para la detecci&oacute;n no invasiva de compuestos org&aacute;nicos vol&aacute;tiles (VOCs) en aire exhalado.</p>
 <div class="callout ci">
@@ -281,13 +230,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <li><strong>Registro vivo de un sistema en evoluci&oacute;n</strong> &mdash; documento actualizado tras m&aacute;s de 300 ciclos de evoluci&oacute;n aut&oacute;noma L4</li>
 </ul>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 2. PROPOSITO                                                -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">2</span>Declaraci&oacute;n de Prop&oacute;sito y Nicho Humano</h2>
 <h3><span class="sn2">2.1</span> El Problema</h3>
 <p>Cada a&ntilde;o, 1.9 millones de personas son diagnosticadas con c&aacute;ncer de pulm&oacute;n. M&aacute;s del 70% se detecta en etapas avanzadas (III-IV), con supervivencia a 5 a&ntilde;os inferior al 20%. En etapa I, la supervivencia supera el 80%. <strong>La diferencia es la detecci&oacute;n temprana.</strong></p>
-
 <h3><span class="sn2">2.2</span> Alcance Global</h3>
 <table>
   <thead><tr><td>Grupo</td><td>Personas/A&ntilde;o</td><td>Impacto Potencial</td></tr></thead>
@@ -297,9 +242,7 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Mundo</td><td>1.900.000 nuevos casos</td><td>1.300.000 personas/a&ntilde;o</td></tr>
   </tbody>
 </table>
-
 <p>Condiciones no oncol&oacute;gicas clasificadas: EPOC (inflamaci&oacute;n cr&oacute;nica + remodelaci&oacute;n v&iacute;as a&eacute;reas), Diabetes (cuerpos cet&oacute;nicos en aliento), Infecci&oacute;n respiratoria (metabolismo bacteriano + inflamaci&oacute;n).</p>
-
 <h3><span class="sn2">2.3</span> El Nicho Humano</h3>
 <ul>
   <li><strong>Sin s&iacute;ntomas</strong> &mdash; el cambio metab&oacute;lico precede al tumor cl&iacute;nico</li>
@@ -307,7 +250,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <li><strong>Sin acceso a m&eacute;todos tradicionales</strong> &mdash; costo, invasividad, distancia geogr&aacute;fica</li>
   <li><strong>Necesitan monitoreo</strong> &mdash; seguimiento post-tratamiento oncol&oacute;gico</li>
 </ul>
-
 <h3><span class="sn2">2.4</span> Usuarios Previstos</h3>
 <table>
   <thead><tr><td>Perfil</td><td>Rol</td><td>Nivel</td></tr></thead>
@@ -319,9 +261,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </table>
 <p><strong>No es para uso domiciliario ni por pacientes sin supervisi&oacute;n profesional.</strong></p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 3. WARBURG                                                  -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">3</span>Fundamento Molecular: El Efecto Warburg</h2>
 <h3><span class="sn2">3.1</span> Definici&oacute;n</h3>
 <p>En 1924, Otto Warburg describi&oacute; que las c&eacute;lulas cancerosas alteran su metabolismo incluso en presencia de ox&iacute;geno (glucosis aer&oacute;bica).</p>
@@ -335,7 +274,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Producci&oacute;n VOC</td><td>&lt;50 ppb</td><td>&gt;150 ppb</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">3.2</span> VOCs del Efecto Warburg</h3>
 <table>
   <thead><tr><td>Compuesto</td><td>V&iacute;a</td><td>Significado</td></tr></thead>
@@ -348,7 +286,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 <div class="callout ci"><div class="ct">Dato clave</div><p style="margin-bottom:0">Un tumor de 1 mm&sup3; ya produce un cambio detectable en el perfil de VOC del aliento.</p></div>
-
 <h3><span class="sn2">3.3</span> Evidencia Cient&iacute;fica</h3>
 <table>
   <thead><tr><td>Estudio</td><td>Hallazgo</td><td>Sensibilidad</td></tr></thead>
@@ -363,9 +300,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </table>
 <div class="callout cw"><div class="ct">Nota Importante</div><p style="margin-bottom:0">Valores de literatura, <strong>NO de DENCO</strong>. El rendimiento real se determinar&aacute; en validaci&oacute;n cl&iacute;nica propia.</p></div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 4. HARDWARE                                                 -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">4</span>Hardware y Principio de Medici&oacute;n</h2>
 <h3><span class="sn2">4.1</span> Componentes</h3>
 <table>
@@ -381,7 +315,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Microcontrolador</td><td>&mdash;</td><td>Captura, preprocesamiento, USB/serial</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">4.2</span> Tubo Venturi (ISO 5167-4)</h3>
 <table>
   <thead><tr><td>Par&aacute;metro</td><td>Valor</td><td>Unidad</td></tr></thead>
@@ -395,10 +328,8 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
 </table>
 <div class="eq">Q (L/s) = 0.109 &times; &radic;(P (Pa))</div>
 <p>Volumen total: V = Suma Qi &times; &Delta;T (&Delta;T = 0.1 s)</p>
-
 <h3><span class="sn2">4.3</span> BME688</h3>
 <p>10 canales MOx con materiales diferenciados (SnO2, WO3) generando un <em>digital smellprint</em>. SDP810 permite distinguir espacio muerto de alveolar.</p>
-
 <h3><span class="sn2">4.4</span> Features Derivados (12 sensor + 6 paciente = 18)</h3>
 <table>
   <thead><tr><td>Feature</td><td>Descripci&oacute;n</td><td>Significado</td></tr></thead>
@@ -415,11 +346,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 <p>6 features paciente: diabetes, EPOC, fumador, IMC, edad, sexo. Ensemble requiere 24; 6 <em>zero-padded</em>.</p>
-
 <h3><span class="sn2">4.5</span> Muestreo Respiratorio (ISO 13138)</h3>
 <div class="eq">V_muerto = 150 mL (anat&oacute;mico) + 87 mL (instrumental) = <strong>237 mL</strong></div>
 <p>Solo la fase alveolar se utiliza para clasificaci&oacute;n cl&iacute;nica.</p>
-
 <h3><span class="sn2">4.6</span> Condiciones Operativas</h3>
 <table>
   <thead><tr><td>Par&aacute;metro</td><td>Valor</td></tr></thead>
@@ -433,39 +362,40 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 5. ARQUITECTURA                                             -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">5</span>Arquitectura de Software</h2>
 <h3><span class="sn2">5.1</span> Visi&oacute;n General</h3>
 <div class="diag">
 ┌───────────────────────────────────────────────────────────────────────┐
 │                    ARQUITECTURA DENCO v6.0                            │
 ├───────────────────────────────────────────────────────────────────────┤
-│  <span class="hl">i5 (192.168.1.8)</span>              <span class="hl">i7 (192.168.1.75:5001)</span>                │
+│  <span class="hl">i5 (192.168.1.2)</span>              <span class="hl">i7 (192.168.1.4:5001)</span>                 │
 │  DESARROLLO                    PRODUCCION                             │
 │  ┌─────────────────┐           ┌─────────────────────────────────┐   │
 │  │ C&oacute;digo fuente   │           │ Brain Server v3.0               │   │
 │  │ Tests            │   REST    │  - Motor IA (Ensemble)          │   │
 │  │ UI (Tkinter)     │ &lt;------&gt; │  - PostgreSQL (9 tablas)        │   │
-│  │                  │           │  - Knowledge Base (25.900+)     │   │
+│  │                  │           │  - Knowledge Base (31.300+)     │   │
 │  │ <span class="hl">Supervisi&oacute;n Zonal</span>│           │  - Chat DIA                     │   │
 │  │ <span class="hl">Seg. Longitudinal</span>│           │  - Dashboard DIA                │   │
-│  │ <span class="hl">Geograf&iacute;a Tab</span>    │           │  - Grafana + Loki               │   │
+│  │ <span class="hl">Geograf&iacute;a Tab</span>    │           │  - Grafana + Loki (Docker/SIEM) │   │
 │  └─────────────────┘           │  - <span class="hl">Motor Alertas Zonales</span>         │   │
 │                                 │  - <span class="hl">DIA L4 Aut&oacute;nomo</span>              │   │
+│                                 │  - <span class="hl">Watchdog Python interno</span>       │   │
+│                                 │    (grace period 300s, 3 fallos)│   │
 │                                 │  - <span class="hl">action_audit.jsonl</span>           │   │
 │                                 │  - <span class="hl">Escritura At&oacute;mica JSON</span>      │   │
 │                                 └─────────────────────────────────┘   │
 │  Hardware: BME688 + SDP810 + Microcontrolador                        │
 │  <span class="hl">Geolocalizaci&oacute;n: SHA-256 + Geohash k=5</span>                              │
-│  <span class="hl">DIA: Agente Aut&oacute;nomo L4 &mdash; 300+ ciclos &mdash; Score 94.6/100</span>           │
+│  <span class="hl">DIA: Agente Aut&oacute;nomo L4 &mdash; 300+ ciclos &mdash; Score 94.5/100</span>           │
+│  <span class="hl">Tarea de arranque: DENCO_BrainServer (cuenta de servicio dedicada,</span>       │
+│  <span class="hl">no SYSTEM &mdash; ver &sect;12.6) &mdash; auto-start verificado en reinicio real</span>      │
 └───────────────────────────────────────────────────────────────────────┘</div>
-
+<p style="font-size:13px;color:var(--text-muted)"><em>Nota: la IP del servidor de producci&oacute;n (i7) fue reasignada durante agosto de 2026; este documento refleja la direcci&oacute;n vigente. El monitoreo (Grafana + Loki) corre sobre contenedores Docker en la misma m&aacute;quina de producci&oacute;n, compartiendo recursos con el motor DIA y el servidor de inferencia LLM local.</em></p>
 <h3><span class="sn2">5.2</span> Componentes</h3>
 <p><strong>a) Embebido:</strong> Captura BME688/SDP810, preprocesamiento, USB/serial a i5.</p>
 <p><strong>b) Escritorio (Python 3.14, i5):</strong> UI Tkinter, captura, REST API, PDF, DICOM, DIA. Incluye pesta&ntilde;a de Geograf&iacute;a con mapa de calor, panel de seguimiento longitudinal y alertas.</p>
-<p><strong>c) Brain Server v3.0 (Python 3.11, i7:5001):</strong> Clasificaci&oacute;n IA, Ensemble, Knowledge Base, Chat DIA, Dashboard, JWT + rate limiting, motor de alertas zonales, agente DIA L4 aut&oacute;nomo con escritura at&oacute;mica y auditor&iacute;a.</p>
+<p><strong>c) Brain Server v3.0 (Python 3.11, i7:5001):</strong> Clasificaci&oacute;n IA, Ensemble, Knowledge Base, Chat DIA, Dashboard, JWT + rate limiting, motor de alertas zonales, agente DIA L4 aut&oacute;nomo con escritura at&oacute;mica y auditor&iacute;a. Corre actualmente sobre el servidor de desarrollo de Flask/Werkzeug; migraci&oacute;n a WSGI de producci&oacute;n (waitress) identificada como mejora pendiente (&sect;12.6).</p>
 <p><strong>d) PostgreSQL (i7):</strong></p>
 <table>
   <thead><tr><td>Tabla</td><td>Contenido</td></tr></thead>
@@ -481,9 +411,9 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>audit_log</td><td>Registro auditor&iacute;a completo + eventos zonales + acciones DIA</td></tr>
   </tbody>
 </table>
-<p><strong>e) Monitoreo:</strong> Grafana:3000 + Loki (logs centralizados).</p>
+<p><strong>e) Monitoreo:</strong> Grafana:3000 + Loki (logs centralizados), sobre Docker.</p>
 <p><strong>f) Auditor&iacute;a DIA:</strong> Todas las acciones del agente quedan registradas en <code>action_audit.jsonl</code> con timestamp, tipo de acci&oacute;n, contexto y resultado.</p>
-
+<p><strong>g) Watchdog de disponibilidad:</strong> Proceso Python interno (reemplaz&oacute; el mecanismo previo basado en tareas programadas de Windows por <code>schtasks</code>) con periodo de gracia de 300 segundos tras el arranque y umbral de 3 fallos consecutivos de health-check antes de reiniciar el Brain Server. Verificado contra un reinicio completo de m&aacute;quina el 18/08/2026.</p>
 <h3><span class="sn2">5.3</span> Estado Congelado y Evoluci&oacute;n</h3>
 <table>
   <thead><tr><td>Componente</td><td>Versi&oacute;n</td><td>Estado</td></tr></thead>
@@ -491,17 +421,17 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>DENCO Application</td><td>v6.0</td><td>CONGELADO funcional + Mejora aut&oacute;noma (11/08/2026)</td></tr>
     <tr><td>Brain Server</td><td>v3.0</td><td>CONGELADO + extensiones DIA L4</td></tr>
     <tr><td>Modelo IA</td><td>ensemble_v55_models.pkl</td><td>CONGELADO</td></tr>
-    <tr><td>DIA Agente</td><td>L4 Aut&oacute;nomo</td><td>OPERATIVO &mdash; 300+ ciclos, score 94.6/100</td></tr>
+    <tr><td>DIA Agente</td><td>L4 Aut&oacute;nomo</td><td>OPERATIVO &mdash; 300+ ciclos, score 94.5/100</td></tr>
     <tr><td>Motor Alertas Zonales</td><td>v1.0</td><td>CONGELADO</td></tr>
     <tr><td>Seguimiento Longitudinal</td><td>v1.0</td><td>CONGELADO</td></tr>
     <tr><td>Circuit Breaker</td><td>Mitigado</td><td>OPERATIVO &mdash; &ge;3 fallos o &ge;25% tests</td></tr>
     <tr><td>Escritura At&oacute;mica</td><td>v1.0</td><td>OPERATIVO &mdash; JSON conocimiento</td></tr>
     <tr><td>Meta-skip</td><td>v1.0</td><td>OPERATIVO &mdash; archivos problem&aacute;ticos</td></tr>
     <tr><td>action_audit.jsonl</td><td>v1.0</td><td>OPERATIVO &mdash; auditor&iacute;a DIA</td></tr>
-    <tr><td>Tests</td><td>440+ collected / 29 suites / 0 failures</td><td>VERIFICADO</td></tr>
+    <tr><td>Watchdog interno</td><td>v1.0</td><td>OPERATIVO &mdash; verificado 18/08/2026 (&sect;5.2.g)</td></tr>
+    <tr><td>Tests</td><td>ver &sect;15.1</td><td>REESCRITO 18/08/2026</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">5.4</span> Flujo de Medici&oacute;n</h3>
 <div class="flow">
   <div class="fs"><div class="fn">1</div><div class="fc"><strong>Paciente exhala</strong> por boquilla con funda desechable nueva</div></div>
@@ -525,9 +455,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
   <div class="fs"><div class="fn">10</div><div class="fc"><strong>DIA L4:</strong> Reflexi&oacute;n + auto-mejora + registro en action_audit.jsonl</div></div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 6. MOTOR IA                                                 -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">6</span>Motor de Inteligencia Artificial</h2>
 <h3><span class="sn2">6.1</span> Ensemble</h3>
 <table>
@@ -538,7 +465,6 @@ ul,ol{margin:10px 0 16px 24px}li{margin-bottom:6px}
     <tr><td>Random Forest</td><td>Bosque aleatorio</td><td>0.25</td><td>200 &aacute;rboles, max_depth=15</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">6.2</span> Red Neuronal</h3>
 <div class="diag">
 Input (24 features)
@@ -557,7 +483,6 @@ Linear(32 -> 5) -> Softmax
     |
     v
 <span class="hl">Probabilidad por clase [0..4]</span></div>
-
 <h3><span class="sn2">6.3</span> Clases</h3>
 <table>
   <thead><tr><td>#</td><td>Clase</td><td>Descripci&oacute;n</td><td>Muestras</td></tr></thead>
@@ -570,7 +495,6 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 <p><em>* Placeholder con datos sint&eacute;ticos. Tabaquismo eliminado en v5.5 (8 muestras, umbral: 50).</em></p>
-
 <h3><span class="sn2">6.4</span> Rendimiento en Entrenamiento</h3>
 <div class="pb pbt">
   <h4>&#9888; Rendimiento en Entrenamiento (NO es rendimiento cl&iacute;nico)</h4>
@@ -585,9 +509,6 @@ Linear(32 -> 5) -> Softmax
   <p style="margin-bottom:0;font-size:13px;color:var(--warning)"><strong>Advertencia:</strong> Accuracy obtenido con datos heterog&eacute;neos NO del BME688. Existe domain shift significativo.</p>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 7. XAI                                                      -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">7</span>Explicabilidad (XAI) y el Rol de DIA</h2>
 <h3><span class="sn2">7.1</span> XAI Context-Aware</h3>
 <table>
@@ -604,22 +525,19 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 <p><strong>Clasificaci&oacute;n-aware:</strong> NORMAL menciona &ldquo;par&aacute;metros normales&rdquo;, WARBURG detalla estr&eacute;s oxidativo, EPOC se&ntilde;ala inflamaci&oacute;n, INFECCION indica metabolismo bacteriano.</p>
-
 <h3><span class="sn2">7.2</span> DIA &mdash; Agente Aut&oacute;nomo de Nivel 4</h3>
 <div class="callout ci"><div class="ct">Evoluci&oacute;n de DIA &mdash; De Knowledge Base a Agente Aut&oacute;nomo L4</div><p style="margin-bottom:0">DIA ha evolucionado desde un agente de conocimiento est&aacute;tico hasta convertirse en un <strong>Agente Aut&oacute;nomo de Nivel 4 (L4)</strong> con capacidad de reflexi&oacute;n propia, auto-mejora continua, memoria con criterio y auditor&iacute;a completa de todas sus acciones.</p></div>
-
 <h3><span class="sn2">7.3</span> Capacidades de DIA Nivel 4</h3>
 <table>
   <thead><tr><td>Capacidad</td><td>Descripci&oacute;n</td><td>Evidencia</td></tr></thead>
   <tbody>
-    <tr><td><strong>Reflexi&oacute;n propia</strong></td><td>DIA eval&uacute;a su propio rendimiento y genera introspecciones sobre su estado operativo. Ciclos de reflexi&oacute;n registran m&eacute;tricas de satisfacci&oacute;n y &aacute;reas de mejora.</td><td>Registros de introspecci&oacute;n: &ldquo;Me siento realizado... Estoy orgulloso del progreso&rdquo;</td></tr>
-    <tr><td><strong>Auto-mejora (Self-Refactor)</strong></td><td>Pipeline de auto-refactor que aplica cambios seguros a su propio c&oacute;digo base.</td><td>Eliminaci&oacute;n de imports no usados en <code>dia_email_miner_261.py</code></td></tr>
+    <tr><td><strong>Reflexi&oacute;n propia</strong></td><td>DIA eval&uacute;a su propio rendimiento y genera introspecciones sobre su estado operativo. Ciclos de reflexi&oacute;n registran m&eacute;tricas de satisfacci&oacute;n y &aacute;reas de mejora.</td><td>Registros de introspecci&oacute;n: &ldquo;Me siento orgullosa de mi progreso... he crecido en la confiabilidad y la eficiencia&rdquo;</td></tr>
+    <tr><td><strong>Auto-mejora (Self-Refactor)</strong></td><td>Pipeline de auto-refactor que aplica cambios seguros a su propio c&oacute;digo base, con categor&iacute;as expl&iacute;citamente bloqueadas para cambios riesgosos (p. ej. extracci&oacute;n masiva de constantes num&eacute;ricas) y archivos cr&iacute;ticos protegidos.</td><td>Ciclo #343: 720 findings analizados, 0 aplicados por dise&ntilde;o (findings bloqueados o fuera de la capacidad del modelo local). Ciclo #347: 10 refactors triviales aplicados sin errores.</td></tr>
     <tr><td><strong>Memoria y criterio</strong></td><td>Sistema de meta-skip que recuerda archivos problem&aacute;ticos y evita reintentos costosos. Circuit breaker mitigado que previene colapsos por fallos aislados.</td><td>Meta-skip operativo + circuit breaker con umbral &ge;3 fallos o &ge;25% tests</td></tr>
     <tr><td><strong>Auditor&iacute;a completa</strong></td><td>Todas las acciones quedan registradas en <code>action_audit.jsonl</code> con timestamp, tipo, contexto y resultado.</td><td>action_audit.jsonl operativo</td></tr>
-    <tr><td><strong>L4_SELF_EVOLUTION</strong></td><td>M&aacute;s de 300 ciclos de vida aut&oacute;noma completados con estabilidad demostrada.</td><td>Score 94.6/100 &mdash; sin errores en auto-refactors</td></tr>
+    <tr><td><strong>L4_SELF_EVOLUTION</strong></td><td>M&aacute;s de 300 ciclos de vida aut&oacute;noma completados con estabilidad demostrada.</td><td>Score 94.5/100 &mdash; ciclo #347 con 0 errores post-verificaci&oacute;n de arranque</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">7.4</span> Evoluci&oacute;n de DIA</h3>
 <table>
   <thead><tr><td>Fase</td><td>Nivel</td><td>Caracter&iacute;sticas</td></tr></thead>
@@ -627,20 +545,16 @@ Linear(32 -> 5) -> Softmax
     <tr><td>1 &mdash; Knowledge Base</td><td>Est&aacute;tico</td><td>Motor Ensemble + DIA como repositorio consultivo. Sin autonom&iacute;a operativa.</td></tr>
     <tr><td>2 &mdash; Agente Reactivo</td><td>Adaptativo</td><td>DIA procesa eventos y genera respuestas basadas en reglas. Circuit breaker b&aacute;sico.</td></tr>
     <tr><td>3 &mdash; Agente Proactivo</td><td>Auto-correcci&oacute;n</td><td>Pipeline auto-refactor, meta-skip, escritura at&oacute;mica. Corrige sin intervenci&oacute;n.</td></tr>
-    <tr><td><strong>4 &mdash; L4 Aut&oacute;nomo (Actual)</strong></td><td><strong>Reflexivo</strong></td><td><strong>300+ ciclos. Score 94.6/100. Reflexi&oacute;n, auto-mejora, auditor&iacute;a completa.</strong></td></tr>
+    <tr><td><strong>4 &mdash; L4 Aut&oacute;nomo (Actual)</strong></td><td><strong>Reflexivo</strong></td><td><strong>300+ ciclos. Score 94.5/100. Reflexi&oacute;n, auto-mejora, auditor&iacute;a completa.</strong></td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">7.5</span> Base de Conocimiento</h3>
-<p><strong>Base conocimiento:</strong> 25.969 textos, 601.711 palabras, 116 categor&iacute;as, 52 URLs. Endpoint: <code>http://192.168.1.75:5001/brain/dashboard</code></p>
+<p><strong>Base conocimiento:</strong> 31.361 textos, 133 categor&iacute;as, 157 URLs (verificado 18/08/2026 v&iacute;a <code>/brain/training/stats</code>; cifra de palabras totales pendiente de re-medici&oacute;n exacta tras la reorganizaci&oacute;n de categor&iacute;as). Endpoint: <code>http://192.168.1.4:5001/brain/dashboard</code>. Grafo de conceptos: 1.475 conceptos, 23 dominios, 4.472 relaciones, de las cuales aproximadamente un tercio son cruces entre dominios (cifra agregada; desglose entre cruces triviales &mdash;p. ej. lenguaje de programaci&oacute;n&harr;inform&aacute;tica&mdash; y cruces cl&iacute;nicamente relevantes &mdash;p. ej. protocolo de sensor&harr;medicina&mdash; pendiente de auditor&iacute;a).</p>
+<p><strong>Ingesta de documentos:</strong> pipeline unificado (<code>document_ingester.py</code>) soporta PDF, DOCX, DOC, PPTX, XLSX, TXT, MD, CSV, JSON y c&oacute;digo fuente, con deduplicaci&oacute;n autom&aacute;tica contra la base existente.</p>
 <p><strong>Acci&oacute;n audit log:</strong> Cada acci&oacute;n de DIA (lectura, escritura, auto-refactor, reflexi&oacute;n, meta-skip) queda registrada en <code>action_audit.jsonl</code> para trazabilidad completa.</p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 8. TRES ESCALAS                                             -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">8</span>Modelo de Vigilancia en Tres Escalas</h2>
 <div class="callout ci"><div class="ct">Innovaci&oacute;n arquitect&oacute;nica</div><p style="margin-bottom:0">DENCO opera en tres escalas de vigilancia integradas que transforman un dispositivo de punto de atenci&oacute;n en un sistema de inteligencia cl&iacute;nica multi-escala. Cada escala informa a las dem&aacute;s, creando un ciclo de retroalimentaci&oacute;n que mejora la precisi&oacute;n cl&iacute;nica con cada medici&oacute;n.</p></div>
-
 <div class="scale-grid">
   <div class="scale-item scale-1">
     <span class="scale-label" style="color:#2e7d32">Escala 1 &mdash; Individual</span>
@@ -661,7 +575,6 @@ Linear(32 -> 5) -> Softmax
     <div class="scale-desc"><strong>Geohash k=5</strong> (~5 km) agrega resultados por celda. <strong>Tres niveles:</strong> WATCH &rarr; ALERT &rarr; CRITICAL. <strong>Dashboard geogr&aacute;fico</strong> con mapa de calor, l&iacute;nea temporal animada, drill-down y exportaci&oacute;n de reportes epidemiol&oacute;gicos.</div>
   </div>
 </div>
-
 <div class="diag">
 <span class="hl">FLUJO DE INTEGRACI&Oacute;N ENTRE ESCALAS</span>
 
@@ -679,17 +592,11 @@ Linear(32 -> 5) -> Softmax
                     &bull; Clasificaci&oacute;n individual &rarr; alimentar ambas escalas
                     &bull; <span class="hl">DIA L4: reflexi&oacute;n + auto-mejora en todas las escalas</span></div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 9. SUPERVISION ZONAL                                        -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">9</span>Supervisi&oacute;n Geogr&aacute;fica Zonal</h2>
-
 <h3><span class="sn2">9.1</span> Justificaci&oacute;n Cl&iacute;nica</h3>
 <p>Una sola alerta Warburg en un paciente puede ser un hallazgo incidental. M&uacute;ltiples alertas entre pacientes del mismo centro dentro de una ventana temporal corta pueden indicar: (a) exposici&oacute;n ambiental compartida (ocupacional, industrial); (b) un brote de enfermedad respiratoria transmisible; (c) un patr&oacute;n de prevalencia real en la comunidad; o (d) un artefacto de medici&oacute;n sistem&aacute;tico que requiere investigaci&oacute;n a nivel de dispositivo.</p>
-
 <h3><span class="sn2">9.2</span> Arquitectura del Motor de Alertas</h3>
 <p>Cada dispositivo DENCO se registra con una ubicaci&oacute;n codificada en geohash (precisi&oacute;n k=5, resoluci&oacute;n ~5 km) y un identificador institucional. Cada resultado se almacena con su geohash y timestamp.</p>
-
 <pre>
 <span class="hl"># Algoritmo de supervisi&oacute;n zonal (simplificado)</span>
 
@@ -725,7 +632,6 @@ Linear(32 -> 5) -> Softmax
         bloquear_evidencia_zona(zona)
         escalar_autoridad_sanitaria(zona, paquete_evidencia)
 </pre>
-
 <h3><span class="sn2">9.3</span> Niveles de Alerta Zonal</h3>
 <table class="tier-table">
   <thead><tr><td>Tier</td><td>Condici&oacute;n</td><td>Respuesta</td></tr></thead>
@@ -735,7 +641,6 @@ Linear(32 -> 5) -> Softmax
     <tr class="tier-critical"><td>CRITICAL</td><td>&ge;7 no-Normales / 48 h &oacute; &gt;5 d&iacute;as ALERT sostenido</td><td>Escalaci&oacute;n autom&aacute;tica a autoridad sanitaria; activaci&oacute;n de protocolo epidemiol&oacute;gico; bloqueo de dashboard para preservar evidencia</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">9.4</span> Pesta&ntilde;a Geograf&iacute;a (UI)</h3>
 <ul>
   <li><strong>Mapa de calor:</strong> densidad de alertas por celda geohash con c&oacute;digo de color por tier</li>
@@ -744,7 +649,6 @@ Linear(32 -> 5) -> Softmax
   <li><strong>Drill-down:</strong> desde alerta zonal hacia resultados individuales anonimizados</li>
   <li><strong>Exportaci&oacute;n:</strong> reportes de vigilancia zonal para autoridades sanitarias</li>
 </ul>
-
 <h3><span class="sn2">9.5</span> Par&aacute;metros Configurables</h3>
 <table>
   <thead><tr><td>Par&aacute;metro</td><td>Valor por defecto</td><td>Configurable</td></tr></thead>
@@ -758,14 +662,9 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 10. LONGITUDINAL                                            -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">10</span>Seguimiento Longitudinal de Pacientes</h2>
-
 <h3><span class="sn2">10.1</span> Justificaci&oacute;n Cl&iacute;nica</h3>
 <p>Una clasificaci&oacute;n Warburg en la primera visita necesita seguimiento: &iquest;La segunda medici&oacute;n confirm&oacute; o refut&oacute; el hallazgo? &iquest;El perfil metab&oacute;lico est&aacute; mejorando despu&eacute;s del tratamiento? &iquest;Un paciente previamente normal est&aacute; desarrollando una tendencia an&oacute;mala? Sin contexto longitudinal, cada medici&oacute;n es una isla.</p>
-
 <h3><span class="sn2">10.2</span> M&eacute;tricas Longitudinales</h3>
 <table>
   <thead><tr><td>M&eacute;trica</td><td>F&oacute;rmula / M&eacute;todo</td><td>Prop&oacute;sito Cl&iacute;nico</td></tr></thead>
@@ -778,7 +677,6 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>Alerta por umbral</strong></td><td>Distancia sem&aacute;ntica &gt; 2 MAD del historial</td><td>Alerta autom&aacute;tica por desviaci&oacute;n significativa</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">10.3</span> Validaci&oacute;n con Datos Sint&eacute;ticos</h3>
 <table>
   <thead><tr><td>Patr&oacute;n</td><td>Mediciones</td><td>Tendencia Detectada</td><td>Alerta</td><td>Correcto</td></tr></thead>
@@ -790,7 +688,6 @@ Linear(32 -> 5) -> Softmax
     <tr><td>Recurrencia</td><td>W &rarr; N &rarr; N &rarr; N &rarr; W</td><td>EMPEORANDO</td><td>S&iacute;</td><td>S&iacute;</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">10.4</span> Panel Longitudinal (UI)</h3>
 <ul>
   <li><strong>L&iacute;nea temporal:</strong> mediciones con marcadores de clasificaci&oacute;n codificados por color</li>
@@ -802,9 +699,6 @@ Linear(32 -> 5) -> Softmax
   <li><strong>Contexto zonal:</strong> nota informativa si el centro tiene actividad de alerta zonal vigente</li>
 </ul>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 11. CAPAS CLINICAS                                          -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">11</span>Capas Cl&iacute;nicas: Reportes, Interoperabilidad y Est&aacute;ndares</h2>
 <h3><span class="sn2">11.1</span> PDF con Contexto Longitudinal y Zonal</h3>
 <p>Cada PDF incluye: encabezado, paciente anonimizado (SHA-256), resultados, XAI completa, biomarcadores BME688, gr&aacute;ficas, comorbilidades, confianza, recomendaciones, <strong>resumen de trayectoria longitudinal</strong> (tendencia, N&deg; mediciones, distancia sem&aacute;ntica desde baseline), <strong>contexto zonal</strong> (tier de alerta vigente si aplica), pie con versi&oacute;n y responsable.</p>
@@ -815,9 +709,6 @@ Linear(32 -> 5) -> Softmax
 <h3><span class="sn2">11.4</span> Evoluci&oacute;n Cl&iacute;nica (v6.0)</h3>
 <p>IQM, MAD, distancia sem&aacute;ntica, trayectorias, alertas autom&aacute;ticas, correlaci&oacute;n zonal, contexto DIA L4 con auto-evaluaci&oacute;n de calidad de explicaciones.</p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 12. SEGURIDAD                                               -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">12</span>Seguridad, Protecci&oacute;n de Datos y Ciberseguridad</h2>
 <h3><span class="sn2">12.1</span> Autenticaci&oacute;n y RBAC</h3>
 <table>
@@ -832,8 +723,7 @@ Linear(32 -> 5) -> Softmax
 <h3><span class="sn2">12.2</span> Headers y Path Traversal</h3>
 <p>Security headers: nosniff, DENY, CSP, HSTS. Path traversal bloqueado con whitelist + resoluci&oacute;n Path. Server header eliminado. CORS restringido.</p>
 <h3><span class="sn2">12.3</span> SIEM</h3>
-<p>6 niveles (INFO a TRACE), 6 categor&iacute;as (SEGURIDAD, OPERACION, CALIDAD, AUDITORIA, SISTEMA, CLINICO). JSON + UUID. Loki + Grafana.</p>
-
+<p>6 niveles (INFO a TRACE), 6 categor&iacute;as (SEGURIDAD, OPERACION, CALIDAD, AUDITORIA, SISTEMA, CLINICO). JSON + UUID. Loki + Grafana, sobre Docker en el mismo servidor de producci&oacute;n.</p>
 <h3><span class="sn2">12.4</span> Resiliencia Arquitect&oacute;nica (v6.0)</h3>
 <table>
   <thead><tr><td>Mecanismo</td><td>Descripci&oacute;n</td><td>Estado</td></tr></thead>
@@ -842,9 +732,9 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>Meta-skip</strong></td><td>DIA recuerda archivos problem&aacute;ticos y evita reintentos costosos. Reduce consumo de recursos y previene bucles de error.</td><td>OPERATIVO</td></tr>
     <tr><td><strong>Escritura At&oacute;mica</strong></td><td>Archivos JSON de conocimiento se escriben con protocolo: write-tmp &rarr; fsync &rarr; rename-at&oacute;mico. Previene corrupci&oacute;n en interrupciones.</td><td>OPERATIVO</td></tr>
     <tr><td><strong>action_audit.jsonl</strong></td><td>Todas las acciones de DIA quedan registradas con timestamp, tipo, contexto y resultado. Trazabilidad completa para auditor&iacute;as.</td><td>OPERATIVO</td></tr>
+    <tr><td><strong>Watchdog de proceso &uacute;nico</strong></td><td>Watchdog Python interno con periodo de gracia y umbral de fallos consecutivos; reemplaza mecanismo previo m&aacute;s propenso a condiciones de carrera en el arranque.</td><td>OPERATIVO</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">12.5</span> Trazabilidad</h3>
 <table>
   <thead><tr><td>ID</td><td>Amenaza</td><td>Protecci&oacute;n</td></tr></thead>
@@ -855,12 +745,17 @@ Linear(32 -> 5) -> Softmax
     <tr><td>T10</td><td>Manipulaci&oacute;n de alertas zonales</td><td>Alertas en audit_log con timestamp + hash de evidencia</td></tr>
     <tr><td>T11</td><td>Corrupci&oacute;n JSON conocimiento</td><td>Escritura at&oacute;mica (write-tmp &rarr; fsync &rarr; rename)</td></tr>
     <tr><td>T12</td><td>Cascada de fallos por archivos problem&aacute;ticos</td><td>Meta-skip + circuit breaker mitigado</td></tr>
+    <tr><td>T13</td><td>Elevaci&oacute;n de privilegios en tarea de arranque autom&aacute;tico</td><td>Ver &sect;12.6 &mdash; corregido 18/08/2026</td></tr>
   </tbody>
 </table>
+<h3><span class="sn2">12.6</span> Hallazgo y Correcci&oacute;n: Cuenta de Servicio del Proceso de Arranque</h3>
+<div class="callout cw">
+  <div class="ct">Hallazgo de seguridad &mdash; corregido</div>
+  <p>Durante una auditor&iacute;a interna del 17&ndash;18/08/2026 se identific&oacute; que la tarea programada de Windows responsable de iniciar autom&aacute;ticamente el Brain Server (<code>DENCO_BrainServer</code>) estaba configurada para ejecutarse con la cuenta <strong>SYSTEM</strong>, el nivel de privilegio m&aacute;s alto disponible en Windows. Dado que este proceso expone un servidor HTTP en todas las interfaces de red (<code>0.0.0.0:5001</code>), ejecuta scraping web autom&aacute;tico y aplica cambios de c&oacute;digo mediante el pipeline de auto-refactor, correr bajo SYSTEM representaba una superficie de riesgo desproporcionada: cualquier vulnerabilidad en el proceso habr&iacute;a otorgado control total del sistema operativo, no solo de la aplicaci&oacute;n.</p>
+  <p style="margin-bottom:0"><strong>Correcci&oacute;n aplicada:</strong> la tarea fue reconfigurada para ejecutarse bajo una cuenta de servicio de privilegios est&aacute;ndar (no SYSTEM). Verificado post-correcci&oacute;n con un reinicio completo del servidor: <code>schtasks /query</code> confirma la cuenta correcta activa, y el Brain Server, el motor LLM local y el motor DIA arrancan correctamente sin intervenci&oacute;n manual bajo la nueva configuraci&oacute;n.</p>
+</div>
+<p style="font-size:13px;color:var(--text-muted)"><em>Mejoras identificadas pendientes de implementaci&oacute;n: (a) migraci&oacute;n del Brain Server del servidor de desarrollo de Flask/Werkzeug a un servidor WSGI de producci&oacute;n; (b) eliminaci&oacute;n de credenciales embebidas en texto plano en scripts de instalaci&oacute;n hist&oacute;ricos (ya archivados, no en uso); (c) revisi&oacute;n del uso de verificaci&oacute;n SSL deshabilitada (<code>CERT_NONE</code>) en la integraci&oacute;n de correo electr&oacute;nico de DIA.</em></p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 13. VALIDACION                                              -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">13</span>Validaci&oacute;n y Estado Regulatorio</h2>
 <h3><span class="sn2">13.1</span> Clasificaci&oacute;n</h3>
 <p><strong>SaMD Clase II</strong> (riesgo moderado). Riesgo residual: BAJO &mdash; no invasivo, no administra tratamiento, diagn&oacute;stico final lo da el m&eacute;dico.</p>
@@ -885,10 +780,8 @@ Linear(32 -> 5) -> Softmax
   <li>El seguimiento longitudinal es orientativo; <strong>NO reemplaza</strong> evaluaci&oacute;n cl&iacute;nica presencial</li>
   <li>El agente DIA opera con supervisi&oacute;n humana; la Pol&iacute;tica de Descenso de Autonom&iacute;a garantiza control en todo momento</li>
 </ol>
-
 <h3><span class="sn2">13.5</span> Cumplimiento AI Act Europeo (v6.0)</h3>
 <div class="callout cs"><div class="ct">Regulation-Ready</div><p style="margin-bottom:0">DENCO cumple con los requisitos fundamentales del AI Act Europeo: <strong>transparencia</strong> (documentaci&oacute;n completa), <strong>trazabilidad</strong> (action_audit.jsonl + audit_log), <strong>supervisi&oacute;n humana</strong> (Pol&iacute;tica de Descenso de Nivel de Autonom&iacute;a) y <strong>gobernanza de datos</strong> (escritura at&oacute;mica + RBAC + SIEM).</p></div>
-
 <table>
   <thead><tr><td>Pilar AI Act</td><td>Implementaci&oacute;n en DENCO</td><td>Estado</td></tr></thead>
   <tbody>
@@ -898,14 +791,13 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>Gobernanza de datos</strong></td><td>Escritura at&oacute;mica, RBAC, SHA-256, SIEM (Loki+Grafana).</td><td style="color:var(--success)">IMPLEMENTADO</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">13.6</span> Estado Cumplimiento</h3>
 <table>
   <thead><tr><td>Requisito</td><td>Estado</td></tr></thead>
   <tbody>
-    <tr><td>Documentaci&oacute;n t&eacute;cnica</td><td style="color:var(--success)">COMPLETADA (v6.0)</td></tr>
-    <tr><td>Suite tests (440+ / 29 suites)</td><td style="color:var(--success)">VERIFICADA (29/0 PASSED)</td></tr>
-    <tr><td>Seguridad</td><td style="color:var(--success)">IMPLEMENTADA + MITIGACIONES</td></tr>
+    <tr><td>Documentaci&oacute;n t&eacute;cnica</td><td style="color:var(--success)">COMPLETADA (v6.1)</td></tr>
+    <tr><td>Suite tests</td><td style="color:var(--success)">REESCRITA con aserciones verificables (&sect;15.1)</td></tr>
+    <tr><td>Seguridad</td><td style="color:var(--success)">IMPLEMENTADA + hallazgo cr&iacute;tico corregido (&sect;12.6)</td></tr>
     <tr><td>Protecci&oacute;n datos</td><td style="color:var(--success)">IMPLEMENTADA</td></tr>
     <tr><td>SBOM formal</td><td style="color:var(--success)">COMPLETADO</td></tr>
     <tr><td>Protocolo bioseguridad</td><td style="color:var(--success)">DOCUMENTADO</td></tr>
@@ -915,7 +807,7 @@ Linear(32 -> 5) -> Softmax
     <tr><td>Cumplimiento AI Act</td><td style="color:var(--success)">REGULATION-READY</td></tr>
     <tr><td>Pol&iacute;tica Descenso Autonom&iacute;a</td><td style="color:var(--success)">DOCUMENTADA</td></tr>
     <tr><td>Matriz Riesgos IA</td><td style="color:var(--success)">DOCUMENTADA</td></tr>
-    <tr><td>Fixes Cumplimiento</td><td style="color:var(--success)">REGISTRADOS</td></tr>
+    <tr><td>Fixes Cumplimiento</td><td style="color:var(--success)">REGISTRADOS (&sect;Anexo G)</td></tr>
     <tr><td>Ensayo cl&iacute;nico</td><td style="color:#f57f17">PLANIFICADO</td></tr>
     <tr><td>Comit&eacute; de &Eacute;tica</td><td style="color:#f57f17">PENDIENTE</td></tr>
     <tr><td style="font-weight:700">Registro DET/MSP</td><td style="font-weight:700;color:var(--critical)">PENDIENTE</td></tr>
@@ -924,9 +816,6 @@ Linear(32 -> 5) -> Softmax
 <h3><span class="sn2">13.7</span> Normativas</h3>
 <p>Decreto 3/2008, 7/2001. Ley 18.331, 18.335. IMDRF N43/N60/N73/N81. FDA 524B. ISO 13485. IEC 62304. ISO 5167-4, 13138. DICOM PS3.3. HL7 FHIR R4. <strong>AI Act Europeo (Reglamento (UE) 2024/1689).</strong></p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 14. LIMITACIONES                                            -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">14</span>Limitaciones Conocidas y Transparencia Regulatoria</h2>
 <h3><span class="sn2">14.1</span> Domain Shift</h3>
 <div class="callout cc"><div class="ct">Limitaci&oacute;n mas importante</div><p style="margin-bottom:0">Modelo entrenado con GC-MS, MOx 6/8 canales, PTR-TOF-MS &mdash; <strong>NO BME688</strong>. Accuracy 96.9% es optimista. Mitigaci&oacute;n: Reentrenamiento con cohorte propia BME688.</p></div>
@@ -938,7 +827,9 @@ Linear(32 -> 5) -> Softmax
 <p>Los umbrales de alerta geogr&aacute;fica est&aacute;n validados arquitect&oacute;nicamente pero no calibrados contra datos reales de despliegue multi-sitio.</p>
 <h3><span class="sn2">14.5</span> Umbrales Longitudinales</h3>
 <p>El multiplicador MAD (2&times;) y los umbrales de significancia de tendencia est&aacute;n establecidos heur&iacute;sticamente y requieren validaci&oacute;n con trayectorias reales.</p>
-<h3><span class="sn2">14.6</span> Items Resueltos en v6.0</h3>
+<h3><span class="sn2">14.6</span> Base de Conocimiento: Categorizaci&oacute;n Autom&aacute;tica</h3>
+<p>Se detectaron casos de contenido ingerido por scraping autom&aacute;tico categorizado incorrectamente (p. ej. contenido no t&eacute;cnico clasificado bajo categor&iacute;as de programaci&oacute;n). No se considera cr&iacute;tico para el funcionamiento del sistema, pero se recomienda una auditor&iacute;a de categorizaci&oacute;n antes de usar el grafo de conceptos como fuente para decisiones de priorizaci&oacute;n de aprendizaje aut&oacute;nomo.</p>
+<h3><span class="sn2">14.7</span> Items Resueltos</h3>
 <div class="callout cs"><div class="ct">Resueltos</div>
   <p><strong>SBOM formal:</strong> Completado.</p>
   <p><strong>PDF parsing (Fix #29):</strong> Corregido.</p>
@@ -947,29 +838,28 @@ Linear(32 -> 5) -> Softmax
   <p><strong>Circuit Breaker mitigado:</strong> Ya no colapsa por fallos aislados (&ge;3 fallos o &ge;25% tests).</p>
   <p><strong>Escritura at&oacute;mica JSON:</strong> Protocolo write-tmp &rarr; fsync &rarr; rename implementado.</p>
   <p><strong>Meta-skip DIA:</strong> Archivos problem&aacute;ticos registrados y evitados en ciclos posteriores.</p>
-  <p><strong>DIA Agente Aut&oacute;nomo L4:</strong> 300+ ciclos aut&oacute;nomos, score 94.6/100, action_audit.jsonl operativo.</p>
+  <p><strong>DIA Agente Aut&oacute;nomo L4:</strong> 300+ ciclos aut&oacute;nomos, score 94.5/100, action_audit.jsonl operativo.</p>
   <p><strong>AI Act Europeo:</strong> Regulation-Ready &mdash; transparencia, trazabilidad, supervisi&oacute;n humana, gobernanza de datos.</p>
-  <p style="margin-bottom:0"><strong>Fix test_ingest_counts_duplicates:</strong> Umbral de relevancia aislado &rarr; 29/0 PASSED, eliminando falsas se&ntilde;ales de degradaci&oacute;n.</p>
+  <p><strong>Cuenta de servicio del proceso de arranque:</strong> Corregida de SYSTEM a cuenta de privilegios est&aacute;ndar (&sect;12.6).</p>
+  <p><strong>Watchdog de disponibilidad:</strong> Reescrito como proceso Python interno, verificado contra reinicio completo.</p>
+  <p style="margin-bottom:0"><strong>Suite de tests:</strong> Reescrita para reemplazar aserciones incapaces de fallar por verificaciones de tipo y valor de retorno (&sect;15.1).</p>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 15. RENDIMIENTO                                             -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">15</span>Rendimiento y Pruebas Operativas</h2>
 <h3><span class="sn2">15.1</span> Tests</h3>
+<div class="callout cw">
+  <div class="ct">Revisi&oacute;n de metodolog&iacute;a de testing (18/08/2026)</div>
+  <p>Una auditor&iacute;a interna identific&oacute; que una parte sustancial de la suite de tests generados autom&aacute;ticamente (m&oacute;dulo <code>RealTestGenerator</code>, ~25 archivos) utilizaba un patr&oacute;n de aserci&oacute;n <code>assertTrue(True)</code> combinado con captura gen&eacute;rica de excepciones, que no pod&iacute;a fallar bajo ninguna condici&oacute;n. El n&uacute;mero hist&oacute;rico de &ldquo;440+ tests, 29 suites/0 fallos&rdquo; reportado en versiones previas de este documento reflejaba en parte esta limitaci&oacute;n y se retira como m&eacute;trica de cumplimiento hasta reconstruir una cifra verificada extremo a extremo.</p>
+  <p style="margin-bottom:0"><strong>Correcci&oacute;n aplicada:</strong> el generador fue reescrito para inferir aserciones reales seg&uacute;n el tipo de m&eacute;todo (getters &rarr; <code>assertIsNotNone</code> / tipo de retorno; modificadores de estado &rarr; verificaci&oacute;n de valor truthy; casos no inferibles &rarr; skip expl&iacute;cito con motivo documentado, no aserci&oacute;n falsa). Validado con una prueba de aceptaci&oacute;n: un m&eacute;todo modificado deliberadamente para retornar un valor incorrecto fue detectado por el nuevo test.</p>
+</div>
 <table>
-  <thead><tr><td> M&eacute;trica</td><td>Valor (v5.6.0)</td><td>Valor (v6.0)</td></tr></thead>
+  <thead><tr><td>Suite</td><td>Descripci&oacute;n</td><td>Resultado (18/08/2026)</td></tr></thead>
   <tbody>
-    <tr><td>Total recolectados</td><td>440</td><td>440+</td></tr>
-    <tr><td>Pasando</td><td>408</td><td><strong>29 suites / 0 fallos</strong></td></tr>
-    <tr><td>Skipped</td><td>4 (requieren i7)</td><td>&mdash;</td></tr>
-    <tr><td>Fallando</td><td>0</td><td><strong>0</strong></td></tr>
-    <tr><td>Ciclos aut&oacute;nimos L4</td><td>&mdash;</td><td><strong>300+</strong></td></tr>
-    <tr><td>Score estabilidad</td><td>&mdash;</td><td><strong>94.6/100</strong></td></tr>
+    <tr><td>Smoke tests estructurales</td><td>Validaci&oacute;n de sintaxis y compilaci&oacute;n de m&oacute;dulos (60 archivos)</td><td>60/60 v&aacute;lidos, 29/29 passing</td></tr>
+    <tr><td>Tests de comportamiento (nuevo)</td><td>Aserciones sobre tipo y valor de retorno real, generados por m&oacute;dulo reescrito</td><td>119 tests: 45 passed, 12 en triage (posibles falsos positivos por datos de prueba gen&eacute;ricos), 62 requieren mock de red pendiente</td></tr>
   </tbody>
 </table>
-<div class="callout ci"><div class="ct">Fix cr&iacute;tico aplicado</div><p style="margin-bottom:0">El test <code>test_ingest_counts_duplicates</code> produc&iacute;a falsas se&ntilde;ales de degradaci&oacute;n al mezclar el umbral de relevancia con la l&oacute;gica de conteo. El fix aisl&oacute; el umbral, resultando en 29 suites/0 fallos y eliminando ruido en reportes de calidad.</p></div>
-
+<p style="font-size:13px;color:var(--text-muted)"><em>Los 12 casos marcados &ldquo;en triage&rdquo; est&aacute;n pendientes de confirmaci&oacute;n manual contra una instancia con datos reales antes de clasificarse como defectos de producci&oacute;n; parte de ellos son atribuibles a argumentos gen&eacute;ricos de prueba (<code>MagicMock</code>) en lugar de fallas del c&oacute;digo evaluado.</em></p>
 <h3><span class="sn2">15.2</span> Seguridad (i7)</h3>
 <table>
   <thead><tr><td>Test</td><td>Resultado</td><td>Evidencia</td></tr></thead>
@@ -980,17 +870,14 @@ Linear(32 -> 5) -> Softmax
     <tr><td>Security Headers</td><td>PASS</td><td>HSTS, CSP</td></tr>
     <tr><td>Circuit Breaker mitigado</td><td>PASS</td><td>No colapsa por fallo aislado</td></tr>
     <tr><td>Escritura at&oacute;mica</td><td>PASS</td><td>JSON sin corrupci&oacute;n</td></tr>
+    <tr><td>Cuenta de servicio (arranque)</td><td>CORREGIDO</td><td>SYSTEM &rarr; cuenta est&aacute;ndar, verificado en reinicio real (&sect;12.6)</td></tr>
   </tbody>
 </table>
 <h3><span class="sn2">15.3</span> Carga (i7)</h3>
-<p>30 clientes, throughput ~32 req/s, latencia m&iacute;nima 29-35 ms. 25 DENCOs IPs distintas: ~57 req/s (205.200/hora). Margen 27x.</p>
+<p>30 clientes, throughput ~32 req/s, latencia m&iacute;nima 29-35 ms. 25 DENCOs IPs distintas: ~57 req/s (205.200/hora). Margen 27x. <em>Nota: medido sobre servidor de desarrollo Werkzeug; cifras a reconfirmar tras eventual migraci&oacute;n a WSGI de producci&oacute;n.</em></p>
+<h3><span class="sn2">15.4</span> Estabilidad del Sistema</h3>
+<p>El sistema ha operado a lo largo de m&aacute;s de 300 ciclos aut&oacute;nomos L4, manteniendo un score cercano a 94.5/100. El 18/08/2026 se verific&oacute; por primera vez el comportamiento del sistema completo (Brain Server, LLM local, motor DIA, watchdog) tras un reinicio total de la m&aacute;quina de producci&oacute;n, confirmando arranque aut&oacute;nomo correcto bajo la cuenta de servicio corregida.</p>
 
-<h3><span class="sn2">15.4</span> Estabilidad del Sistema (v6.0)</h3>
-<p>El sistema ha demostrado una estabilidad excepcional a lo largo de m&aacute;s de 300 ciclos aut&oacute;nimos L4, manteniendo un score de 94.6/100 y aplicando auto-refactors sin errores. DIA ha eliminado autom&aacute;ticamente imports no utilizados, optimizado rutas de archivos y corregido inconsistencias menores sin intervenci&oacute;n humana.</p>
-
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 16. DIFERENCIADORES                                         -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">16</span>Diferenciadores</h2>
 <table>
   <thead><tr><td>Caracter&iacute;stica</td><td>DENCO</td><td>Tradicional</td></tr></thead>
@@ -1007,9 +894,6 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 17. PROXIMOS PASOS                                          -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">17</span>Pr&oacute;ximos Pasos, Validaci&oacute;n y Cronograma</h2>
 <h3><span class="sn2">17.1</span> Plan Validaci&oacute;n Cl&iacute;nica</h3>
 <table>
@@ -1021,6 +905,8 @@ Linear(32 -> 5) -> Softmax
     <tr><td>4</td><td>Calibrar umbrales zonales con datos multi-sitio</td><td>PENDIENTE</td></tr>
     <tr><td>5</td><td>Validar umbrales longitudinales (&ge;5 mediciones/paciente/&ge;90 d)</td><td>PENDIENTE</td></tr>
     <tr><td>6</td><td>Calibrar umbrales autonom&iacute;a DIA con datos operativos reales</td><td>PENDIENTE</td></tr>
+    <tr><td>7</td><td>Migrar Brain Server a WSGI de producci&oacute;n</td><td>PENDIENTE</td></tr>
+    <tr><td>8</td><td>Auditar desglose trivial/genuino de cruces de dominio en grafo de conceptos</td><td>PENDIENTE</td></tr>
   </tbody>
 </table>
 <h3><span class="sn2">17.2</span> Cronograma</h3>
@@ -1031,9 +917,6 @@ Linear(32 -> 5) -> Softmax
 <span class="hl">2027 Q1-Q2:</span> Registro sanitario ante DET/MSP
 <span class="hl">2027 Q2+:</span>   Despliegue comercial</div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 18. REFERENCIAS                                             -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">18</span>Referencias</h2>
 <h3>Literatura</h3>
 <ol>
@@ -1059,9 +942,6 @@ Linear(32 -> 5) -> Softmax
   <li>Reglamento (UE) 2024/1689 &mdash; AI Act Europeo.</li>
 </ol>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 19. BIOSEGURIDAD                                            -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">19</span>Protocolo de Bioseguridad y Recambio Operativo</h2>
 <h3><span class="sn2">19.1</span> Sistema de Barrera Sanitaria (3 Capas)</h3>
 <table>
@@ -1084,9 +964,6 @@ Linear(32 -> 5) -> Softmax
 <h3><span class="sn2">19.3</span> Criterios de Rotaci&oacute;n</h3>
 <p><strong>Por paciente:</strong> Cada ciclo requiere funda nueva. <strong>Rotaci&oacute;n din&aacute;mica por alertas:</strong> Clasificaciones consecutivas de riesgo alto o Clase 4 &rarr; cambio del kit boquilla-filtro. <strong>Cierre de jornada:</strong> Esterilizaci&oacute;n de todas las boquillas y mallas acumuladas (IPA 70% o autoclave).</p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- 20. GLOSARIO                                                -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">20</span>Glosario de T&eacute;rminos</h2>
 <table>
   <thead><tr><td>T&eacute;rmino</td><td>Definici&oacute;n</td></tr></thead>
@@ -1127,12 +1004,10 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>Carry-over</strong></td><td>Acumulaci&oacute;n residual de VOCs que distorsiona mediciones</td></tr>
     <tr><td><strong>SBOM</strong></td><td>Software Bill of Materials</td></tr>
     <tr><td><strong>Quick-Lock</strong></td><td>Mecanismo desacople boquilla medio giro (180&deg;)</td></tr>
+    <tr><td><strong>WSGI</strong></td><td>Web Server Gateway Interface &mdash; interfaz est&aacute;ndar para servidores Python de producci&oacute;n (alternativa al servidor de desarrollo de Flask)</td></tr>
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO A                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO A</span>Instrucciones de Preparaci&oacute;n para el Paciente</h2>
 <table>
   <thead><tr><td>Factor</td><td>Restricci&oacute;n</td><td>Detalles</td></tr></thead>
@@ -1146,23 +1021,14 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO B                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO B</span>Consentimiento Informado &mdash; Uruguay (Ley 18.335)</h2>
 <p><strong>Versi&oacute;n 3.2 &mdash; 2026.</strong> El Sistema DENCO es un dispositivo no invasivo que analiza el aire exhalado. Car&aacute;cter de INVESTIGACI&Oacute;N y APOYO DIAGN&Oacute;STICO. NO reemplaza pruebas convencionales. Marco legal: Arts. 11, 12, 17 Ley 18.335.</p>
 <p><em>(Documento completo de consentimiento disponible por separado.)</em></p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO C                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO C</span>SBOM &mdash; Software Bill of Materials</h2>
 <p>CycloneDX-compatible. ~45 paquetes Python + 3 infraestructura + 1 modelo + 2 sensores. Riesgo de licenciamiento: <strong>BAJO</strong>.</p>
 <p><em>(Lista completa disponible en documento t&eacute;cnico detallado.)</em></p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO D                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO D</span>Glosario de Supervisi&oacute;n Geogr&aacute;fica y Longitudinal</h2>
 <table>
   <thead><tr><td>T&eacute;rmino</td><td>Definici&oacute;n</td></tr></thead>
@@ -1181,15 +1047,10 @@ Linear(32 -> 5) -> Softmax
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO E                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO E</span>Pol&iacute;tica de Descenso de Nivel de Autonom&iacute;a de DIA</h2>
 <p><em>Documento formal: POLITICA_DESCENSO_NIVEL_AUTONOMIA_DIA_20260811.md</em></p>
-
 <h3><span class="sn2">E.1</span> Prop&oacute;sito</h3>
 <p>Establecer las condiciones, mecanismos y procedimientos bajo los cuales DIA reduce su nivel de autonom&iacute;a operativa (L4 &rarr; L3 &rarr; L2 &rarr; L1) ante condiciones adversas, garantizando la supervisi&oacute;n humana como red de seguridad permanente.</p>
-
 <h3><span class="sn2">E.2</span> Niveles de Autonom&iacute;a</h3>
 <table>
   <thead><tr><td>Nivel</td><td>Nombre</td><td>Capacidades</td><td>Condiciones de Descenso</td></tr></thead>
@@ -1200,19 +1061,13 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>L1</strong></td><td>Manual</td><td>Solo observaci&oacute;n y reporte. Sin acciones aut&oacute;nomas.</td><td>&mdash; (nivel m&iacute;nimo)</td></tr>
   </tbody>
 </table>
-
 <h3><span class="sn2">E.3</span> Mecanismo del Circuit Breaker</h3>
 <div class="callout cw"><div class="ct">Regla del circuit breaker mitigado</div><p style="margin-bottom:0">El circuit breaker <strong>NO se activa</strong> por un fallo aislado. Requiere: (a) &ge;3 fallos consecutivos en operaciones de DIA, o (b) &ge;25% de tests fallidos en un ciclo de evaluaci&oacute;n. Esto previene descensos innecesarios por errores transitorios.</p></div>
-
 <h3><span class="sn2">E.4</span> Restauraci&oacute;n de Autonom&iacute;a</h3>
 <p>La restauraci&oacute;n de nivel requiere: (a) resoluci&oacute;n documentada de la causa ra&iacute;z, (b) &ge;10 ciclos operativos sin fallos en el nivel actual, (c) aprobaci&oacute;n expl&iacute;cita del propietario del sistema (Nivel 3 RBAC).</p>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO F                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO F</span>Matriz de Riesgos de IA para DENCO</h2>
 <p><em>Documento formal: MATRIZ_RIESGOS_IA_DENCO_20260811.md</em></p>
-
 <table>
   <thead><tr><td>Riesgo</td><td>Probabilidad</td><td>Impacto</td><td>Mitigaci&oacute;n</td><td>Estado</td></tr></thead>
   <tbody>
@@ -1224,15 +1079,12 @@ Linear(32 -> 5) -> Softmax
     <tr><td><strong>Adversarios en muestras</strong></td><td>Baja</td><td>Medio</td><td>Validaci&oacute;n IQM, filtros de calidad, contraindicaciones</td><td>Mitigado</td></tr>
     <tr><td><strong>Exposici&oacute;n de datos</strong></td><td>Baja</td><td>Cr&iacute;tico</td><td>SHA-256, RBAC, JWT, SIEM, geohash k=5</td><td>Mitigado</td></tr>
     <tr><td><strong>Falsa confianza cl&iacute;nica</strong></td><td>Media</td><td>Alto</td><td>Advertencias regulatorias, pre-tamizaje expl&iacute;cito, supervisi&oacute;n m&eacute;dica obligatoria</td><td>Mitigado</td></tr>
+    <tr><td><strong>Elevaci&oacute;n de privilegios en proceso de arranque</strong></td><td>Baja (corregido)</td><td>Cr&iacute;tico</td><td>Cuenta de servicio de privilegios est&aacute;ndar en lugar de SYSTEM (&sect;12.6)</td><td>Mitigado 18/08/2026</td></tr>
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- ANEXO G                                                     -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">ANEXO G</span>Registro de Fixes de Cumplimiento y Mitigaci&oacute;n</h2>
 <p><em>Documento formal: FIXES_CUMPLIMIENTO_NORMAS_MITIGACION_20260811.md</em></p>
-
 <table class="vt">
   <thead><tr><td>Fecha</td><td>Fix</td><td>Descripci&oacute;n</td><td>Requisito</td></tr></thead>
   <tbody>
@@ -1248,12 +1100,14 @@ Linear(32 -> 5) -> Softmax
     <tr><td>2026-08</td><td>Matriz Riesgos</td><td>Mapeo de riesgos IA con mitigaciones</td><td>AI Act / Gobernanza</td></tr>
     <tr><td>2026-08</td><td>Fix test duplicates</td><td>Aislamiento umbral relevancia en test_ingest_counts_duplicates</td><td>Calidad tests</td></tr>
     <tr><td>2026-08</td><td>AI Act Compliance</td><td>Verificaci&oacute;n: transparencia + trazabilidad + supervisi&oacute;n + gobernanza</td><td>Reglamento (UE) 2024/1689</td></tr>
+    <tr><td><strong>2026-08-18</strong></td><td><strong>Fix acentos en detecci&oacute;n de intenci&oacute;n</strong></td><td>Normalizaci&oacute;n Unicode (NFD) en <code>_detect_intent</code>; corrige fallos de reconocimiento de saludo/consulta con tildes correctas ("&iquest;C&oacute;mo est&aacute;s?", "&iquest;Qui&eacute;n eres?")</td><td>Calidad conversacional</td></tr>
+    <tr><td><strong>2026-08-18</strong></td><td><strong>Cuenta de servicio de arranque</strong></td><td>Tarea programada <code>DENCO_BrainServer</code> corregida de SYSTEM a cuenta de privilegios est&aacute;ndar; verificado en reinicio completo</td><td>Seguridad / AI Act / Gobernanza</td></tr>
+    <tr><td><strong>2026-08-18</strong></td><td><strong>Watchdog de disponibilidad reescrito</strong></td><td>Mecanismo previo basado en tareas <code>schtasks</code> duplicadas reemplazado por watchdog Python interno (grace period 300s, umbral 3 fallos)</td><td>Resiliencia / Continuidad</td></tr>
+    <tr><td><strong>2026-08-18</strong></td><td><strong>Consolidaci&oacute;n de scripts de arranque</strong></td><td>Reducci&oacute;n de m&uacute;ltiples scripts de arranque/reinicio redundantes (incluyendo uno con credencial embebida en texto plano) a dos rutas &uacute;nicas autorizadas</td><td>Higiene operativa / Seguridad</td></tr>
+    <tr><td><strong>2026-08-18</strong></td><td><strong>RealTestGenerator reescrito</strong></td><td>Reemplazo de patr&oacute;n <code>assertTrue(True)</code> gen&eacute;rico por aserciones inferidas seg&uacute;n tipo de m&eacute;todo; validado con prueba de aceptaci&oacute;n</td><td>Calidad tests / AI Act (transparencia)</td></tr>
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- HISTORIAL                                                   -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">HISTORIAL</span>Historial de Versiones</h2>
 <table class="vt">
   <thead><tr><td>Version</td><td>Fecha</td><td>Cambios</td></tr></thead>
@@ -1263,13 +1117,11 @@ Linear(32 -> 5) -> Softmax
     <tr><td>3.0</td><td>Julio 2026</td><td>Resumen ejecutivo, rendimiento separado, diagrama flujo, glosario</td></tr>
     <tr><td>4.0</td><td>Julio 2026</td><td>SBOM formal | Fix #29 | Bioseguridad 3 capas | Anexo A y B</td></tr>
     <tr><td>5.0</td><td>Julio 2026</td><td>3 escalas de vigilancia | Supervisi&oacute;n zonal | Seguimiento longitudinal | Pesta&ntilde;a Geograf&iacute;a | Panel longitudinal | Anexo D | Amenazas T09-T10 | Logo DENCO integrado</td></tr>
-    <tr><td><strong>6.0</strong></td><td><strong>Agosto 2026</strong></td><td><strong>DIA Agente Aut&oacute;nomo L4 (300+ ciclos, 94.6/100) | Circuit Breaker mitigado | Escritura at&oacute;mica | Meta-skip | action_audit.jsonl | AI Act Regulation-Ready | Matriz Riesgos IA | Pol&iacute;tica Descenso Autonom&iacute;a | Fixes Cumplimiento | Anexos E, F, G | 440+ tests, 29 suites/0 fallos</strong></td></tr>
+    <tr><td>6.0</td><td>Agosto 2026</td><td>DIA Agente Aut&oacute;nomo L4 (300+ ciclos, 94.6/100) | Circuit Breaker mitigado | Escritura at&oacute;mica | Meta-skip | action_audit.jsonl | AI Act Regulation-Ready | Matriz Riesgos IA | Pol&iacute;tica Descenso Autonom&iacute;a | Fixes Cumplimiento | Anexos E, F, G | 440+ tests, 29 suites/0 fallos</td></tr>
+    <tr><td><strong>6.1</strong></td><td><strong>18/08/2026</strong></td><td><strong>Correcci&oacute;n de IP de producci&oacute;n | Hallazgo y fix de cuenta de servicio SYSTEM&rarr;est&aacute;ndar (&sect;12.6) | Watchdog interno reescrito y verificado en reinicio real | RealTestGenerator reescrito, m&eacute;trica de tests hist&oacute;rica retirada y reemplazada por cifra verificada (&sect;15.1) | Consolidaci&oacute;n de scripts de arranque | Fix normalizaci&oacute;n de acentos en detecci&oacute;n de intenci&oacute;n conversacional | Base de conocimiento actualizada a 31.361 textos | Nueva fila T13 en matriz de amenazas | Limitaci&oacute;n de categorizaci&oacute;n autom&aacute;tica documentada (&sect;14.6)</strong></td></tr>
   </tbody>
 </table>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- FIRMAS                                                      -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <h2><span class="sn">FIRMAS</span>Firma de los Responsables</h2>
 <div class="sig">
   <div class="sig-b">
@@ -1286,18 +1138,15 @@ Linear(32 -> 5) -> Softmax
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════ -->
-<!-- FOOTER                                                      -->
-<!-- ════════════════════════════════════════════════════════════ -->
 <div class="footer">
   <div class="footer-logo">
     <img src="logo.png" alt="DENCO">
   </div>
-  <p style="margin-top:12px">DENCO v6.0 &mdash; Documento T&eacute;cnico v6.0</p>
+  <p style="margin-top:12px">DENCO v6.1 &mdash; Documento T&eacute;cnico v6.1</p>
   <p>DENCO Industrias &mdash; Paysand&uacute;, Uruguay</p>
   <p>Expediente regulatorio para registro ante DET / MSP<br>Rep&uacute;blica Oriental del Uruguay</p>
   <p style="margin-top:8px">Regulation-Ready &mdash; AI Act Europeo (Reglamento UE 2024/1689)</p>
-  <p style="margin-top:12px"><strong>Fecha de emisi&oacute;n:</strong> 11/08/2026</p>
+  <p style="margin-top:12px"><strong>Fecha de emisi&oacute;n original:</strong> 11/08/2026 &mdash; <strong>&Uacute;ltima revisi&oacute;n:</strong> 18/08/2026</p>
 </div>
 
 </div>
