@@ -1,38 +1,65 @@
-# DENCO - Sistema de Detecci�n de Efecto Warburg en Aliento
+# DENCO - Sistema de Detección de Efecto Warburg en Aliento
 
-Sistema no invasivo para detecci�n temprana de alteraciones metab�licas asociadas a c�ncer mediante an�lisis de VOC (Compuestos Org�nicos Vol�tiles) en aire exhalado.
+Sistema no invasivo para detección temprana de alteraciones metabólicas asociadas a cáncer mediante análisis de VOC (Compuestos Orgánicos Volátiles) en aire exhalado.
 
-## Caracter�sticas Principales
+## Características Principales
 
-- **Hardware**: Arduino con sensores BME280 (temp/humedad/presi�n) y CCS811 (TVOC/eCO2)
-- **Fisiolog�a**: Clasificaci�n ISO 13138 (espacio muerto vs fracci�n alveolar)
-- **Machine Learning**: Clustering KMeans para detecci�n de patrones an�malos (Efecto Warburg)
-- **Base de Datos**: PostgreSQL con geolocalizaci�n de pacientes
-- **Interfaz**: GUI en Tkinter con visualizaci�n en tiempo real
-- **Reportes**: Generaci�n de PDFs con an�lisis ISO 16000-9
+- **Hardware**: Arduino con sensores BME280 (temp/humedad/presión) y CCS811 (TVOC/eCO2)
+- **Fisiología**: Clasificación ISO 13138 (espacio muerto vs fracción alveolar)
+- **Machine Learning**: Clustering KMeans para detección de patrones anómalos (Efecto Warburg)
+- **Base de Datos**: PostgreSQL con geolocalización de pacientes
+- **Interfaz**: GUI en Tkinter con visualización en tiempo real
+- **Reportes**: Generación de PDFs con análisis ISO 16000-9
 
 ## Estructura del Proyecto
 
-- `captura_serial.py` - Comunicaci�n con Arduino y captura de muestras
-- `database_manager.py` - Gesti�n de PostgreSQL (pacientes, sesiones, geolocalizaci�n)
+- `captura_serial.py` - Comunicación con Arduino y captura de muestras
+- `database_manager.py` - Gestión de PostgreSQL (pacientes, sesiones, geolocalización)
 - `modelo_ia.py` - Cliente del servidor de IA (KMeans)
-- `buscador_dialog.py` - Interfaz de b�squeda y seguimiento longitudinal
-- `analisis_evolucion.py` - An�lisis de tendencias y predicciones
-- `pdf_generator.py` - Generaci�n de reportes t�cnicos
-- `visualizador.py` - Gr�ficos y correlaciones
-- `arduinov2.cpp` - C�digo Arduino (clasificaci�n volum�trica ISO 13138)
+- `buscador_dialog.py` - Interfaz de búsqueda y seguimiento longitudinal
+- `analisis_evolucion.py` - Análisis de tendencias y predicciones
+- `pdf_generator.py` - Generación de reportes técnicos
+- `visualizador.py` - Gráficos y correlaciones
+- `arduinov2.cpp` - Código Arduino (clasificación volumétrica ISO 13138)
 
-## Instalaci�n
+## Instalación
 
 1. Clonar repositorio
 2. Copiar `config.py.example` a `config.py` y configurar
 3. Instalar dependencias: `pip install -r requirements.txt`
 4. Ejecutar: `python buscador_dialog.py` (o el entry point principal)
 
-## Documentaci�n
+## Documentación
 
-Ver `DOCUMENTO T�CNICO DENCO.pdf` para especificaciones completas, fundamentos cient�ficos del Efecto Warburg y metodolog�as ISO.
+Ver `DOCUMENTO TÉCNICO DENCO.pdf` para especificaciones completas, fundamentos científicos del Efecto Warburg y metodologías ISO.
 
 ## Advertencia Importante
 
-Este es un sistema de **investigaci�n y desarrollo** para detecci�n precoz. Los resultados deben ser interpretados por profesionales de la salud. No reemplaza el diagn�stico m�dico tradicional.
+Este es un sistema de **investigación y desarrollo** para detección precoz. Los resultados deben ser interpretados por profesionales de la salud. No reemplaza el diagnóstico médico tradicional.1. **Semantic Knowledge Base (Grafo JSON Atómico):** El conocimiento de DIA reside en una estructura JSON en constante expansión, protegida por un **Protocolo de Escritura Atómica (write-tmp ➡️ fsync ➡️ rename-atómico)** que mitiga la corrupción de enlaces ante pérdidas de energía o fallos de hilos de ejecución.
+2. **Intent & Emotion Engine:** Un procesador intermedio analiza las intenciones y curvas emocionales del usuario (clasificadas en categorías como *Curiosidad*, *Urgencia*, *Validación*) para modular dinámicamente la temperatura de inferencia del LLM (`0.1` para auditorías técnicas estrictas, `0.7` para analogías explicativas XAI).
+3. **Resiliencia & Autodefensa (Circuit Breaker):** Monitoreo en caliente que mitiga colapsos sistémicos. Si DIA detecta un ratio de fallos de aserción del código base ≥ 25% o 5 errores consecutivos, el *Circuit Breaker* congela el despliegue automático, activa el mecanismo de *Meta-Skip* para aislar la fuente del fallo y emite alertas de telemetría local.
+## 🧠 DENCO Brain Server v3.0 & DIA (Intelligence Agent)
+
+El ecosistema DENCO está integrado y supervisado de manera autónoma por **DIA (Intelligence Agent)**, un Agente Autónomo de Nivel 4 (L4_SELF_EVOLUTION) diseñado bajo un enfoque de **Edge AI de Ultra-Bajo Consumo**. El sistema está optimizado para correr localmente en arquitecturas modestas (probado en entornos x86 heredados con 28GB DDR3) utilizando un modelo LLM base cuantizado (Qwen 7B Core) acoplado a un grafo de conocimiento masivo de ejecución nativa.
+
+### 📊 Estado Actual de Evolución (DIA Dashboard)
+* **Ciclos Autónomos Completados:** +450 ciclos de optimización y auto-investigación.
+* **Base de Conocimiento Activa:** +34,000 entradas dinámicas (+16.2 Millones de palabras).
+* **Grafo Semántico Dedicado:** +6,700 conceptos estructurados con +57,000 interrelaciones cruzadas en tiempo real.
+* **Filtro de Ruido Integrado:** Algoritmo autónomo de remoción de tokens redundantes y stop-words directo sobre el grafo para prevención de saturación de memoria RAM.
+
+### 🏗️ Arquitectura de Caja Negra (Componentes Privados)
+
+Para proteger la propiedad intelectual del Dispositivo Médico SaMD, los componentes críticos operan como módulos binarios/privados locales, comunicados mediante el **Brain Server v3.0 (Python 3.11, Port 5001)**. El flujo se organiza de la siguiente manera:
+Sección DIA
+1. **Semantic Knowledge Base (Grafo JSON Atómico):** El conocimiento de DIA reside en una estructura JSON en constante expansión, protegida por un **Protocolo de Escritura Atómica (write-tmp ➡️ fsync ➡️ rename-atómico)** que mitiga la corrupción de enlaces ante pérdidas de energía o fallos de hilos de ejecución.
+2. **Intent & Emotion Engine:** Un procesador intermedio analiza las intenciones y curvas emocionales del usuario (clasificadas en categorías como *Curiosidad*, *Urgencia*, *Validación*) para modular dinámicamente la temperatura de inferencia del LLM (`0.1` para auditorías técnicas estrictas, `0.7` para analogías explicativas XAI).
+3. **Resiliencia & Autodefensa (Circuit Breaker):** Monitoreo en caliente que mitiga colapsos sistémicos. Si DIA detecta un ratio de fallos de aserción del código base ≥ 25% o 5 errores consecutivos, el *Circuit Breaker* congela el despliegue automático, activa el mecanismo de *Meta-Skip* para aislar la fuente del fallo y emite alertas de telemetría local.
+Fujo de Datos y Conexiones Cross-Domain
+[Sensores Físicos BME/SDP] ➡️ [Muestras Crudas en PostgreSQL]
+                                       ⬇️
+[Grafo JSON Semántico] 🔀 🔀 [Inferencia Qwen 7B (Temp Variable)] ➡️ [Explicabilidad Médica XAI]
+                                       ⬇️
+                    [Pipeline de Auto-Debug (action_audit.jsonl)]
+
+
