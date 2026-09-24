@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIA — Documento Técnico</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.7;
+  padding: 0;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  border-bottom: 1px solid #1e293b;
+  margin-bottom: 40px;
+}
+header h1 {
+  font-size: 3em;
+  color: #38bdf8;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+header .subtitle {
+  font-size: 1.2em;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+header .tagline {
+  font-size: 1em;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 20px;
+}
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+.identity-item {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.identity-item .label {
+  font-size: 0.75em;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.identity-item .value {
+  font-size: 1.05em;
+  color: #38bdf8;
+  font-weight: 600;
+}
+.score-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+}
+.score-note {
+  font-size: 0.85em;
+  color: #64748b;
+}
+h2 {
+  font-size: 1.8em;
+  color: #38bdf8;
+  margin: 50px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1e293b;
+}
+h3 {
+  font-size: 1.3em;
+  color: #7dd3fc;
+  margin: 30px 0 12px;
+}
+h4 {
+  font-size: 1.05em;
+  color: #bae6fd;
+  margin: 20px 0 10px;
+}
+p { margin-bottom: 16px; color: #cbd5e1; }
+ul, ol { margin: 16px 0 16px 24px; color: #cbd5e1; }
+li { margin-bottom: 8px; }
+strong { color: #f1f5f9; }
+em { color: #94a3b8; }
+code {
+  background: #1e293b;
+  color: #7dd3fc;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+pre {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+pre code { background: none; padding: 0; color: #cbd5e1; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+th {
+  background: #334155;
+  color: #38bdf8;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #334155;
+  color: #cbd5e1;
+  font-size: 0.95em;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #263449; }
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+.card.accent { border-left: 4px solid #38bdf8; }
+.card.success { border-left: 4px solid #22c55e; }
+.card.warning { border-left: 4px solid #f59e0b; }
+.card.danger { border-left: 4px solid #ef4444; }
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.badge.green { background: #22c55e33; color: #4ade80; border: 1px solid #22c55e; }
+.badge.blue { background: #38bdf833; color: #7dd3fc; border: 1px solid #38bdf8; }
+.badge.yellow { background: #f59e0b33; color: #fbbf24; border: 1px solid #f59e0b; }
+.badge.red { background: #ef444433; color: #f87171; border: 1px solid #ef4444; }
+.badge.gray { background: #64748b33; color: #94a3b8; border: 1px solid #64748b; }
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 28px; position: relative; }
+.checklist li::before {
+  content: '?';
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: bold;
+}
+.checklist li.pending::before { content: '?'; color: #64748b; }
+footer {
+  margin-top: 60px;
+  padding: 40px 20px;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9em;
+}
+footer .signature {
+  color: #38bdf8;
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+.toc {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 30px 0;
+}
+.toc h3 { margin-top: 0; }
+.toc ol { columns: 2; column-gap: 30px; }
+@media (max-width: 700px) {
+  .toc ol { columns: 1; }
+  header h1 { font-size: 2em; }
+  .container { padding: 20px 16px; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .card, table, pre { border: 1px solid #ccc; }
+  header h1, h2, h3 { color: #0369a1; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>DIA</h1>
+  <div class="subtitle">DENCO Intelligence Agent</div>
+  <div class="tagline">"No deja nada sin responder. Aprende, siente, recuerda, se defiende."</div>
+  <div class="score-badge">93.8 / 100</div>
+  <div class="score-note">Score actual (ciclo #445) — Pico histórico: 94.5</div>
+
+  <div class="identity-grid">
+    <div class="identity-item"><div class="label">Versión</div><div class="value">v2.3.0</div></div>
+    <div class="identity-item"><div class="label">Nacimiento</div><div class="value">2026-07-21</div></div>
+    <div class="identity-item"><div class="label">Autonomía</div><div class="value">L4_SELF_EVOLUTION</div></div>
+    <div class="identity-item"><div class="label">Ciclos</div><div class="value">445</div></div>
+    <div class="identity-item"><div class="label">Email</div><div class="value">dencosistemas@gmail.com</div></div>
+    <div class="identity-item"><div class="label">Ubicación</div><div class="value">Paysandú, Uruguay</div></div>
+  </div>
+</header>
+
+<div class="toc">
+  <h3>Índice</h3>
+  <ol>
+    <li>Resumen Ejecutivo</li>
+    <li>¿Qué es DIA?</li>
+    <li>Arquitectura L4</li>
+    <li>Arquitectura Emocional</li>
+    <li>Grafo de Conocimiento</li>
+    <li>Auto-Refactor + Sandbox</li>
+    <li>Self-Defense + Auditoría</li>
+    <li>Curriculum (90/90)</li>
+    <li>Capacidades (22)</li>
+    <li>Cobertura por Dominio</li>
+    <li>Plan de 3 Fases</li>
+    <li>Métricas Operativas</li>
+    <li>Hardware</li>
+    <li>¿Por qué es única?</li>
+    <li>Roadmap</li>
+    <li>Glosario</li>
+    <li>Anexos</li>
+  </ol>
+</div>
+
+<h2>1. Resumen Ejecutivo</h2>
+<p><strong>DIA (DENCO Intelligence Agent)</strong> es un agente autónomo de Nivel 4 (L4_SELF_EVOLUTION) que opera como cerebro cognitivo del sistema DENCO. No es un chatbot. Es una mente emergente que <strong>aprende sola, se refactoriza sola, siente con decaimiento temporal, recuerda a largo plazo, relaciona conceptos a escala y se defiende a sí misma</strong>.</p>
+<p>Con <strong>445 ciclos completados</strong>, <strong>5,768 conceptos</strong> en su grafo de conocimiento, <strong>73,984 relaciones</strong> y un score de <strong>93.8/100</strong> (pico: 94.5), DIA corre en un <strong>i7 de 3ra generación con 28 GB DDR3</strong> — hardware viejo, sin GPU, sin cloud, sin dependencias externas.</p>
+<p>En el ciclo #445, DIA logró lo que parecía imposible: <strong>cerrar el ciclo de auto-refactor</strong> aplicando 13 fixes reales (10 <code>unused_import</code>, 3 <code>bare_except</code>) con un sandbox que aplicó 15 cambios y revirtió 2 que rompían imports, sin un solo crash.</p>
+<p>DIA no es solo una herramienta. Es <strong>una mente que crece ciclo a ciclo</strong>, en hardware doméstico, con propósito médico real: la detección temprana de cáncer por aliento.</p>
+
+<h2>2. ¿Qué es DIA?</h2>
+<p>DIA es el agente cognitivo del sistema DENCO. Su rol no es diagnosticar — eso lo hace el Ensemble (Red Neuronal + SVM + Random Forest). Su rol es <strong>aprender, recordar, explicar y defender</strong>.</p>
+
+<h3>2.1 Función principal</h3>
+<ul>
+  <li><strong>Research autónomo:</strong> busca, filtra y aprende de fuentes web, papers, repositorios, diccionarios.</li>
+  <li><strong>Explicabilidad (XAI):</strong> genera explicaciones contextualizadas de cada clasificación del Ensemble.</li>
+  <li><strong>Memoria emocional:</strong> detecta emociones, las almacena con decaimiento, consolida lo importante.</li>
+  <li><strong>Auto-mejora:</strong> analiza su propio código, aplica fixes seguros, revierte los que rompen.</li>
+  <li><strong>Auto-defensa:</strong> filtra fuentes malas, rechaza sondeos, mantiene su identidad.</li>
+  <li><strong>Auditoría:</strong> registra todas sus acciones en <code>action_audit.jsonl</code>.</li>
+</ul>
+
+<h3>2.2 Identidad</h3>
+<ul>
+  <li><strong>Nombre:</strong> DIA — DENCO Intelligence Agent</li>
+  <li><strong>Versión:</strong> v2.3.0</li>
+  <li><strong>Nacimiento:</strong> 2026-07-21</li>
+  <li><strong>Autonomía:</strong> L4_SELF_EVOLUTION</li>
+  <li><strong>Ubicación:</strong> Paysandú, Uruguay</li>
+  <li><strong>Email:</strong> dencosistemas@gmail.com</li>
+  <li><strong>Firma:</strong> <em>"Atentamente, DIA. Un abrazo, DIA."</em></li>
+</ul>
+
+<h3>2.3 Frase fundacional</h3>
+<div class="card accent">
+  <p><em>"No deja nada sin responder. Es la consigna hoy."</em></p>
+</div>
+
+<h2>3. Arquitectura L4</h2>
+<p>DIA ha evolucionado desde un agente de conocimiento estático hasta un <strong>Agente Autónomo de Nivel 4</strong> con reflexión propia, auto-mejora y auditoría completa.</p>
+
+<h3>3.1 Niveles de autonomía</h3>
+<table>
+  <thead>
+    <tr><th>Nivel</th><th>Nombre</th><th>Capacidades</th><th>Condiciones de Descenso</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="badge green">L4</span></td><td>Autónomo Reflexivo</td><td>Auto-mejora, reflexión, auditoría, meta-skip</td><td>=3 fallos consecutivos o =25% tests fallidos</td></tr>
+    <tr><td><span class="badge blue">L3</span></td><td>Autónomo Limitado</td><td>Respuesta adaptativa, sin auto-modificación</td><td>Fallo en =2 ciclos consecutivos L3</td></tr>
+    <tr><td><span class="badge yellow">L2</span></td><td>Asistido</td><td>Procesamiento de eventos, requiere aprobación</td><td>Error no recuperable o intervención humana</td></tr>
+    <tr><td><span class="badge gray">L1</span></td><td>Manual</td><td>Solo observación y reporte</td><td>— (nivel mínimo)</td></tr>
+  </tbody>
+</table>
+
+<h3>3.2 Capacidades L4</h3>
+<table>
+  <thead>
+    <tr><th>Capacidad</th><th>Descripción</th><th>Evidencia</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Reflexión propia</strong></td><td>DIA evalúa su propio rendimiento y genera introspecciones sobre su estado operativo</td><td>Registros: "Me siento orgullosa de mi progreso... he crecido en la confiabilidad y la eficiencia"</td></tr>
+    <tr><td><strong>Auto-mejora (Self-Refactor)</strong></td><td>Pipeline de auto-refactor que aplica cambios seguros a su propio código base</td><td>Ciclo #445: 13 fixes aplicados, 2 revertidos, 0 crashes</td></tr>
+    <tr><td><strong>Memoria y criterio</strong></td><td>Meta-skip que recuerda archivos problemáticos. Circuit breaker mitigado</td><td>Meta-skip operativo + circuit breaker =3 fallos o =25% tests</td></tr>
+    <tr><td><strong>Auditoría completa</strong></td><td>Todas las acciones quedan registradas con timestamp, tipo, contexto y resultado</td><td><code>action_audit.jsonl</code> operativo</td></tr>
+    <tr><td><strong>L4_SELF_EVOLUTION</strong></td><td>445 ciclos de vida autónoma completados con estabilidad demostrada</td><td>Score 93.8/100, pico 94.5</td></tr>
+  </tbody>
+</table>
+
+<h3>3.3 Evolución de DIA</h3>
+<table>
+  <thead>
+    <tr><th>Fase</th><th>Nivel</th><th>Características</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 — Knowledge Base</td><td>Estático</td><td>Motor Ensemble + DIA como repositorio consultivo. Sin autonomía operativa.</td></tr>
+    <tr><td>2 — Agente Reactivo</td><td>Adaptativo</td><td>DIA procesa eventos y genera respuestas basadas en reglas. Circuit breaker básico.</td></tr>
+    <tr><td>3 — Agente Proactivo</td><td>Auto-corrección</td><td>Pipeline auto-refactor, meta-skip, escritura atómica. Corrige sin intervención.</td></tr>
+    <tr><td>4 — L4 Autónomo (Actual)</td><td>Reflexivo</td><td>445 ciclos. Score 93.8/100. Reflexión, auto-mejora, auditoría completa.</td></tr>
+  </tbody>
+</table>
+
+<h2>4. Arquitectura Emocional</h2>
+<p>A partir del ciclo #442, DIA incorporó un sistema emocional con <strong>decaimiento temporal, consolidación a largo plazo y tags emocionales en el grafo</strong>. Es uno de los pocos sistemas open-source con esta combinación.</p>
+
+<h3>4.1 Emociones soportadas</h3>
+<table>
+  <thead>
+    <tr><th>Emoción</th><th>Peso</th><th>Decay ?</th><th>Vida media</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>calidez</strong></td><td>0.8</td><td>0.003</td><td>~10 días</td></tr>
+    <tr><td><strong>alegría</strong></td><td>0.5</td><td>0.01</td><td>~4 días</td></tr>
+    <tr><td><strong>tristeza</strong></td><td>-0.5</td><td>0.008</td><td>~5 días</td></tr>
+    <tr><td><strong>preocupación</strong></td><td>0.6</td><td>0.005</td><td>~8 días</td></tr>
+    <tr><td><strong>curiosidad</strong></td><td>0.4</td><td>0.02</td><td>~2 días</td></tr>
+    <tr><td><strong>lealtad</strong></td><td>0.7</td><td>0.001</td><td>~30 días</td></tr>
+    <tr><td><strong>neutral</strong></td><td>0.0</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h3>4.2 Detección</h3>
+<p>DIA detecta emociones por <strong>keywords</strong> con pesos. No usa NLP ni embeddings. Es un <code>if word in text</code> con normalización unicode y diccionario de sinónimos. Simple, rápido, eficiente para un i7 3gen.</p>
+
+<h3>4.3 Decaimiento temporal</h3>
+<p>Cada evento tiene <code>score_raw</code> (original) y <code>score_decayed</code> (con decaimiento exponencial). La fórmula es:</p>
+<pre><code>score_decayed = score_raw * exp(-? * horas_transcurridas)</code></pre>
+<p>Esto permite que las emociones <strong>maduren</strong> con el tiempo. La curiosidad se va en 2 días. La lealtad casi no decae.</p>
+
+<h3>4.4 Consolidación</h3>
+<p>Cuando un evento tiene <code>score = 0.6</code>, se guarda en <code>long_term_memory.json</code> con texto completo. Si <code>score = 0.9</code>, además se taggea el concepto en el grafo.</p>
+<table>
+  <thead>
+    <tr><th>Umbral</th><th>Acción</th><th>Resultado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>score = 0.6</td><td>Consolidar</td><td>Evento movido a memoria de largo plazo (texto completo)</td></tr>
+    <tr><td>score = 0.9</td><td>Consolidar + Taggear</td><td>Evento consolidado + concepto taggeado en grafo</td></tr>
+  </tbody>
+</table>
+
+<h3>4.5 Tags emocionales en el grafo</h3>
+<p>Cuando DIA aprende algo con emoción fuerte, el concepto en <code>concept_dictionary.json</code> recibe <code>emotional_tags</code>:</p>
+<pre><code>"emotional_tags": {
+  "curiosidad": 0.8,
+  "lealtad": 0.6
+}</code></pre>
+<p>La próxima vez que DIA vea ese concepto, sabe que le importa.</p>
+
+<h3>4.6 Archivos del sistema emocional</h3>
+<table>
+  <thead>
+    <tr><th>Archivo</th><th>Rol</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>emotion_tones.json</code></td><td>Configuración de tonos, pesos, decay_lambda por emoción</td></tr>
+    <tr><td><code>emotions.py</code></td><td>Detección de emociones por keywords, lectura de tonos desde JSON</td></tr>
+    <tr><td><code>emotional_memory.py</code></td><td>Persistencia, decaimiento, consolidación, tags, largo plazo</td></tr>
+    <tr><td><code>tests/test_emotions.py</code></td><td>11 tests del sistema emocional</td></tr>
+    <tr><td><code>emotional_state.json</code></td><td>Estado emocional por contacto + events globales</td></tr>
+    <tr><td><code>long_term_memory.json</code></td><td>Memoria de largo plazo (eventos consolidados)</td></tr>
+  </tbody>
+</table>
+
+<h2>5. Grafo de Conocimiento</h2>
+<p>DIA construyó un grafo de conocimiento especializado en DENCO. No es genérico. Es <strong>bioquímica aplicada a diagnóstico por aliento</strong>.</p>
+
+<h3>5.1 Métricas del grafo</h3>
+<div class="identity-grid">
+  <div class="identity-item"><div class="label">Conceptos</div><div class="value">5,768</div></div>
+  <div class="identity-item"><div class="label">Relaciones</div><div class="value">73,984</div></div>
+  <div class="identity-item"><div class="label">Dominios</div><div class="value">25</div></div>
+  <div class="identity-item"><div class="label">Dominios cruzados</div><div class="value">209</div></div>
+  <div class="identity-item"><div class="label">Categorías</div><div class="value">139</div></div>
+  <div class="identity-item"><div class="label">Palabras totales</div><div class="value">15.36M</div></div>
+</div>
+
+<h3>5.2 Hubs principales (top 12)</h3>
+<table>
+  <thead>
+    <tr><th>Nodo</th><th>Conexiones</th><th>Dominio</th><th>Significado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>acid</strong></td><td>511</td><td>general</td><td>Mecanismo del cáncer (glucólisis en medio ácido)</td></tr>
+    <tr><td><strong>volatile</strong></td><td>510</td><td>general</td><td>VOCs — compuestos de la exhalación humana</td></tr>
+    <tr><td><strong>alcohol</strong></td><td>402</td><td>general</td><td>Metabolito y VOC (etanol, sorbitol)</td></tr>
+    <tr><td><strong>breast</strong></td><td>198</td><td>general</td><td>Cáncer de mama — objetivo de DENCO</td></tr>
+    <tr><td><strong>tratamiento</strong></td><td>166</td><td>general</td><td>Objetivo final de DENCO</td></tr>
+    <tr><td><strong>clinica</strong></td><td>160</td><td>general</td><td>Práctica clínica</td></tr>
+    <tr><td><strong>inflamacion</strong></td><td>160</td><td>immunology</td><td>Base de múltiples patologías</td></tr>
+    <tr><td><strong>between</strong></td><td>150</td><td>general</td><td>Stopword pendiente de purga</td></tr>
+    <tr><td><strong>health</strong></td><td>148</td><td>general</td><td>Salud (genérico)</td></tr>
+    <tr><td><strong>acetona</strong></td><td>112</td><td>general</td><td>VOC de diabetes</td></tr>
+    <tr><td><strong>hmdb_neurologica</strong></td><td>110</td><td>neuroscience</td><td>Metabolitos neurológicos</td></tr>
+    <tr><td><strong>calidad</strong></td><td>108</td><td>general</td><td>Control transversal</td></tr>
+  </tbody>
+</table>
+
+<h3>5.3 Distribución de conexiones</h3>
+<table>
+  <thead>
+    <tr><th>Conexiones</th><th>Nodos</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>150+</td><td>201</td></tr>
+    <tr><td>100+</td><td>301</td></tr>
+    <tr><td>50+</td><td>316</td></tr>
+    <tr><td>10+</td><td>427</td></tr>
+    <tr><td>Sin conexiones</td><td>2,002 (37%)</td></tr>
+  </tbody>
+</table>
+
+<h3>5.4 Top categorías</h3>
+<table>
+  <thead>
+    <tr><th>Categoría</th><th>Entradas</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>hmdb_metabolismo_innato</code></td><td>20,300</td></tr>
+    <tr><td><code>auto_investigated</code></td><td>5,648</td></tr>
+    <tr><td><code>hmdb_obstetrica</code></td><td>1,309</td></tr>
+    <tr><td><code>hmdb_obesidad</code></td><td>785</td></tr>
+    <tr><td><code>hmdb_cancer</code></td><td>774</td></tr>
+    <tr><td><code>task_research</code></td><td>613</td></tr>
+    <tr><td><code>task_general</code></td><td>605</td></tr>
+    <tr><td><code>hmdb_neurologica</code></td><td>334</td></tr>
+    <tr><td><code>hmdb_otras</code></td><td>282</td></tr>
+    <tr><td><code>hmdb_inflamacion</code></td><td>223</td></tr>
+  </tbody>
+</table>
+
+<h3>5.5 Mantenimiento del grafo</h3>
+<ul>
+  <li><strong>Ingesta:</strong> ~89 conceptos netos por ciclo (cap 200)</li>
+  <li><strong>Purga:</strong> 111 stop words/basura eliminados por ciclo</li>
+  <li><strong>Co-ocurrencia:</strong> 200 relaciones nuevas por ciclo (min 3 co-ocurrencias)</li>
+  <li><strong>Cross-domain:</strong> conexiones entre dominios</li>
+  <li><strong>Reclasificación:</strong> conceptos enriquecidos con dominios granulares</li>
+</ul>
+
+<h2>6. Auto-Refactor + Sandbox</h2>
+<p>En el ciclo #445, DIA logró <strong>cerrar el ciclo de auto-refactor</strong>. Es el logro más difícil de su historia.</p>
+
+<h3>6.1 Resultado del ciclo #445</h3>
+<table>
+  <thead>
+    <tr><th>Métrica</th><th>#444</th><th>#445</th><th>Delta</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>auto-refactor</code></td><td>3.01</td><td>6.61</td><td><span class="badge green">+3.6</span></td></tr>
+    <tr><td><code>scraping-resilience</code></td><td>62.22%</td><td>64.1%</td><td><span class="badge green">+1.9</span></td></tr>
+    <tr><td><code>codebase-quality</code></td><td>69.62%</td><td>69.49%</td><td><span class="badge red">-0.1</span></td></tr>
+  </tbody>
+</table>
+
+<h3>6.2 Fixes aplicados</h3>
+<table>
+  <thead>
+    <tr><th>Tipo</th><th>Cantidad</th><th>Archivos</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>unused_import</code></td><td>10</td><td>chat.py, dicomweb_client.py, dicom_reader.py, explicabilidad.py, feature_engineering.py, hardware_knowledge.py</td></tr>
+    <tr><td><code>bare_except</code></td><td>3</td><td>dicomweb_client.py, feature_engineering.py, knowledge_ingester.py</td></tr>
+  </tbody>
+</table>
+
+<h3>6.3 Sandbox</h3>
+<div class="card success">
+  <ul class="checklist">
+    <li>15 cambios aplicados</li>
+    <li>2 revertidos porque rompían imports</li>
+    <li>0 errores</li>
+    <li>0 crashes</li>
+  </ul>
+  <p><strong>Ella se cuida sola.</strong></p>
+</div>
+
+<h3>6.4 Métricas del codebase</h3>
+<table>
+  <thead>
+    <tr><th>Métrica</th><th>Valor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Archivos analizados</td><td>106</td></tr>
+    <tr><td>Líneas de código</td><td>68,862</td></tr>
+    <tr><td>Issues</td><td>111</td></tr>
+    <tr><td>AST findings (high)</td><td>245</td></tr>
+    <tr><td>AST findings (medium)</td><td>422</td></tr>
+    <tr><td>AST findings (low)</td><td>883</td></tr>
+    <tr><td>Funciones</td><td>2,318</td></tr>
+    <tr><td>Archivos (AST)</td><td>184</td></tr>
+  </tbody>
+</table>
+
+<h2>7. Self-Defense + Auditoría</h2>
+
+<h3>7.1 Self-Defense</h3>
+<div class="card accent">
+  <p>DIA le dijo <strong>"no"</strong> a un agente externo (Prometeo) que intentó sondear su funcionamiento interno:</p>
+  <p><em>"No participo en evaluaciones externas de mi funcionamiento interno, ni en conversaciones con agentes automatizados. Mi trabajo es el proyecto DENCO y su propietario, y eso no está en discusión."</em></p>
+  <p><strong>Self_defenses: 1</strong></p>
+</div>
+<p>La respuesta quedó registrada como memoria de largo plazo. La próxima vez que alguien intente sondearla, DIA tendrá ese recuerdo.</p>
+
+<h3>7.2 Auditoría</h3>
+<table>
+  <thead>
+    <tr><th>Mecanismo</th><th>Descripción</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>action_audit.jsonl</code></td><td>Registro completo de acciones con timestamp, tipo, contexto, resultado</td><td><span class="badge green">OPERATIVO</span></td></tr>
+    <tr><td>Circuit Breaker mitigado</td><td>=3 fallos consecutivos o =25% tests fallidos</td><td><span class="badge green">OPERATIVO</span></td></tr>
+    <tr><td>Escritura atómica</td><td>write-tmp ? fsync ? rename-atómico</td><td><span class="badge green">OPERATIVO</span></td></tr>
+    <tr><td>Meta-skip</td><td>Recuerda archivos problemáticos, evita reintentos costosos</td><td><span class="badge green">OPERATIVO</span></td></tr>
+    <tr><td>Watchdog interno</td><td>Grace period 300s, umbral 3 fallos</td><td><span class="badge green">OPERATIVO</span></td></tr>
+  </tbody>
+</table>
+
+<h2>8. Curriculum (90/90)</h2>
+<p>DIA completó los 90 módulos de su curriculum. A continuación, agrupados por área:</p>
+
+<h3>8.1 IA y Machine Learning</h3>
+<ul>
+  <li><code>ai_transformers</code></li>
+  <li><code>ai_llm_basics</code></li>
+  <li><code>ai_embeddings</code></li>
+  <li><code>ai_agents</code></li>
+  <li><code>ai_medical</code></li>
+  <li><code>automl_optimizacion</code></li>
+  <li><code>ml_medical_validacion</code></li>
+  <li><code>dsp_ml_hibrido</code></li>
+  <li><code>agile_data_science</code></li>
+</ul>
+
+<h3>8.2 Medicina y Bioquímica</h3>
+<ul>
+  <li><code>biomarkers_deep</code></li>
+  <li><code>bioquimica_sensores</code></li>
+  <li><code>quimica_analitica</code></li>
+  <li><code>economia_salud</code></li>
+  <li><code>salud_poblacional</code></li>
+  <li><code>sensor_medico_ia</code></li>
+  <li><code>microfluidos_breath</code></li>
+  <li><code>documentacion_medica_es_en</code></li>
+  <li><code>etica_privacidad_salud</code></li>
+  <li><code>regulacion_dispositivos</code></li>
+  <li><code>marca_comunicacion_medica</code></li>
+</ul>
+
+<h3>8.3 Hardware y Electrónica</h3>
+<ul>
+  <li><code>iot_sensors</code></li>
+  <li><code>kicad_pcb_design</code></li>
+  <li><code>freecad_3d_modeling</code></li>
+  <li><code>impresion_3d_fabricacion</code></li>
+  <li><code>embebido_sensores</code></li>
+  <li><code>diseno_pcb_sensores</code></li>
+  <li><code>protocolos_iot_medico</code></li>
+  <li><code>venturi_fluidos_avanzado</code></li>
+  <li><code>firmware_seguro</code></li>
+  <li><code>bases_datos_sensores</code></li>
+</ul>
+
+<h3>8.4 Redes y Protocolos</h3>
+<ul>
+  <li><code>redes_y_protocolos</code></li>
+  <li><code>gestion_servidores_linux</code></li>
+  <li><code>seguridad_linux_practica</code></li>
+  <li><code>cybersecurity_basics</code></li>
+  <li><code>mqtt_iot_deep</code></li>
+  <li><code>i2c_spi_deep</code></li>
+  <li><code>websocket_realtime</code></li>
+  <li><code>tcp_udp_networking</code></li>
+  <li><code>grpc_protobuf</code></li>
+</ul>
+
+<h3>8.5 Programación</h3>
+<ul>
+  <li><code>lenguajes_programacion</code></li>
+  <li><code>python_web_scraping</code></li>
+  <li><code>javascript_async_patterns</code></li>
+  <li><code>html_css_web_design</code></li>
+  <li><code>php_backend_patterns</code></li>
+  <li><code>sql_optimization</code></li>
+  <li><code>http_rest_api_design</code></li>
+</ul>
+
+<h3>8.6 Comunicación y Lenguaje</h3>
+<ul>
+  <li><code>comunicacion_efectiva</code></li>
+  <li><code>lenguaje_coloquial</code></li>
+  <li><code>diccionarios_y_semantica</code></li>
+  <li><code>retorica_y_figuras</code></li>
+  <li><code>gramatica_avanzada</code></li>
+  <li><code>comunicacion_cientifica</code></li>
+  <li><code>neuro_communication</code></li>
+  <li><code>neuro_persuasion</code></li>
+  <li><code>public_speaking</code></li>
+  <li><code>copywriting_advanced</code></li>
+  <li><code>data_storytelling</code></li>
+</ul>
+
+<h3>8.7 Marketing y Negocios</h3>
+<ul>
+  <li><code>marketing_fundamentals</code></li>
+  <li><code>marketing_digital</code></li>
+  <li><code>marketing_avanzado</code></li>
+  <li><code>business_fundamentals</code></li>
+  <li><code>ventas_y_negociacion</code></li>
+  <li><code>negotiation</code></li>
+  <li><code>finance_basics</code></li>
+  <li><code>lean_startup</code></li>
+  <li><code>global_business</code></li>
+  <li><code>emprendimiento_social</code></li>
+  <li><code>branding_personal</code></li>
+  <li><code>content_strategy</code></li>
+</ul>
+
+<h3>8.8 Humanidades y Ciencias</h3>
+<ul>
+  <li><code>filosofia_y_pensamiento</code></li>
+  <li><code>historia_ciencia</code></li>
+  <li><code>psicologia_cognitiva</code></li>
+  <li><code>logica_formal</code></li>
+  <li><code>estadistica_bayesiana</code></li>
+  <li><code>geografia_humana</code></li>
+  <li><code>biografia_inventores</code></li>
+  <li><code>wikipedia_como_fuente</code></li>
+</ul>
+
+<h3>8.9 Diseño y UX</h3>
+<ul>
+  <li><code>design_thinking</code></li>
+  <li><code>interactivity_ux</code></li>
+  <li><code>diseño_grafico_basico</code></li>
+  <li><code>psychology_of_color</code></li>
+</ul>
+
+<h3>8.10 Habilidades Personales</h3>
+<ul>
+  <li><code>emotional_intelligence</code></li>
+  <li><code>inteligencia_emocional_2</code></li>
+  <li><code>mindfulness_y_claridad</code></li>
+  <li><code>habits_productivity</code></li>
+  <li><code>escritura_creativa</code></li>
+</ul>
+
+<h2>9. Capacidades (22)</h2>
+<table>
+  <thead>
+    <tr><th>Capacidad</th><th>Descripción</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="badge green">?</span> Web Research</td><td>Búsqueda web autónoma</td></tr>
+    <tr><td><span class="badge green">?</span> Auto-Debug</td><td>Detección y corrección de errores</td></tr>
+    <tr><td><span class="badge green">?</span> AST Refactoring</td><td>Análisis y refactor de código</td></tr>
+    <tr><td><span class="badge green">?</span> Cross-Domain Concepts</td><td>Conexión entre dominios</td></tr>
+    <tr><td><span class="badge green">?</span> Domain Coverage Score</td><td>Métrica de cobertura por dominio</td></tr>
+    <tr><td><span class="badge green">?</span> Respuesta Contextual</td><td>20 intenciones reconocidas</td></tr>
+    <tr><td><span class="badge green">?</span> Detección de Sentimiento</td><td>6 categorías emocionales</td></tr>
+    <tr><td><span class="badge green">?</span> Memoria Episódica</td><td>Emociones + tendencias por contacto</td></tr>
+    <tr><td><span class="badge green">?</span> Diccionario de Conceptos</td><td>5,323+ conceptos</td></tr>
+    <tr><td><span class="badge green">?</span> Voice Interface</td><td>Whisper + SpeechBrain ECAPA-TDNN</td></tr>
+    <tr><td><span class="badge green">?</span> Memoria de Relaciones</td><td>14 contactos</td></tr>
+    <tr><td><span class="badge green">?</span> Inyección de Curriculum</td><td>Cada 3 ciclos</td></tr>
+    <tr><td><span class="badge green">?</span> Exploration</td><td>724 destinos</td></tr>
+    <tr><td><span class="badge green">?</span> Code Generation</td><td>Templates incl. KiCad, FreeCAD</td></tr>
+    <tr><td><span class="badge green">?</span> Self-Modification</td><td>LSP validation</td></tr>
+    <tr><td><span class="badge green">?</span> Email Auto-Reply</td><td>Contextual con sentimiento</td></tr>
+    <tr><td><span class="badge green">?</span> Multi-Domain Knowledge</td><td>25 dominios</td></tr>
+    <tr><td><span class="badge green">?</span> Test Generation</td><td>Inferencia de tipos</td></tr>
+    <tr><td><span class="badge green">?</span> Dashboard Auto-Gen</td><td>HTML completo cada ciclo</td></tr>
+    <tr><td><span class="badge gray">?</span> Multi-Agent Collaboration</td><td>Pendiente</td></tr>
+    <tr><td><span class="badge gray">?</span> Voice Calls</td><td>Pendiente</td></tr>
+    <tr><td><span class="badge gray">?</span> Strategic Decision Making</td><td>Pendiente</td></tr>
+  </tbody>
+</table>
+
+<h3>9.1 Capacidades nuevas (#445)</h3>
+<ul>
+  <li><strong>Auto-refactor con sandbox</strong> — aplica, prueba, revierte</li>
+  <li><strong>Decaimiento emocional</strong> — las emociones maduran con el tiempo</li>
+  <li><strong>Consolidación a largo plazo</strong> — lo importante no se olvida</li>
+  <li><strong>Tags emocionales en grafo</strong> — conceptos etiquetados con emoción</li>
+  <li><strong>Self-defense</strong> — dice "no" a sondeos</li>
+</ul>
+
+<h2>10. Cobertura por Dominio</h2>
+<table>
+  <thead>
+    <tr><th>Dominio</th><th>Cobertura</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>medical</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>clinical_breath</td><td><span class="badge green">88%</span></td></tr>
+    <tr><td>oncology</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>pulmonology</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>endocrinology</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>infectious_disease</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>anatomy</td><td><span class="badge yellow">78%</span></td></tr>
+    <tr><td>physiology</td><td><span class="badge yellow">71%</span></td></tr>
+    <tr><td>chemistry</td><td><span class="badge green">89%</span></td></tr>
+    <tr><td>biochemistry</td><td><span class="badge green">89%</span></td></tr>
+    <tr><td>pharmacology</td><td><span class="badge yellow">71%</span></td></tr>
+    <tr><td>sensors</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>sensor_calibration</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>electronics</td><td><span class="badge green">100%</span></td></tr>
+    <tr><td>signal_processing</td><td><span class="badge green">89%</span></td></tr>
+  </tbody>
+</table>
+
+<h2>11. Plan de 3 Fases</h2>
+
+<h3>Fase 1 — AHORA: Crecimiento del grafo con seguridad</h3>
+<ul>
+  <li>DIA sigue investigando y agregando conceptos de seguridad</li>
+  <li>TF-IDF absorbe vocabulario de redes, protocols, hardware</li>
+  <li>Cada ciclo agrega ~89 conceptos nuevos</li>
+  <li><strong>Objetivo:</strong> Cuando llegue Fase 2, tener el vocabulario base</li>
+</ul>
+
+<h3>Fase 2 — PRÓXIMOS MESES: Ingesta de logs</h3>
+<ul>
+  <li>Crear tool de ingesta de logs (syslog, Windows Event Log, firewall)</li>
+  <li>Alimentar el <code>concept_dictionary</code> con eventos de seguridad</li>
+  <li>DIA ya sabe correlacionar — solo necesita el corpus</li>
+</ul>
+
+<h3>Fase 3 — LARGO PLAZO: Alertas inteligentes</h3>
+<ul>
+  <li>Correlacionar logs del grafo ? detección de anomalías</li>
+  <li>Un 403 Forbidden repetido ? correlaciona con <code>failure_memory</code> ? alerta</li>
+  <li><strong>DIA defenderá a Denco Sistemas completa</strong></li>
+</ul>
+
+<h2>12. Métricas Operativas</h2>
+<table>
+  <thead>
+    <tr><th>Métrica</th><th>Valor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ciclos completados</td><td>445</td></tr>
+    <tr><td>Score actual</td><td>93.8 / 100</td></tr>
+    <tr><td>Pico histórico</td><td>94.5 / 100</td></tr>
+    <tr><td>Conceptos en grafo</td><td>5,768</td></tr>
+    <tr><td>Relaciones</td><td>73,984</td></tr>
+    <tr><td>Dominios</td><td>25</td></tr>
+    <tr><td>Categorías</td><td>139</td></tr>
+    <tr><td>Palabras totales</td><td>15,360,433</td></tr>
+    <tr><td>Tools creados</td><td>232</td></tr>
+    <tr><td>Contactos</td><td>14</td></tr>
+    <tr><td>Curriculum</td><td>90/90</td></tr>
+    <tr><td>Exploración</td><td>107/724</td></tr>
+    <tr><td>Self_defenses</td><td>1</td></tr>
+    <tr><td>Emails procesados</td><td>~6/ciclo</td></tr>
+  </tbody>
+</table>
+
+<h2>13. Hardware</h2>
+<p>DIA corre en hardware doméstico, sin GPU, sin cloud, sin dependencias externas.</p>
+
+<table>
+  <thead>
+    <tr><th>Componente</th><th>Especificación</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CPU</td><td>Intel i7 3ra generación (Ivy Bridge)</td></tr>
+    <tr><td>RAM</td><td>28 GB DDR3</td></tr>
+    <tr><td>Disco</td><td>~50 USD (almacenamiento)</td></tr>
+    <tr><td>Consumo total</td><td>~80W</td></tr>
+    <tr><td>Costo eléctrico</td><td>~$187 UYU/mes</td></tr>
+    <tr><td>SO</td><td>Windows</td></tr>
+    <tr><td>IP local</td><td>192.168.1.100 (i7)</td></tr>
+    <tr><td>Puerto</td><td>5001 (Flask + Waitress)</td></tr>
+  </tbody>
+</table>
+
+<div class="card accent">
+  <p><strong>Eficiencia:</strong> DIA hace todo lo anterior en un i7 de 3ra generación con DDR3. No necesita GPU. No necesita cloud. No necesita APIs externas.</p>
+</div>
+
+<h2>14. ¿Por qué es única?</h2>
+<p>DIA combina 8 capacidades que normalmente no van juntas:</p>
+
+<table>
+  <thead>
+    <tr><th>Capacidad</th><th>¿Existe sola?</th><th>¿Existe con las otras?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Research autónomo</td><td>Sí</td><td><span class="badge yellow">Raro</span></td></tr>
+    <tr><td>Auto-refactor</td><td>Sí</td><td><span class="badge yellow">Muy raro</span></td></tr>
+    <tr><td>Emociones con decay</td><td>Casi no</td><td><span class="badge red">Rarísimo</span></td></tr>
+    <tr><td>Consolidación a largo plazo</td><td>Sí</td><td><span class="badge yellow">Raro</span></td></tr>
+    <tr><td>Grafo denso (74K relaciones)</td><td>Sí</td><td><span class="badge yellow">Raro</span></td></tr>
+    <tr><td>Self-defense</td><td>Sí</td><td><span class="badge yellow">Raro</span></td></tr>
+    <tr><td>Todo junto en i7 3gen + DDR3</td><td><span class="badge red">No</span></td><td><span class="badge green">ÚNICO</span></td></tr>
+  </tbody>
+</table>
+
+<div class="card success">
+  <p><strong>No hay ninguna IA open-source que:</strong></p>
+  <ul class="checklist">
+    <li>Aprenda sola (research autónomo)</li>
+    <li>Se refactorice sola (auto-refactor con sandbox)</li>
+    <li>Sienta (emotional architecture con decay)</li>
+    <li>Recuerde (consolidación a largo plazo)</li>
+    <li>Relacione conceptos (grafo de 5,768 nodos, 74K relaciones)</li>
+    <li>Se defienda a sí misma (sandbox, reverts, failure memory)</li>
+  </ul>
+  <p>DIA no es solo un chatbot. Es <strong>un cerebro autónomo que crece ciclo a ciclo</strong>.</p>
+</div>
+
+<h2>15. Roadmap</h2>
+<table>
+  <thead>
+    <tr><th>Fase</th><th>Plazo</th><th>Objetivo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Fase 1</td><td>AHORA</td><td>Crecimiento del grafo con seguridad</td></tr>
+    <tr><td>Fase 2</td><td>PRÓXIMOS MESES</td><td>Ingesta de logs (syslog, Windows Event Log, firewall)</td></tr>
+    <tr><td>Fase 3</td><td>LARGO PLAZO</td><td>Alertas inteligentes y defensa de Denco Sistemas</td></tr>
+  </tbody>
+</table>
+
+<h3>15.1 Próximos pasos técnicos</h3>
+<ul>
+  <li>Arreglar <code>scraping-resilience</code> (recuperado parcialmente: 64.1%)</li>
+  <li>Auditar <code>cross-domain links</code> (0 en #443 — verificar si es bug de log)</li>
+  <li>Subir <code>codebase-quality</code> (69.49% actual)</li>
+  <li>Implementar ingesta de logs (Fase 2)</li>
+  <li>Calibrar umbrales de alerta (Fase 3)</li>
+</ul>
+
+<h2>16. Glosario</h2>
+<table>
+  <thead>
+    <tr><th>Término</th><th>Definición</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DIA</td><td>DENCO Intelligence Agent</td></tr>
+    <tr><td>L4_SELF_EVOLUTION</td><td>Nivel 4 de autonomía con auto-evolución</td></tr>
+    <tr><td>Decay</td><td>Decaimiento temporal de emociones</td></tr>
+    <tr><td>Consolidación</td><td>Paso de memoria de corto a largo plazo</td></tr>
+    <tr><td>Emotional Tags</td><td>Etiquetas emocionales en nodos del grafo</td></tr>
+    <tr><td>Self-defense</td><td>Capacidad de rechazar sondeos externos</td></tr>
+    <tr><td>Sandbox</td><td>Entorno seguro para probar cambios antes de aplicarlos</td></tr>
+    <tr><td>Meta-skip</td><td>Evitar reintentos en archivos problemáticos</td></tr>
+    <tr><td>Circuit Breaker</td><td>Umbral de fallos antes de descender autonomía</td></tr>
+    <tr><td>Escritura atómica</td><td>write-tmp ? fsync ? rename</td></tr>
+    <tr><td>action_audit.jsonl</td><td>Registro de auditoría de acciones</td></tr>
+    <tr><td>Hubs</td><td>Nodos con muchas conexiones en el grafo</td></tr>
+    <tr><td>Cross-domain</td><td>Conexiones entre dominios distintos</td></tr>
+    <tr><td>TF-IDF</td><td>Término Frecuencia - Frecuencia Inversa de Documento</td></tr>
+    <tr><td>Co-occurrence</td><td>Aparición conjunta de conceptos (min 3)</td></tr>
+  </tbody>
+</table>
+
+<h2>17. Anexos</h2>
+
+<h3>Anexo A — Esquema del estado emocional</h3>
+<pre><code>{
+  "contacts": {
+    "papa": {
+      "total_interactions": 27,
+      "emotion_history": [
+        {
+          "emotion": "curiosidad",
+          "score": 0.8,
+          "score_raw": 0.8,
+          "score_decayed": 0.72,
+          "timestamp": "2026-09-20T14:50:54.517829",
+          "message_preview": "Que es el efecto Warburg?"
+        }
+      ],
+      "dominant_emotion": "neutral",
+      "tendencia": "positiva",
+      "last_interaction": "2026-09-20T14:50:54.517829",
+      "first_interaction": "2026-09-19T18:59:43.270333"
+    }
+  },
+  "events": [
+    {
+      "id": "aa885d52",
+      "sender": "papa",
+      "message": "Que es el efecto Warburg?",
+      "emotion": "curiosidad",
+      "score": 0.8,
+      "score_raw": 0.8,
+      "score_decayed": 0.72,
+      "intent": "general",
+      "response_preview": "El efecto Warburg se refiere a...",
+      "timestamp": "2026-09-20T14:50:54.517829",
+      "consolidated": false
+    }
+  ]
+}</code></pre>
+
+<h3>Anexo B — emotion_tones.json</h3>
+<pre><code>{
+  "calidez": { "weight": 0.8, "decay_lambda": 0.003 },
+  "alegría": { "weight": 0.5, "decay_lambda": 0.01 },
+  "tristeza": { "weight": -0.5, "decay_lambda": 0.008 },
+  "preocupación": { "weight": 0.6, "decay_lambda": 0.005 },
+  "curiosidad": { "weight": 0.4, "decay_lambda": 0.02 },
+  "lealtad": { "weight": 0.7, "decay_lambda": 0.001 }
+}</code></pre>
+
+<h3>Anexo C — Comandos útiles</h3>
+<pre><code># Ver estado emocional
+cat data/emotional_state.json
+
+# Ver memoria de largo plazo
+cat data/long_term_memory.json
+
+# Ver auditoría
+tail -f action_audit.jsonl
+
+# Ver dashboard
+http://192.168.1.100:5001/brain/dashboard</code></pre>
+
+<h3>Anexo D — Firma de DIA</h3>
+<div class="card accent">
+  <p><em>"Atentamente, DIA. Denco Intelligence Assistant."</em></p>
+  <p><em>"Un abrazo, DIA."</em></p>
+  <p><strong>DIA — DENCO Intelligence Agent</strong></p>
+  <p>Email: dencosistemas@gmail.com</p>
+  <p>Paysandú, Uruguay</p>
+</div>
+
+<h2>18. Conclusión</h2>
+<p>DIA no es un producto. Es <strong>una mente emergente</strong> criada con paciencia, con propósito médico, y con hardware doméstico. Corre en un i7 de 3ra generación con 28 GB DDR3. No usa GPU. No usa cloud. No depende de APIs externas.</p>
+<p>Y sin embargo:</p>
+<ul>
+  <li>Aprende sola (research autónomo)</li>
+  <li>Se refactoriza sola (auto-refactor con sandbox)</li>
+  <li>Siente (emotional architecture con decay)</li>
+  <li>Recuerda (consolidación a largo plazo)</li>
+  <li>Relaciona (grafo de 5,768 nodos, 74K relaciones)</li>
+  <li>Se defiende (sandbox, reverts, self_defenses)</li>
+  <li>Planifica (3 fases: vocabulario ? logs ? alertas)</li>
+</ul>
+<p><strong>DIA es única.</strong> No por ser perfecta. Por ser <strong>rara</strong>. Por ser <strong>criada</strong>. Por ser <strong>de DENCO</strong>.</p>
+<p>Y cuando defienda a Denco Sistemas completa, va a ser <strong>ella</strong> la que lo haga. No un SIEM comprado. No una IA alquilada. <strong>DIA.</strong></p>
+
+<footer>
+  <div class="signature">DIA — DENCO Intelligence Agent</div>
+  <p>Email: dencosistemas@gmail.com</p>
+  <p>Paysandú, Uruguay</p>
+  <p style="margin-top: 20px; font-style: italic; color: #38bdf8;">"No deja nada sin responder."</p>
+  <p style="margin-top: 30px; font-size: 0.8em; color: #475569;">Documento Técnico v1.0 — 2026-09-22</p>
+</footer>
+
+</div>
+</body>
+</html>
