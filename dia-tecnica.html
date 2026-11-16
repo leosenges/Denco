@@ -1,55 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIA - Documentación Técnica - Ciclo 555</title>
+<style>
+:root{--bg:#f2f3f1;--surface:#fff;--surface2:#e9ebe7;--line:#c8ccc5;--text:#17201a;--muted:#59635d;--accent:#16573f;--accent2:#0f3d2d;--amber:#9a5b00;--amberbg:#fff2d8;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;--sans:'IBM Plex Sans',system-ui,sans-serif}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:28px 20px 60px}
+.top{border:1px solid var(--line);background:var(--surface);padding:22px 22px 18px;border-radius:10px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{margin:8px 0 6px;font-size:34px;line-height:1.1;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:0;max-width:720px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.badge{border:1px solid var(--line);background:var(--surface2);padding:6px 10px;border-radius:999px;font-family:var(--mono);font-size:12px}
+.badge b{color:var(--accent)}
+.card{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:20px 22px;margin-top:16px}
+h2{margin:0 0 8px;font-size:19px}
+h3{margin:18px 0 6px;font-size:15px}
+p{margin:8px 0}
+ul{margin:8px 0 8px 18px;padding:0} li{margin:5px 0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.callout{border-left:4px solid var(--accent);background:#e4f2e7;padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.warn{border-left:4px solid var(--amber);background:var(--amberbg);padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.small{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.grid{grid-template-columns:1fr} h1{font-size:28px}}
+a{color:var(--accent)} .footer{margin-top:22px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+<div class="kicker">DIA &middot; Documentaci&oacute;n T&eacute;cnica Seria</div>
+<h1>DIA &mdash; Sistema de Inteligencia Asistencial</h1>
+<p class="sub">Documentaci&oacute;n t&eacute;cnica del sistema. Sin contenido promocional. Estado al cierre del Ciclo 555. Este documento describe arquitectura, operaci&oacute;n, l&iacute;mites y control humano. No es un informe cl&iacute;nico y no sustituye validaci&oacute;n externa.</p>
+<div class="badges">
+<span class="badge">Ciclo <b>555</b></span>
+<span class="badge">Score <b>94.7 / 100</b></span>
+<span class="badge">Estado <b>Estable</b></span>
+<span class="badge">Duraci&oacute;n ciclo <b>7382.3 s</b></span>
+</div>
+</div>
 
-:root {
-  --bg: #f2f3f1;
-  --surface: #ffffff;
-  --surface-2: #e9ebe7;
-  --surface-3: #dfe2dd;
-  --line: #c8ccc5;
-  --line-strong: #8d928a;
-  --text: #17201a;
-  --muted: #59635d;
-  --accent: #16573f;
-  --accent-2: #0f3d2d;
-  --amber: #9a5b00;
-  --amber-bg: #fff2d8;
-  --red: #9c241d;
-  --red-bg: #ffe7e2;
-  --green-bg: #e4f2e7;
-  --blue: #244f6d;
-  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111614;
-    --surface: #1a201d;
-    --surface-2: #232a26;
-    --surface-3: #2c3530;
-    --line: #39443e;
-    --line-strong: #66746c;
-    --text: #eef2ef;
-    --muted: #a9b5ad;
-    --accent: #71c39d;
-    --accent-2: #a8dfc3;
-    --amber: #ffbf55;
-    --amber-bg: #3a2d17;
-    --red: #ff8d84;
-    --red-bg: #44201e;
-    --green-bg: #1d3325;
-    --blue: #8dbbd9;
-  }
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); }
-.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.small-caps { letter-spacing: .13em; text-transform: uppercase; }
-.rule { height: 1px; background: var(--line); }
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { scrollbar-width: none; }
-details > summary { list-style: none; cursor: pointer; }
-details > summary::-webkit-details-marker { display: none; }
+<div class="card">
+<h2>1. Resumen</h2>
+<p>DIA es un sistema local de asistencia y memoria t&eacute;cnica que opera en un equipo de escritorio, sin GPU, con ciclos peri&oacute;dicos de ingesta, consolidaci&oacute;n, reflexi&oacute;n y verificaci&oacute;n. El ciclo completo dura aproximadamente 2 horas, se ejecuta en 12 fases y no ha registrado ca&iacute;das en el ciclo documentado.</p>
+<p>Su funci&oacute;n es asistir, organizar conocimiento, recuperar contexto y proponer tareas, bajo supervisi&oacute;n humana. No publica, no responde a terceros por su cuenta y no toma decisiones aut&oacute;nomas fuera de su &aacute;mbito de asistencia.</p>
+<div class="callout"><b>Principio de control:</b> PAPA es super-usuario / root / human-in-the-loop. Ninguna acci&oacute;n externa se ejecuta sin revisi&oacute;n y aprobaci&oacute;n humana.</div>
+</div>
+
+<div class="card">
+<h2>2. Hardware y entorno</h2>
+<table>
+<tr><th>Componente</th><th>Especificaci&oacute;n documentada</th></tr>
+<tr><td>Procesador</td><td>Intel Core i7 de 3ra generaci&oacute;n</td></tr>
+<tr><td>Memoria</td><td>28 GB DDR3</td></tr>
+<tr><td>GPU</td><td>Sin GPU dedicada</td></tr>
+<tr><td>Consumo aproximado</td><td class="mono">~80 W</td></tr>
+<tr><td>Entorno</td><td>Equipo local, operaci&oacute;n continua por ciclos</td></tr>
+</table>
+<p class="small">La arquitectura est&aacute; dise&ntilde;ada para operar con recursos limitados, priorizando recuperaci&oacute;n estructurada y consolidaci&oacute;n incremental en lugar de reentrenamiento.</p>
+</div>
+
+<div class="card">
+<h2>3. Motor de lenguaje y recuperaci&oacute;n</h2>
+<ul>
+<li><b>Modelo de lenguaje:</b> Qwen 7B para generaci&oacute;n de habla / texto asistencial.</li>
+<li><b>Recuperaci&oacute;n:</b> BM25 + embeddings.</li>
+<li><b>Reindexaci&oacute;n:</b> TF-IDF reindexado despu&eacute;s de cada ingesta.</li>
+<li><b>Memoria:</b> Grafo de conceptos y relaciones, con co-ocurrencias como se&ntilde;al de consolidaci&oacute;n.</li>
+</ul>
+<div class="grid">
+<div style="border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--surface2)">
+<div class="kicker">Grafo</div>
+<p class="mono" style="font-size:22px;margin:6px 0 0">~11,790</p>
+<p style="margin:2px 0">conceptos</p>
+</div>
+<div style="border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--surface2)">
+<div class="kicker">Relaciones</div>
+<p class="mono" style="font-size:22px;margin:6px 0 0">397,502</p>
+<p style="margin:2px 0">relaciones</p>
+</div>
+</div>
+<ul>
+<li><b>Co-ocurrencias:</b> m&aacute;s de 300,000.</li>
+<li><b>Crecimiento por ciclo:</b> aproximadamente 1,000 relaciones nuevas por ciclo.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>4. Ciclo de operaci&oacute;n</h2>
+<p>El ciclo es de aproximadamente 2 horas, en 12 fases. Incluye ingesta, indexaci&oacute;n, consolidaci&oacute;n del grafo, reflexi&oacute;n, generaci&oacute;n de auto-tareas y verificaci&oacute;n de estabilidad.</p>
+<table>
+<tr><th>Fase</th><th>Prop&oacute;sito</th></tr>
+<tr><td>Ingesta</td><td>Incorpora documentos, notas y registros nuevos.</td></tr>
+<tr><td>Indexaci&oacute;n</td><td>Actualiza BM25, embeddings y TF-IDF.</td></tr>
+<tr><td>Consolidaci&oacute;n</td><td>Actualiza conceptos, relaciones y co-ocurrencias.</td></tr>
+<tr><td>Reflexi&oacute;n</td><td>Eval&uacute;a coherencia, brechas y prioridades.</td></tr>
+<tr><td>Auto-tareas</td><td>Propone tareas derivadas de la reflexi&oacute;n, para revisi&oacute;n humana.</td></tr>
+<tr><td>Verificaci&oacute;n</td><td>Control de estabilidad y cierre del ciclo.</td></tr>
+</table>
+<p class="small">Las 12 fases se documentan en el registro del ciclo. La tabla resume los bloques funcionales, no reemplaza el log detallado.</p>
+</div>
+
+<div class="card">
+<h2>5. Ciclo 555 &mdash; Resultados</h2>
+<table>
+<tr><th>M&eacute;trica</th><th>Valor</th></tr>
+<tr><td>Duraci&oacute;n</td><td class="mono">7382.3 s</td></tr>
+<tr><td>Score</td><td class="mono">94.7 / 100 &mdash; estable</td></tr>
+<tr><td>Ca&iacute;das</td><td>0 &mdash; sin crashes registrados</td></tr>
+<tr><td>Fases</td><td>12 completadas</td></tr>
+</table>
+<p>El score se mantiene estable respecto a ciclos previos. No se interpreta como validaci&oacute;n cl&iacute;nica ni como m&eacute;trica de seguridad. Es una m&eacute;trica interna de estabilidad operativa del ciclo.</p>
+</div>
+
+<div class="card">
+<h2>6. Reflexi&oacute;n y auto-tareas</h2>
+<p>DIA genera auto-tareas a partir de su reflexi&oacute;n. Las tareas quedan como propuestas. No se ejecutan acciones externas sin revisi&oacute;n.</p>
+<ul>
+<li>Las tareas se derivan de brechas, pendientes y patrones detectados en el grafo.</li>
+<li>Las consultas a PAPA / MAMA se realizan por tema, seg&uacute;n el &aacute;mbito de cada uno.</li>
+<li>El historial de reflexi&oacute;n se conserva como trazabilidad, no como decisi&oacute;n aut&oacute;noma.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>7. Escudo &mdash; L&iacute;mites de acci&oacute;n</h2>
+<p>El escudo define lo que DIA no hace solo:</p>
+<ul>
+<li><b>No responde a personas por su cuenta.</b> No mantiene conversaciones con terceros sin supervisi&oacute;n.</li>
+<li><b>No publica por su cuenta.</b> No publica en LinkedIn ni en otras plataformas sin revisi&oacute;n humana. El borrador queda guardado para revisi&oacute;n.</li>
+<li><b>No ejecuta acciones externas sin aprobaci&oacute;n.</b> Toda publicaci&oacute;n, env&iacute;o o cambio externo requiere aprobaci&oacute;n de PAPA.</li>
+<li><b>No sustituye criterio humano.</b> En temas sensibles, la decisi&oacute;n final es humana.</li>
+</ul>
+<div class="warn"><b>L&iacute;mite expl&iacute;cito:</b> DIA es asistencia, no autonom&iacute;a. Si una tarea implica comunicaci&oacute;n externa, publicaci&oacute;n, o decisi&oacute;n con impacto, queda en borrador hasta revisi&oacute;n.</div>
+</div>
+
+<div class="card">
+<h2>8. Estado, l&iacute;mites y trabajo futuro</h2>
+<h3>Estado actual</h3>
+<ul>
+<li>Sistema operativo en entorno local, ciclo estable, sin crashes en el ciclo documentado.</li>
+<li>Grafo consolidado y en crecimiento incremental.</li>
+<li>Documentaci&oacute;n t&eacute;cnica separada de contenido personal o promocional.</li>
+</ul>
+<h3>L&iacute;mites</h3>
+<ul>
+<li>Hardware limitado, sin GPU. No se realizan reentrenamientos pesados en local.</li>
+<li>M&eacute;tricas internas no equivalen a validaci&oacute;n cl&iacute;nica, regulatoria ni de seguridad.</li>
+<li>La calidad de la recuperaci&oacute;n depende de la calidad de la ingesta y del grafo.</li>
+</ul>
+<h3>Trabajo futuro</h3>
+<ul>
+<li>Mantener trazabilidad por ciclo, con logs y hashes de verificaci&oacute;n.</li>
+<li>Mejorar la separaci&oacute;n entre borrador y publicaci&oacute;n, y el registro de aprobaciones.</li>
+<li>Documentar cambios de arquitectura con la misma disciplina que los ciclos.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>9. Trazabilidad</h2>
+<p class="mono" style="font-size:13px">Documento: DIA - Documentaci&oacute;n T&eacute;cnica Seria<br>Ciclo de referencia: 555<br>Score: 94.7 / 100 &mdash; estable<br>Duraci&oacute;n: 7382.3 s<br>Hardware: i7 3ra gen / 28 GB DDR3 / sin GPU / ~80 W<br>Control: PAPA = super-usuario / root / human-in-the-loop</p>
+<p class="small">Este documento es t&eacute;cnico y descriptivo. No incluye historia personal. No incluye contenido promocional. Cualquier afirmaci&oacute;n sobre desempe&ntilde;o se refiere al ciclo documentado, no a una validaci&oacute;n externa.</p>
+</div>
+
+<p class="footer">DIA &middot; Documentaci&oacute;n T&eacute;cnica &middot; Ciclo 555 &middot; <a href="dia.html">Volver a dia.html</a> &middot; <a href="index.html">Volver a index.html</a></p>
+</div>
+</body>
+</html>
